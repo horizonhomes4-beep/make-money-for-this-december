@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#064e3b">
+<title>Admin – Math Cloud Tech</title>
+<link rel="icon" href="logo.png">
+<style>
+:root{--g:#0b6b4f;--g2:#10b981;--y:#fbbf24;--bg:#f2f6f4;--c:#fff;--t:#10231c;--m:#5b6e66;--b:#dbe5e0;--r:#dc2626}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1411;--c:#14211b;--t:#e8f3ee;--m:#93a79d;--b:#24362d}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.45 system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--t);padding-bottom:env(safe-area-inset-bottom)}
+header{background:var(--g);color:#fff;padding:calc(12px + env(safe-area-inset-top)) 16px 12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}
+header b{font-size:15px;display:flex;align-items:center;gap:8px}.logo{width:34px;height:34px;border-radius:9px;background:#fff2}header .r{display:flex;gap:8px;align-items:center}
+main{max-width:720px;margin:0 auto;padding:14px}
+.hero{background:linear-gradient(135deg,#0b6b4f,#10b981);color:#fff;border-radius:20px;padding:24px 18px;margin-bottom:14px}
+.hero h1{margin:0 0 8px;font-size:26px;line-height:1.15}.hero p{margin:0 0 14px;opacity:.95}
+.card{background:var(--c);border:1px solid var(--b);border-radius:20px;padding:18px;margin-bottom:16px;box-shadow:0 8px 24px #0b6b4f14}
+.card h3{margin:0 0 8px;font-size:17px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--c);border:1px solid var(--b);border-radius:14px;padding:12px}.stat small{color:var(--m)}.stat b{display:block;font-size:20px}
+.big{background:linear-gradient(135deg,#0b6b4f,#10b981);color:#fff;border-radius:18px;padding:18px;margin-bottom:12px}.big b{font-size:32px;display:block}
+button,.btn{font:inherit;border:0;border-radius:14px;padding:13px 18px;background:linear-gradient(#22d39a,#10b981);color:#fff;font-weight:800;cursor:pointer;display:inline-block;text-decoration:none;text-align:center;box-shadow:0 5px 0 #0a7a57,0 9px 16px #0003;transition:transform .08s,box-shadow .08s;-webkit-tap-highlight-color:transparent}button:active,.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #0a7a57,0 2px 6px #0003}button:disabled{opacity:.6}
+.y{background:linear-gradient(#ffd75e,#fbbf24);color:#3b2a00;box-shadow:0 5px 0 #b7860b,0 9px 16px #0003}.y:active{box-shadow:0 1px 0 #b7860b,0 2px 6px #0003}.o{background:transparent;color:inherit;border:2px solid currentColor;box-shadow:0 4px 0 #0002}.o:active{box-shadow:0 1px 0 #0002}.sm{padding:9px 13px;font-size:14px;box-shadow:0 4px 0 #0a7a57,0 6px 10px #0003}.d{background:linear-gradient(#ef5a5a,#dc2626);box-shadow:0 4px 0 #991b1b,0 6px 10px #0003}.d:active{box-shadow:0 1px 0 #991b1b}
+.full{width:100%}
+input,select,textarea{width:100%;font:inherit;padding:13px;border-radius:12px;border:1px solid var(--b);background:var(--bg);color:var(--t);margin:5px 0}
+.step{display:flex;gap:12px;align-items:flex-start;margin:10px 0}.step i{font-style:normal;background:var(--y);color:#3b2a00;border-radius:50%;min-width:34px;height:34px;display:grid;place-items:center;font-weight:800}
+.row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--b);font-size:14px;align-items:center}.row:first-child{border:0}
+.row small{color:var(--m);display:block}
+.tag{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--b)}.tag.approved,.tag.paid{background:#bbf7d0;color:#14532d}.tag.pending{background:#fde68a;color:#78350f}.tag.rejected{background:#fecaca;color:#7f1d1d}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px}.tabs button{background:var(--c);color:var(--t);border:1px solid var(--b);white-space:nowrap;padding:9px 14px}.tabs .on{background:var(--g);color:#fff}
+.link{background:var(--bg);border:1px dashed var(--g2);padding:10px;border-radius:10px;word-break:break-all;font-size:13px;margin:6px 0}
+.sh{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+#modal{position:fixed;inset:0;background:#000a;display:none;align-items:flex-end;justify-content:center;z-index:20}
+#modal.show{display:flex}#modal>div{background:var(--c);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom))}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;border-radius:99px;opacity:0;transition:.3s;pointer-events:none;z-index:30;max-width:90%}#toast.show{opacity:1}
+.m{color:var(--m);font-size:14px}
+.pill{display:inline-block;background:#fff3;border-radius:99px;padding:5px 12px;font-size:13px;font-weight:700;margin-bottom:10px}
+.hero{box-shadow:0 10px 0 #064e3b,0 18px 30px #0004}
+.flow{display:flex;flex-direction:column;gap:6px;align-items:stretch}.node{background:var(--bg);border:1px solid var(--b);border-radius:14px;padding:11px 13px;font-size:15px}.node.win{background:#d1fae5;color:#064e3b;font-weight:800;border-color:#34d399}.arr{text-align:center;color:var(--g2);font-weight:900;line-height:1}
+.ex{border:2px solid var(--b);border-radius:18px;padding:14px;margin-top:12px}.ex h4{margin:0 0 10px}
+input[type=range]{padding:0;accent-color:#10b981;height:34px}
+.calc{background:linear-gradient(135deg,#064e3b,#0b6b4f);color:#fff;border-radius:22px;padding:18px;margin-bottom:16px;box-shadow:0 10px 0 #03382a,0 18px 30px #0004}.calc input[type=range]{background:transparent;border:0}.calc .r{background:#0004;border-radius:16px;padding:14px;text-align:center;margin-top:10px}.calc .r b{font-size:34px;display:block;color:var(--y)}
+.prod{background:var(--c);border:1px solid var(--b);border-radius:22px;padding:20px;margin-bottom:18px;box-shadow:0 8px 0 var(--b),0 14px 26px #0b6b4f1a}.prod h4{margin:0 0 6px;font-size:19px}.prod p{margin:0 0 14px;color:var(--m)}.prod .bt{display:grid;gap:12px;margin-top:14px}
+.share{display:flex;gap:6px;flex-wrap:wrap}#gate{position:fixed;inset:0;z-index:40;background:linear-gradient(160deg,#064e3b,#10b981);color:#fff;display:grid;place-items:center;text-align:center;padding:24px}#gate>div{max-width:360px}#gate h2{margin:16px 0 8px}.lock{background:#fde68a;color:#78350f;border-radius:12px;padding:10px;font-size:14px;margin:8px 0}.trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}.trust div{background:var(--bg);border-radius:14px;padding:12px;font-size:14px}.price{font-size:22px;font-weight:800;color:var(--g2)}
+
+header{background:#064e3b}.logo{width:34px;height:34px;border-radius:9px}
+header b{display:flex;align-items:center;gap:8px}
+main{max-width:860px}
+</style></head><body>
+<header><b><img class=logo src="logo.png" alt="">Admin Panel</b><span id="nav"></span></header>
+<main id="app"><p class="m">Loading…</p></main>
+<div id="modal" onclick="if(event.target===this)closeM()"><div id="mb"></div></div>
+<div id="toast"></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+const $=s=>document.querySelector(s),db=firebase.database(),auth=firebase.auth(),TS=firebase.database.ServerValue.TIMESTAMP;
+const N=n=>'₦'+Number(n||0).toLocaleString('en-NG');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const vals=o=>Object.entries(o||{}).map(([id,v])=>({id,...v}));
+const sum=o=>vals(o).reduce((a,x)=>a+(+x.amount||0),0);
+const dt=t=>t?new Date(t).toLocaleDateString('en-NG',{day:'numeric',month:'short'}):'';
+const url=u=>/^https?:\/\//i.test(u||'')?esc(u):'';
+let S={direct:1000,override:300,minWithdraw:10000,shareReward:5,shareCap:5},PROD={},PAY={},offs=[],D={},tab='over',cur='';
+const toast=m=>{const t=$('#toast');t.textContent=m;t.className='show';setTimeout(()=>t.className='',3000)};
+const openM=h=>{$('#mb').innerHTML=h;$('#modal').className='show'},closeM=()=>$('#modal').className='';
+const clr=()=>{offs.forEach(f=>f());offs=[];D={}};
+const on=(r,k,fn)=>{r.on('value',s=>{D[k]=s.val()||{};fn()},e=>{console.warn(k,e.message);toast('Cannot read '+k+' – republish database rules')});offs.push(()=>r.off('value'))};
+const out=()=>auth.signOut();
+const unl=e=>vals(e).some(x=>x.type==='direct'),bonus=(sh,e)=>unl(e)?((sh&&sh.total)||0)*S.shareReward:0;
+db.ref('settings').on('value',s=>{S={...S,...(s.val()||{})};if(cur==='adm')admR()},()=>{});
+db.ref('products').on('value',s=>{PROD=s.val()||{};if(cur==='adm')admR()},()=>{});
+db.ref('paymentMethods').on('value',s=>{PAY=s.val()||{};if(cur==='adm')admR()},()=>{});
+
+function loginV(){cur='login';clr();$('#nav').innerHTML='';
+  $('#app').innerHTML=`<div class=card style="margin-top:40px"><h3>🔐 Admin Login</h3><form onsubmit="loginA(event)"><input name=email type=email placeholder="Admin email" required><input name=pw type=password placeholder="Password" required><button class=full>Login</button></form></div>`}
+async function loginA(e){e.preventDefault();const f=e.target;f.querySelector('button').disabled=true;
+  try{await auth.signInWithEmailAndPassword(f.email.value.trim(),f.pw.value)}catch(x){toast('Login failed');f.querySelector('button').disabled=false}}
+auth.onAuthStateChanged(async u=>{
+  if(!u||u.isAnonymous){loginV();return}
+  const a=await db.ref('admins/'+u.uid).once('value').then(s=>s.val()===true,()=>false);
+  if(!a){await auth.signOut();toast('This account is not an admin');return}
+  adm();
+});
+
+/* ---------- ADMIN ---------- */
+function adm(){cur='adm';clr();$('#nav').innerHTML=`<button class="sm o" onclick="out()">Logout</button>`;
+  ['users','orders','earnings','payouts','withdrawals','shares'].forEach(k=>on(db.ref(k),k,admR));}
+const TABS={over:'Overview',ord:'Orders',aff:'Marketers',wd:'Withdrawals',prod:'Products',pay:'Payments',set:'Settings'};
+function admR(){if(cur!=='adm')return;const U=D.users||{},O=vals(D.orders).sort((a,b)=>b.createdAt-a.createdAt),W=vals(D.withdrawals).sort((a,b)=>b.createdAt-a.createdAt);
+  const tot=id=>sum((D.earnings||{})[id])+bonus((D.shares||{})[id],(D.earnings||{})[id]),bal=id=>tot(id)-sum((D.payouts||{})[id]);let h='';
+  if(tab==='over'){const ap=O.filter(o=>o.status==='approved'),rev=ap.reduce((a,o)=>a+o.price,0),paid=Object.values(D.payouts||{}).reduce((a,p)=>a+sum(p),0),owed=Object.keys(U).reduce((a,k)=>a+bal(k),0);
+    h=`<div class=grid><div class=stat><small>Marketers</small><b>${Object.keys(U).length}</b></div><div class=stat><small>Pending orders</small><b>${O.filter(o=>o.status==='pending').length}</b></div>
+    <div class=stat><small>Sales received</small><b>${N(rev)}</b></div><div class=stat><small>Commissions owed</small><b>${N(owed)}</b></div>
+    <div class=stat><small>Commissions paid</small><b>${N(paid)}</b></div><div class=stat><small>Cash left after all commissions</small><b>${N(rev-paid-owed)}</b></div></div>
+    <p class=m>Withdrawals are paid from your sales. “Cash left” = sales received − commissions paid − commissions still owed.</p>`}
+  if(tab==='ord')h=O.map(o=>`<div class=card><div class=row style="border:0"><div><b>${esc(o.buyerName)}</b><small>${esc(o.buyerPhone)} ${esc(o.buyerEmail)}</small><small>${esc(o.productName)} • ${N(o.price)} • ${esc(o.method)}</small><small>Order code: <b>${o.id.slice(-6).toUpperCase()}</b></small><small>${(d=>`Direct: ${d?esc(d.name)+' (+'+N(S.direct)+')':'none'} • Upline: ${d&&U[d.referredBy]?esc(U[d.referredBy].name)+' (+'+N(S.override)+')':'none'}`)(U[o.affiliateUid])}</small></div><span class="tag ${o.status}">${o.status}</span></div>
+    ${o.status==='pending'?`<button class=sm onclick="appr('${o.id}')">Approve</button> <button class="sm d" onclick="rej('${o.id}')">Reject</button>`:''}${o.status==='approved'?`<button class="sm o" onclick="undo('${o.id}')">Undo approval</button>`:''}</div>`).join('')||'<p class=m>No orders.</p>';
+  if(tab==='aff')h=Object.entries(U).map(([id,u])=>`<div class=card><b>${esc(u.name)}</b> <span class=tag>${esc(u.refCode)}</span><div class=m>${esc(u.email)} • ${esc(u.phone)}<br>Upline: ${esc(U[u.referredBy]?.name)||'—'}<br>Earned ${N(tot(id))} • Paid ${N(sum((D.payouts||{})[id]))} • <b>Balance ${N(bal(id))}</b><br>${u.bank?esc(u.bank.bankName)+' '+esc(u.bank.accNo)+' '+esc(u.bank.accName):'No bank yet'}</div></div>`).join('')||'<p class=m>No marketers.</p>';
+  if(tab==='wd')h=W.map(w=>{const u=U[w.uid]||{};return `<div class=card><div class=row style="border:0"><div><b>${N(w.amount)}</b> – ${esc(u.name)}<small>${u.bank?esc(u.bank.bankName)+' • '+esc(u.bank.accNo)+' • '+esc(u.bank.accName):'No bank'}</small><small>${dt(w.createdAt)} • balance ${N(bal(w.uid))}</small></div><span class="tag ${w.status}">${w.status}</span></div>
+    ${w.status==='pending'?`<button class=sm onclick="pay('${w.id}')">Mark as paid</button> <button class="sm d" onclick="db.ref('withdrawals/${w.id}/status').set('rejected')">Reject</button>`:''}</div>`}).join('')||'<p class=m>No requests.</p>';
+  if(tab==='prod')h=`<form class=card onsubmit="addP(event)"><h3>Add product</h3><input name=n placeholder="Product name" required><input name=p type=number min=0 placeholder="Price (₦)" required><textarea name=d placeholder="Short description"></textarea><input name=dm type=url placeholder="Demo link (optional) – video or live demo URL"><button class=full>Add</button></form>`+
+    vals(PROD).map(p=>`<div class=card><b>${esc(p.name)}</b> – ${N(p.price)}<div class=m>${esc(p.desc)}</div>${url(p.demo)?`<div class=m>🎬 <a href="${url(p.demo)}" target=_blank rel=noopener>Demo link</a></div>`:''}<br><button class="sm o" onclick="db.ref('products/${p.id}/active').set(${p.active===false})">${p.active===false?'Show':'Hide'}</button> <button class="sm d" onclick="if(confirm('Delete?'))db.ref('products/${p.id}').remove()">Delete</button></div>`).join('');
+  if(tab==='pay')h=`<form class=card onsubmit="addM(event)"><h3>Add payment method</h3><select name=t><option value=bank>Nigerian bank transfer</option><option value=paystack>Paystack link</option><option value=flutterwave>Flutterwave link</option></select><input name=l placeholder="Label (e.g. GTBank Transfer)" required><input name=x placeholder="Bank: 'Acct no – Acct name'  |  Paystack/Flutterwave: payment link (https://…)" required><button class=full>Add</button></form>`+
+    vals(PAY).map(m=>`<div class=card><b>${esc(m.label)}</b> <span class=tag>${m.type}</span><div class=m>${esc(m.details||m.link)}</div><button class="sm o" onclick="db.ref('paymentMethods/${m.id}/active').set(${m.active===false})">${m.active===false?'Enable':'Disable'}</button> <button class="sm d" onclick="db.ref('paymentMethods/${m.id}').remove()">Delete</button></div>`).join('');
+  if(tab==='set')h=`<form class=card onsubmit="saveS(event)"><h3>Commission settings</h3><label class=m>Direct commission (₦)</label><input name=d type=number value="${S.direct}"><label class=m>Upline override (₦)</label><input name=o type=number value="${S.override}"><label class=m>Minimum withdrawal (₦)</label><input name=m type=number value="${S.minWithdraw}"><label class=m>Reward per share (₦)</label><input name=sr type=number min=0 value="${S.shareReward}"><label class=m>Max rewarded shares per day</label><input name=sc type=number min=0 value="${S.shareCap}"><button class=full>Save</button></form>`;
+  $('#app').innerHTML=`<div class=tabs>${Object.entries(TABS).map(([k,v])=>`<button class="${tab===k?'on':''}" onclick="tab='${k}';admR()">${v}</button>`).join('')}</div>${h}`;}
+async function appr(id){
+  try{const o=(await db.ref('orders/'+id).once('value')).val();
+  if(!o||o.status!=='pending')return toast('Order is no longer pending');
+  const u={};u[`orders/${id}/status`]='approved';u[`orders/${id}/approvedAt`]=TS;
+  if(o.affiliateUid){
+    const up=(await db.ref(`users/${o.affiliateUid}/referredBy`).once('value')).val()||'',me=(D.users||{})[o.affiliateUid]||{};
+    u[`orders/${id}/directPaid`]=S.direct;
+    u[`earnings/${o.affiliateUid}/${id}_d`]={amount:S.direct,type:'direct',orderId:id,from:o.buyerName,at:TS};
+    if(up){u[`orders/${id}/uplineUid`]=up;u[`orders/${id}/uplinePaid`]=S.override;
+      u[`earnings/${up}/${id}_o`]={amount:S.override,type:'override',orderId:id,from:me.name||'team member',at:TS}}}
+  await db.ref().update(u);toast(o.affiliateUid?'Approved ✓ Marketer credited':'Approved ✓ (no marketer)')}
+  catch(x){toast('Failed: '+x.message)}}
+async function undo(id){const o=(D.orders||{})[id];if(!o||!confirm('Undo this approval? The commissions for this order will be removed.'))return;
+  const up=o.uplineUid||((D.users||{})[o.affiliateUid]||{}).referredBy,u={};
+  ['approvedAt','directPaid','uplineUid','uplinePaid'].forEach(k=>u[`orders/${id}/${k}`]=null);u[`orders/${id}/status`]='pending';
+  if(o.affiliateUid)u[`earnings/${o.affiliateUid}/${id}_d`]=null;if(up)u[`earnings/${up}/${id}_o`]=null;
+  try{await db.ref().update(u);toast('Approval undone')}catch(x){toast(x.message)}}
+const rej=id=>db.ref(`orders/${id}/status`).set('rejected');
+async function pay(id){
+  try{const w=(await db.ref('withdrawals/'+id).once('value')).val();
+  if(!w||w.status!=='pending')return toast('Already handled');
+  const b=((D.earnings&&D.earnings[w.uid])?sum(D.earnings[w.uid]):0)+bonus((D.shares||{})[w.uid],(D.earnings||{})[w.uid])-sum((D.payouts||{})[w.uid]);
+  if(w.amount>b)return toast('Amount is more than the marketer balance ('+N(b)+')');
+  if(!confirm(`Confirm you have sent ${N(w.amount)} to the marketer's bank account?\nBalance after payment: ${N(b-w.amount)}`))return;
+  await db.ref().update({[`withdrawals/${id}/status`]:'paid',[`withdrawals/${id}/paidAt`]:TS,[`payouts/${w.uid}/${id}`]:{amount:w.amount,at:TS}});
+  toast('Paid ✓ Balance deducted')}catch(x){toast('Failed: '+x.message)}}
+async function addP(e){e.preventDefault();const f=e.target;const o={name:f.n.value.trim(),price:+f.p.value,desc:f.d.value.trim(),active:true};if(url(f.dm.value.trim()))o.demo=f.dm.value.trim();await db.ref('products').push(o);f.reset();toast('Product added ✓')}
+async function addM(e){e.preventDefault();const f=e.target,t=f.t.value,o={type:t,label:f.l.value.trim(),active:true};t==='bank'?o.details=f.x.value.trim():o.link=f.x.value.trim();await db.ref('paymentMethods').push(o);f.reset()}
+async function saveS(e){e.preventDefault();const f=e.target;await db.ref('settings').set({direct:+f.d.value,override:+f.o.value,minWithdraw:+f.m.value,shareReward:+f.sr.value,shareCap:+f.sc.value});toast('Saved ✓')}
+</script></body></html>

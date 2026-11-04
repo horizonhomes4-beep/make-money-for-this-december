@@ -1,0 +1,19 @@
+{
+  "name": "Math Cloud Tech – Make Your December Money",
+  "short_name": "MathCloud",
+  "description": "Earn by sharing Math Cloud Tech products. Withdraw to your Nigerian bank.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b6b4f",
+  "theme_color": "#0b6b4f",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
