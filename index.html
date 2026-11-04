@@ -11,12 +11,12 @@
 <meta name="apple-mobile-web-app-title" content="MathCloud"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <!-- Link preview when shared on WhatsApp/Facebook/Telegram/X. Replace YOUR-DOMAIN.com with your real domain -->
 <meta property="og:type" content="website"><meta property="og:site_name" content="Math Cloud Tech">
-<meta property="og:title" content="💰 Make Your December Money Selling Online">
-<meta property="og:description" content="Earn ₦1,000 for every subscriber you bring. Free to join. Withdraw to your Nigerian bank.">
+<meta property="og:title" content="🎄 Your December Upgrade Starts Here ✨">
+<meta property="og:description" content="Premium digital products & services from Math Cloud Tech. Pick yours and subscribe today!">
 <meta property="og:image" content="https://YOUR-DOMAIN.com/logo.png">
 <meta property="og:url" content="https://YOUR-DOMAIN.com/">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="💰 Make Your December Money Selling Online">
-<meta name="twitter:description" content="Earn ₦1,000 for every subscriber you bring. Free to join."><meta name="twitter:image" content="https://YOUR-DOMAIN.com/logo.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="🎄 Your December Upgrade Starts Here ✨">
+<meta name="twitter:description" content="Premium digital products & services from Math Cloud Tech. Subscribe today!"><meta name="twitter:image" content="https://YOUR-DOMAIN.com/logo.png">
 <style>
 :root{--g:#0b6b4f;--g2:#10b981;--y:#fbbf24;--bg:#f2f6f4;--c:#fff;--t:#10231c;--m:#5b6e66;--b:#dbe5e0;--r:#dc2626}
 @media(prefers-color-scheme:dark){:root{--bg:#0b1411;--c:#14211b;--t:#e8f3ee;--m:#93a79d;--b:#24362d}}
@@ -55,6 +55,17 @@ input[type=range]{padding:0;accent-color:#10b981;height:34px}
 .calc{background:linear-gradient(135deg,#064e3b,#0b6b4f);color:#fff;border-radius:22px;padding:18px;margin-bottom:16px;box-shadow:0 10px 0 #03382a,0 18px 30px #0004}.calc input[type=range]{background:transparent;border:0}.calc .r{background:#0004;border-radius:16px;padding:14px;text-align:center;margin-top:10px}.calc .r b{font-size:34px;display:block;color:var(--y)}
 .prod{background:var(--c);border:1px solid var(--b);border-radius:22px;padding:20px;margin-bottom:18px;box-shadow:0 8px 0 var(--b),0 14px 26px #0b6b4f1a}.prod h4{margin:0 0 6px;font-size:19px}.prod p{margin:0 0 14px;color:var(--m)}.prod .bt{display:grid;gap:12px;margin-top:14px}
 .share{display:flex;gap:6px;flex-wrap:wrap}#gate{position:fixed;inset:0;z-index:40;background:linear-gradient(160deg,#064e3b,#10b981);color:#fff;display:grid;place-items:center;text-align:center;padding:24px}#gate>div{max-width:360px}#gate h2{margin:16px 0 8px}.lock{background:#fde68a;color:#78350f;border-radius:12px;padding:10px;font-size:14px;margin:8px 0}.trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}.trust div{background:var(--bg);border-radius:14px;padding:12px;font-size:14px}.price{font-size:22px;font-weight:800;color:var(--g2)}
+
+.prod.pc{position:relative;padding-top:26px;overflow:hidden}.prod.feat{border:2px solid var(--g2)}
+.rib{position:absolute;top:0;left:0;background:var(--y);color:#3b2a00;font-weight:800;font-size:12px;padding:5px 14px;border-radius:0 0 14px 0}
+.cap{font-weight:800;color:var(--g2);font-size:15px;margin:2px 0 6px}
+.pc .pr{display:flex;align-items:baseline;gap:8px;margin:0 0 14px}.pc .price{font-size:30px}
+.pc .bt button{font-size:17px;padding:16px 18px}
+.sechead{margin:24px 4px 4px;font-size:22px;line-height:1.2}.secsub{margin:0 4px 16px;color:var(--m);font-size:14px}
+.hero .two{display:grid;gap:10px}.hero .gh{background:transparent;border:2px solid #fff8;color:#fff;box-shadow:none}
+.strip{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 18px}.strip div{background:var(--c);border:1px solid var(--b);border-radius:14px;padding:12px;font-size:14px}
+@media(prefers-reduced-motion:no-preference){.prod.pc .bt button:not(.o){animation:nudge 2.6s ease-in-out 1s 2}}
+@keyframes nudge{0%,100%{transform:none}50%{transform:translateY(-3px)}}
 </style></head><body>
 <header><b><img class=logo src="logo.png" alt="">Math Cloud Tech</b><span class=r><button id=ib class="sm y" hidden onclick="inst()">📲 Install</button><span id="nav"></span></span></header>
 <main id="app"><p class="m">Loading…</p></main>
@@ -87,7 +98,11 @@ const MOB=/android|iphone|ipad|ipod/i.test(navigator.userAgent);
 function gate(){if(STAND||!MOB||sessionStorage.skip||$('#gate'))return;const g=document.createElement('div');g.id='gate';
  g.innerHTML=`<div><img src="logo.png" alt="" style="width:92px;height:92px;border-radius:22px;box-shadow:0 8px 20px #0005"><h2>Install the app to start earning 💰</h2><p>Get your December money faster: one tap from your home screen, instant sales alerts, and your earnings always ready.</p><button class="y full" onclick="inst()">📲 Install Free App</button><p><a href="#" style="color:#fff;opacity:.8" onclick="sessionStorage.skip=1;$('#gate').remove();return false">Continue in browser</a></p></div>`;document.body.appendChild(g)}
 const unl=e=>vals(e).some(x=>x.type==='direct'),bonus=(sh,e)=>unl(e)?((sh&&sh.total)||0)*S.shareReward:0;
-function shr(k,pid){const p=PROD[pid],u=`${BASE}?ref=${D.u.refCode}${pid?'&p='+pid:''}`,t=pid&&p?`🔥 ${p.name} – ${N(p.price)}. Check it out!`:'Subscribe to our digital products at Math Cloud Tech 🔥',e=encodeURIComponent;
+const CAPS=['Your December upgrade starts here ✨','Stop scrolling. Start growing. 🚀','Small price. Big difference. 💡','Get it today, enjoy it all season 🎄','Made for people who want more 🔥','One tap and you are in 🙌'],
+BADGE=['🔥 Hot Pick','⭐ Top Choice','🚀 Quick Start','🎯 Smart Pick','💡 Must-See'],
+INTRO=['🔥 Don\'t miss this December offer from Math Cloud Tech!','🎄 Your December upgrade is waiting! See what Math Cloud Tech has for you:','✨ Stop scrolling, you will want to see this:','💥 Everything you need in one link. Math Cloud Tech is open!'];
+function allMsg(){const l=vals(PROD).filter(p=>p.active!==false).map(p=>'✅ '+p.name+' – '+N(p.price)+(p.tagline?' ('+p.tagline+')':'')).join('\n');return INTRO[Math.floor(Math.random()*INTRO.length)]+'\n\n'+(l?l+'\n\n':'')+'👉 Tap the link to see everything and subscribe today. Join free and earn too! 👇'}
+function shr(k,pid){const p=PROD[pid],u=`${BASE}?ref=${D.u.refCode}${pid?'&p='+pid:''}`,t=pid&&p?`🔥 ${p.name} – ${N(p.price)}. ${p.tagline||'Check it out!'} 👇`:allMsg(),e=encodeURIComponent;
  const L={wa:`https://wa.me/?text=${e(t+' '+u)}`,fb:`https://www.facebook.com/sharer/sharer.php?u=${e(u)}`,tg:`https://t.me/share/url?url=${e(u)}&text=${e(t)}`,x:`https://twitter.com/intent/tweet?text=${e(t)}&url=${e(u)}`};
  window.open(L[k],'_blank','noopener');const ds=Math.floor((Date.now()+SOFF)/864e5)*864e5;
  db.ref('shares/'+me.uid).transaction(c=>{c=c||{total:0,dayStart:0,dayCount:0};if(c.dayStart===ds){if(c.dayCount>=S.shareCap)return;c.dayCount++}else{c.dayStart=ds;c.dayCount=1}c.total++;return c},(er,ok)=>{if(er)toast('Could not record share');else if(ok)toast('+'+N(S.shareReward)+' share bonus 🎉');else toast('Daily share-bonus limit reached. Sales still pay big!')})}
@@ -114,14 +129,27 @@ auth.onAuthStateChanged(async u=>{
 /* ---------- PUBLIC STORE ---------- */
 const url=u=>/^https?:\/\//i.test(u||'')?esc(u):'';
 function calc(){const a=+$('#cs').value,b=+$('#ct').value,d=+$('#cd').value,t=a*S.direct+b*S.override+d*30*S.shareReward;$('#csv').textContent=a;$('#ctv').textContent=b;$('#cdv').textContent=d;$('#cr').textContent=N(t);$('#cw').textContent=t>=S.minWithdraw?'✅ You can already withdraw to your bank!':'Only '+N(S.minWithdraw-t)+' more to reach the '+N(S.minWithdraw)+' withdrawal minimum'}
+const pcard=(p,i,feat)=>`<div class="prod pc${feat?' feat':''}"><span class=rib>${feat?'⭐ Picked for you':BADGE[i%BADGE.length]}</span><div class=cap>${esc(p.tagline||CAPS[i%CAPS.length])}</div><h4>${esc(p.name)}</h4><p>${esc(p.desc)}</p><div class=pr><span class=price>${N(p.price)}</span></div>
+  <div class=bt>${url(p.demo)?`<a class="btn o" target=_blank rel=noopener href="${url(p.demo)}">🎬 Watch Demo</a>`:''}<button class=y onclick="buy('${p.id}')">🔥 Subscribe Now</button></div></div>`;
 function home(){cur='home';
   $('#nav').innerHTML=`<button class="sm y" onclick="authV('login')">Login</button>`;
   const ps=vals(PROD).filter(p=>p.active!==false);
   $('#app').innerHTML=`
-  ${JOIN?`<div class=card style="background:var(--y);color:#3b2a00"><b>🎉 You were invited!</b> Join free and start earning.</div>`:''}
-  ${PID&&PROD[PID]&&PROD[PID].active!==false?`<div class=prod style="border:2px solid var(--g2)"><span class=pill style="background:var(--g);color:#fff">⭐ Recommended for you${REFOK?' • Referral '+esc(REF)+' ✓':''}</span><h4>${esc(PROD[PID].name)}</h4><p>${esc(PROD[PID].desc)}</p><div class=price>${N(PROD[PID].price)}</div><div class=bt>${url(PROD[PID].demo)?`<a class="btn o" target=_blank rel=noopener href="${url(PROD[PID].demo)}">🎬 Watch Demo</a>`:''}<button class=y onclick="buy('${PID}')">Subscribe Now</button></div></div>`:''}
-  <div class=hero><span class=pill>🎄 December Money Plan</span><h1>Turn Your Phone Into a December Money Machine 💸</h1>
-  <p><b>Share. Earn. Get Paid.</b> Earn <b>${N(S.shareReward)}</b> every time you share, <b>${N(S.direct)}</b> for every subscriber, and <b>${N(S.override)}</b> when your team sells. Start this December with money in your pocket!</p>
+  ${(JOIN||REF)?`<div class=card style="background:var(--y);color:#3b2a00"><b>🎉 You were invited!</b> Join free, share the products and start earning.<br><br><button class="sm" onclick="authV('signup')">Join free as a marketer</button></div>`:''}
+  ${PID&&PROD[PID]&&PROD[PID].active!==false?pcard(PROD[PID],0,true):''}
+  <div class=hero><span class=pill>🎄 December Special</span><h1>Your December Upgrade Starts Here ✨</h1>
+  <p>Premium digital products &amp; services, one tap away. Pick what you need, pay securely and get started today.</p>
+  <div class=two><button class="y full" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">🛍️ See Products &amp; Services</button>
+  <button class="full gh" onclick="document.getElementById('earn').scrollIntoView({behavior:'smooth'})">💰 Or earn by sharing</button></div></div>
+
+  <div id=products></div>
+  <h2 class=sechead>🛍️ Products &amp; Services</h2><p class=secsub>Choose yours and tap Subscribe. It takes less than a minute.</p>
+  ${ps.map((p,i)=>pcard(p,i,false)).join('')||'<p class=m>Products coming soon…</p>'}
+  <div class=strip><div>🔒 Secure payment</div><div>🏦 Bank transfer, Paystack or Flutterwave</div><div>✅ Confirmed after your payment</div><div>📲 Works on any phone</div></div>
+
+  <div id=earn></div>
+  <div class=hero style="margin-top:28px"><span class=pill>💸 Love it? Share it.</span><h2 style="margin:0 0 8px;font-size:24px;line-height:1.15">Turn Your Phone Into a December Money Machine</h2>
+  <p><b>Share. Earn. Get Paid.</b> Earn <b>${N(S.shareReward)}</b> every time you share, <b>${N(S.direct)}</b> for every subscriber, and <b>${N(S.override)}</b> when your team sells.</p>
   <button class="y full" onclick="authV('signup')">🚀 Start Earning – It's Free</button>
   <p class=m style="color:#fff;opacity:.85;margin:12px 0 0">No capital • No stock • Paid to your Nigerian bank</p></div>
 
@@ -154,9 +182,6 @@ function home(){cur='home';
   <div>📊 Every click and subscriber is tracked</div><div>⚡ Earnings credited when payment is confirmed</div>
   <div>🏦 Paid to any Nigerian bank</div><div>👀 You see everything in your dashboard</div></div></div>
 
-  <h3 style="margin:22px 4px 14px;font-size:21px">🛍️ Products &amp; Services</h3>
-  ${ps.map(p=>`<div class=prod><h4>${esc(p.name)}</h4><p>${esc(p.desc)}</p><div class=price>${N(p.price)}</div>
-  <div class=bt>${url(p.demo)?`<a class="btn o" target=_blank rel=noopener href="${url(p.demo)}">🎬 Watch Demo</a>`:''}<button onclick="buy('${p.id}')">Subscribe Now</button></div></div>`).join('')||'<p class=m>Products coming soon…</p>'}
   <p class="m" style="text-align:center;margin-top:24px">© Math Cloud Tech Services</p>`;calc();
 }
 const mh=(m,p)=>m.type==='bank'?`<div class=card><b>🏦 ${esc(m.label)}</b><div class=m>${esc(m.details)}</div></div>`:`<div class=card><b>💳 ${m.type==='paystack'?'Paystack':'Flutterwave'} – ${esc(m.label)}</b><br><br><a class="btn y" target=_blank rel=noopener href="${esc(m.link)}">Pay ${N(p.price)} now</a></div>`;
@@ -191,7 +216,7 @@ function authV(mode){const s=mode==='signup';
   <p class=m style="text-align:center" onclick="authV('${s?'login':'signup'}')"><u>${s?'Have an account? Login':'New here? Join free'}</u></p>`)}
 async function login(e){e.preventDefault();const f=e.target;try{await auth.signInWithEmailAndPassword(f.email.value,f.pw.value);closeM()}catch(x){toast('Login failed: check email/password')}}
 async function signup(e){e.preventDefault();const f=e.target;f.querySelector('button').disabled=true;
-  try{let parent='';if(JOIN)parent=(await db.ref('affiliateCodes/'+JOIN).once('value')).val()||'';
+  try{let parent='';const pc=JOIN||REF;if(pc)parent=(await db.ref('affiliateCodes/'+pc).once('value')).val()||'';
   const c=await auth.createUserWithEmailAndPassword(f.email.value.trim(),f.pw.value),uid=c.user.uid;
   let code=null;
   for(let i=0;i<8&&!code;i++){const k=(f.name.value.replace(/[^a-z]/gi,'').slice(0,4)+Math.random().toString(36).slice(2,6)).toUpperCase();try{await db.ref('affiliateCodes/'+k).set(uid);code=k}catch(x){}}
@@ -219,14 +244,12 @@ function affR(){if(cur!=='aff'||!D.u)return;const u=D.u;if(!u.refCode)return $('
   <div class=grid><div class=stat><small>Total earned</small><b>${N(sum(D.e)+bonus(D.sh,D.e))}</b></div><div class=stat><small>Paid out</small><b>${N(sum(D.p))}</b></div>
   <div class=stat><small>Link clicks</small><b>${D.cl&&typeof D.cl==='number'?D.cl:0}</b></div><div class=stat><small>Subscribers</small><b>${ords.filter(o=>o.status==='approved').length}</b></div></div>
   <div class=card style="margin-top:12px"><h3>📣 Share &amp; earn ${N(S.shareReward)} per share</h3>
-  <div class=m>Share a product below. Each share earns <b>${N(S.shareReward)}</b> (up to ${S.shareCap} a day). You have <b>${left} share${left==1?'':'s'}</b> left today. Total share bonus: <b>${N((shd.total||0)*S.shareReward)}</b></div>
+  <div class=m>Share your one link below, it shows every product. Each share earns <b>${N(S.shareReward)}</b> (up to ${S.shareCap} a day). You have <b>${left} share${left==1?'':'s'}</b> left today. Total share bonus: <b>${N((shd.total||0)*S.shareReward)}</b></div>
   ${unl(D.e)?'':`<div class=lock>🔒 Your share bonus unlocks with your first confirmed sale. Keep sharing, it is already counting!</div>`}
-  ${vals(PROD).filter(p=>p.active!==false).map(p=>`<div class=row style="display:block"><b>${esc(p.name)}</b> <small>${N(p.price)} • earn ${N(S.direct)} per sale</small><div class=share style="margin-top:8px"><button class="sm y" onclick="copy('${BASE}?ref=${u.refCode}&p=${p.id}')">Copy link</button><button class=sm onclick="shr('wa','${p.id}')">WhatsApp</button><button class=sm style="background:#1877f2;box-shadow:0 4px 0 #0f4fa8" onclick="shr('fb','${p.id}')">Facebook</button><button class=sm style="background:#229ed9;box-shadow:0 4px 0 #1673a0" onclick="shr('tg','${p.id}')">Telegram</button><button class=sm style="background:#111;box-shadow:0 4px 0 #000" onclick="shr('x','${p.id}')">X</button></div></div>`).join('')||'<p class=m>Products coming soon.</p>'}</div>
-  <div class=card><h3>💡 How you earn</h3><div class=m>• Someone subscribes through <b>your sales link</b> → you earn <b>${N(S.direct)}</b>.<br>• Someone joins through <b>your invite link</b> and makes a sale → you earn <b>${N(S.override)}</b> on each.<br>• Every product share earns a small bonus too (${N(S.shareReward)}), unlocked by your first sale.<br>• Earnings appear after payment is confirmed. Withdraw from <b>${N(S.minWithdraw)}</b>.</div></div>
-  <div class=card><h3>🔗 Your sales link</h3><div class=m>Earn ${N(S.direct)} per subscriber</div><div class=link>${link}</div>
-  <div class=sh><button class="sm" onclick="copy('${link}')">Copy</button>${sh(link,'Subscribe to our digital products at Math Cloud Tech 🔥')}</div></div>
-  <div class=card><h3>👥 Invite marketers</h3><div class=m>Earn ${N(S.override)} each time someone you invite makes a sale (${team.length} invited)</div><div class=link>${inv}</div>
-  <div class=sh><button class="sm" onclick="copy('${inv}')">Copy</button>${sh(inv,'Make your December money! Join as a marketer & earn per sale 💰')}</div></div>
+  <div class=row style="display:block"><b>🔗 Your link: all products &amp; services</b> <small>one link for everything • ${N(S.direct)} per subscriber • ${N(S.override)} on your team's sales (${team.length} joined)</small>
+  <div class=link>${link}</div>
+  <div class=share style="margin-top:8px"><button class="sm y" onclick="copy('${link}')">Copy link</button><button class=sm onclick="copy(allMsg()+'\n'+'${link}');toast('Caption + link copied ✓')">Copy caption + link</button><button class=sm onclick="shr('wa')">WhatsApp</button><button class=sm style="background:#1877f2;box-shadow:0 4px 0 #0f4fa8" onclick="shr('fb')">Facebook</button><button class=sm style="background:#229ed9;box-shadow:0 4px 0 #1673a0" onclick="shr('tg')">Telegram</button><button class=sm style="background:#111;box-shadow:0 4px 0 #000" onclick="shr('x')">X</button></div></div></div>
+  <div class=card><h3>💡 How you earn</h3><div class=m>• Someone subscribes through <b>your link</b> → you earn <b>${N(S.direct)}</b>.<br>• Someone joins as a marketer through <b>the same link</b> and makes a sale → you earn <b>${N(S.override)}</b> on each.<br>• Every product share earns a small bonus too (${N(S.shareReward)}), unlocked by your first sale.<br>• Earnings appear after payment is confirmed. Withdraw from <b>${N(S.minWithdraw)}</b>.</div></div>
   <div class=card><h3>🏦 Bank details</h3>${u.bank?`<div class=m>${esc(u.bank.bankName)} • ${esc(u.bank.accNo)}<br>${esc(u.bank.accName)}</div>`:''}
   <form onsubmit="bank(event)"><input name=bn placeholder="Bank name (e.g. GTBank)" value="${esc(u.bank?.bankName)}" required><input name=an placeholder="Account number (10 digits)" inputmode=numeric pattern="[0-9]{10}" value="${esc(u.bank?.accNo)}" required><input name=nm placeholder="Account name" value="${esc(u.bank?.accName)}" required><button class=full>Save bank details</button></form></div>
   <div class=card><h3>🧾 My subscribers</h3>${ords.map(o=>`<div class=row><div><b>${esc(o.buyerName)}</b><small>${esc(o.productName)} • ${dt(o.createdAt)} • #${o.id.slice(-6).toUpperCase()}</small></div><span class="tag ${o.status}">${o.status}</span></div>`).join('')||'<p class=m>No subscribers yet. Share your link!</p>'}</div>
