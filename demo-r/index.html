@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Reading Fluency Demo | MathCloud Tutorial</title><meta name="theme-color" content="#155eef"><meta name="robots" content="noindex,follow">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== MathCloud base (standalone copy of site.css essentials) ===== */
+:root{--ink:#142744;--muted:#62718a;--blue:#175cd3;--cyan:#28b8d2;--line:#dfe7f2;--paper:#f4f7fc;--white:#fff;--shadow:0 18px 48px rgba(22,48,88,.09);--mq-ok:#0c8a5b;--mq-okbg:#e6f8ef;--mq-no:#c23a3a;--mq-nobg:#fdeeee;--mq-grid:#e4ecf8}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;min-width:320px;overflow-x:hidden;background:var(--paper);color:var(--ink);font:16px/1.65 'Plus Jakarta Sans',Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+body.gate-open{overflow:hidden}
+a{color:inherit;text-decoration:none}img{max-width:100%}
+button,input,select{font-family:inherit;font-size:inherit;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid #45d6e8!important;outline-offset:2px}
+button:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+.hidden{display:none!important}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 max(5vw,20px);background:#ffffffeb;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;backdrop-filter:blur(16px);box-shadow:0 3px 18px rgba(23,47,83,.035)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:-.03em}
+.brand small{display:block;font-size:10px;letter-spacing:.14em;color:var(--muted)}
+.navlinks{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:650}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;min-height:46px;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 2px 0 rgba(10,40,90,.09);transition:transform .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(25,62,120,.13)}
+.btn.primary{color:#fff;background:linear-gradient(135deg,#1765e8,#1247b8);box-shadow:0 4px 12px rgba(21,94,239,.22)}
+.btn.ghost{background:#fff}
+.btn.danger{color:#a33333;background:#fff8f8;border:1px solid #f0d0d0;box-shadow:none}
+.btn.full{width:100%}
+.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);font-weight:900}
+.noticebox{background:#fff8e8;border:1px solid #f5dfac;color:#75500c;border-radius:14px;padding:13px 15px;font-size:13px;line-height:1.55;margin-top:12px}
+.footer{padding:30px 5vw;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid rgba(220,229,242,.8);margin-top:24px}
+.mc-logo{position:relative;display:inline-grid;place-items:center;width:56px;height:56px;flex:0 0 56px}
+.mc-logo i{position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:#2872ff;border-right-color:#45d6e8;border-bottom-color:#ffb703;box-shadow:0 0 10px #2872ff30;animation:mcSpin 3s linear infinite}
+.mc-logo i:nth-of-type(2){inset:4px;border-width:2px;border-top-color:#10a77b;border-right-color:transparent;border-bottom-color:#2872ff;border-left-color:#45d6e8;animation-duration:4.4s;animation-direction:reverse}
+.mc-logo i:nth-of-type(3){inset:-4px;border:1px dashed #2872ff88;box-shadow:none;animation-duration:9s}
+.brand .mc-logo img{width:38px;height:38px;border-radius:50%;object-fit:contain;background:#fff;position:relative}
+@keyframes mcSpin{to{transform:rotate(360deg)}}
+
+/* ===== Reading Fluency components (from reading.css) ===== */
+.mq-wrap{width:min(1080px,92vw);margin:0 auto;padding:34px 0 120px}
+.mq-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.mq-head h1{margin:6px 0 2px;font-size:clamp(28px,4vw,40px);line-height:1.1;letter-spacing:-.04em}
+.mq-muted{color:var(--muted);font-size:14px}
+.mq-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,28px);box-shadow:var(--shadow)}
+.mq-card h2{margin:0 0 4px;font-size:21px;letter-spacing:-.02em}
+.mq-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.mq-metric{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.mq-metric span{display:block;font-size:12px;font-weight:800;color:var(--muted)}
+.mq-metric strong{display:block;font-size:30px;letter-spacing:-.03em;color:var(--blue);line-height:1.2}
+.mq-rule{padding:11px 14px;border-radius:13px;background:#eef4ff;border:1px solid #cfe0ff;color:#12336d;font-size:14px;line-height:1.5}
+.mq-chip{flex:0 0 auto;text-align:center;padding:6px 12px;border-radius:999px;font-weight:900;font-size:13px;background:#e8f0ff;color:#0e47b8}
+.mq-login{max-width:1040px;margin:10px auto 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start}
+.mq-intro{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:end;background:linear-gradient(160deg,#f2f8ff,#fff)}
+.mq-intro img{width:100%;max-height:300px;object-fit:contain;object-position:center bottom}
+.mq-intro h2{font-size:24px;margin:6px 0 8px}
+.mq-intro p{font-size:14px;line-height:1.65;color:#3b4d68;margin:0 0 14px}
+.mq-feat{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;font-weight:700}
+.mq-feat li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.mq-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.passage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:14px}
+.passage-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:18px;border:1px solid var(--line);border-radius:18px;background:#fbfdff;transition:border-color .15s,transform .15s}
+.passage-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.passage-card h3{margin:10px 0 6px;font-size:18px;line-height:1.25;letter-spacing:-.02em}
+.passage-card p{margin:0;color:var(--muted);font-size:14px;flex:1;line-height:1.55}
+.passage-card .btn{margin-top:14px;width:100%}
+.card-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#e8f0ff;color:#0e47b8;font-size:12px;font-weight:800}
+.card-meta .tag{background:#f1f5fb;color:#3b4d68}
+.mq-list{display:grid;gap:8px;margin-top:12px}
+.history-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fbfdff}
+.history-row b{display:block}.history-row small{display:block;color:var(--muted);font-size:12px}
+.score-chip{flex:0 0 auto;min-width:56px;text-align:center;padding:6px 11px;border-radius:999px;font-weight:900;font-size:13px;background:var(--mq-okbg);color:var(--mq-ok)}
+.guide-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.guide-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.guide-tools .rate{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800}
+.guide-tools select{padding:9px 11px;border:1px solid #d7e1f0;border-radius:11px;background:#fbfdff;min-height:46px}
+.guide-steps{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;counter-reset:mqs}
+.guide-step{counter-increment:mqs;display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:#fbfdff;border:1px solid var(--line);border-radius:16px;font-size:13px;color:var(--muted);line-height:1.45;transition:border-color .2s,background .2s}
+.guide-step:before{content:counter(mqs);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff;font-weight:900;font-size:13px}
+.guide-step b{color:var(--ink);font-size:14px}.guide-step.active{border-color:var(--blue);background:#eef4ff}
+.guide-rule{margin:14px 0 0;font-size:13px;color:var(--muted)}
+/* reading sheet */
+.mq-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.mq-top .grow{flex:1;min-width:180px}.mq-top h2{margin:0;font-size:18px}.mq-top .eyebrow{display:block;margin-bottom:2px}
+.mq-bar{height:9px;border-radius:99px;background:#e3ebf8;overflow:hidden;margin-bottom:16px}
+.mq-bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#45d6e8,#155eef);transition:width .3s}
+.mq-sheet{border:1px solid var(--line);border-radius:24px;padding:clamp(18px,3.4vw,34px);box-shadow:var(--shadow);background-color:#fff;background-image:linear-gradient(var(--mq-grid) 1px,transparent 1px),linear-gradient(90deg,var(--mq-grid) 1px,transparent 1px);background-size:26px 26px;background-position:-1px -1px}
+.mq-count{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--muted)}
+.passage-text{position:relative;margin:14px 0 6px;padding:20px 22px;max-height:min(52vh,430px);overflow-y:auto;overscroll-behavior:contain;scroll-behavior:smooth;border-radius:16px;background:#ffffffee;border:1px solid var(--line);font-family:'Lexend','Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(19px,2.3vw,25px);line-height:1.95;font-weight:500;letter-spacing:.01em;word-spacing:.08em;color:#31415d}
+.passage-text .word{padding:1px 2px;border-radius:6px;transition:background .15s,color .15s}
+.passage-text .word.correct{color:var(--mq-ok)}
+.passage-text .word.skipped{color:#9a6a00;text-decoration:underline dotted #e0a800;text-underline-offset:5px}
+.passage-text .word.current{background:#fff0b8;box-shadow:0 0 0 2px #fff0b8}
+.session-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.session-controls .btn{min-width:150px}
+.status{margin:14px 0 0;text-align:center;font-size:14px;min-height:22px}
+.live-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.live-strip>div{padding:11px 14px;border:1px solid var(--line);border-radius:14px;background:#ffffffe6;text-align:center}
+.live-strip small{display:block;font-size:12px;font-weight:800;color:var(--muted)}
+.live-strip b{display:block;font-size:24px;font-variant-numeric:tabular-nums;color:var(--blue);letter-spacing:-.03em;line-height:1.3}
+.mic-meter{display:flex;align-items:center;gap:12px;margin-top:12px;font-size:12px;font-weight:800;color:var(--muted)}
+.mic-meter i{flex:1;height:8px;border-radius:99px;background:#e6edf8;overflow:hidden;display:block}
+.mic-meter b{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#10a77b,#45d6e8,#175cd3);transition:width .08s linear}
+.mq-tips{margin-top:16px;background:#ffffffe6}.mq-tips ul{margin:6px 0 0;padding-left:18px}
+/* results */
+#resultPanel{margin-top:18px}
+.results-shell{padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow);scroll-margin-top:24px}
+.result-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:22px;padding:0 0 22px;border-bottom:1px solid var(--line)}
+.result-head .eyebrow{display:block}
+.result-head h2{margin:6px 0;font-size:clamp(24px,3.4vw,32px);line-height:1.15;letter-spacing:-.03em}
+.result-head .muted{margin:0;color:var(--muted);font-size:14px}
+.result-score{width:140px;height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;border:10px solid #e3ebf8;border-top-color:var(--blue);background:#fff;font-size:34px;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.result-score small{margin-top:6px;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.result-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 0}
+.result-grid+.result-grid{margin-top:12px}
+.result-metric{padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:#fbfdff}
+.result-metric>small{display:block;font-size:12px;font-weight:800;color:var(--muted)}
+.result-metric>strong{display:block;font-size:26px;letter-spacing:-.03em;color:var(--blue);line-height:1.25}
+.result-metric>strong small{display:inline;font-size:12px;color:var(--muted);font-weight:800}
+.correction-section-title{margin:6px 0 12px;font-size:21px;letter-spacing:-.02em}
+.results-shell>.eyebrow{display:block;margin-top:26px}
+.practice-hub{padding:clamp(14px,2.4vw,24px);border:1px solid var(--line);border-radius:20px;background:#f8fbff;scroll-margin-top:100px}
+.pp-line{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.pp-line b{font-size:14px}.pp-line span{padding:5px 11px;border-radius:999px;background:#e8f0ff;color:#0e47b8;font-size:12px;font-weight:800;white-space:nowrap}
+.progress-track{height:9px;border-radius:99px;background:#e3ebf8;overflow:hidden}
+.progress-track span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#45d6e8,#155eef);transition:width .35s}
+.coach-stage{display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;align-items:center;margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.avatar-box{width:68px;height:68px;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#e4f2ff,#f7faff);display:grid;place-items:center}
+.avatar-box img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.avatar-box.speaking img{animation:mqTalk .45s ease-in-out infinite alternate}
+.coach-bubble{padding:11px 14px;border-radius:14px;border:1px solid var(--line);background:#fbfdff}
+.coach-bubble b{display:block;font-size:14px}.coach-bubble p{margin:4px 0 0;font-size:14px;line-height:1.6;color:#3b4d68}
+.word-card{position:relative;padding:clamp(20px,3.2vw,32px);margin:12px 0;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);text-align:center;background-color:#fff;background-image:linear-gradient(var(--mq-grid) 1px,transparent 1px),linear-gradient(90deg,var(--mq-grid) 1px,transparent 1px);background-size:26px 26px;background-position:-1px -1px}
+.word-card.slide-next{animation:rfSlideL .28s ease both}.word-card.slide-prev{animation:rfSlideR .28s ease both}
+.word-card.trying{border-color:var(--blue);box-shadow:0 0 0 3px #155eef22,var(--shadow)}
+.word-card.is-done{border-color:#b8e6cf}
+.correction-type{display:inline-block;padding:6px 12px;border-radius:999px;background:#fff6dd;color:#8a5d00;font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.big-word{margin:14px 0 8px;font-size:clamp(36px,7vw,58px);font-weight:900;letter-spacing:-.04em;line-height:1.1;overflow-wrap:anywhere}
+.heard-line{display:inline-block;margin:0 0 12px;padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:#ffffffe6;color:var(--muted);font-size:13px}
+.heard-line b{color:var(--ink)}
+.word-expl{max-width:640px;margin:0 auto 18px;color:#3b4d68;font-size:15px;line-height:1.7;background:#ffffffd9;border-radius:12px;padding:4px 8px}
+.correction-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding-top:14px;border-top:1px solid var(--line)}
+.correction-actions .btn{flex:1 1 150px;white-space:normal;line-height:1.3}
+.correction-practised.marked-done{background:var(--mq-okbg);border:1px solid #80d7a8;color:#06683b;box-shadow:none}
+.try-feedback{margin-top:12px;border-radius:14px;font-size:14px;line-height:1.55;text-align:left;overflow-wrap:anywhere}
+.try-feedback:not(:empty){padding:12px 15px;border:1px solid var(--line);background:#fff}
+.try-feedback.good{border-color:#b8e6cf;background:var(--mq-okbg);color:#086a42}
+.try-feedback.bad{border-color:#f0c9c9;background:var(--mq-nobg);color:#9d3030}
+.try-feedback.listening{border-color:#cfe0ff;background:#eef4ff;color:#12336d}
+.word-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:14px 0}
+.word-nav .btn:last-child{justify-self:end}
+.nav-count{padding:7px 13px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:13px;font-weight:900;font-variant-numeric:tabular-nums}
+.voice-toolbar{display:flex;gap:10px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--line)}
+.voice-toolbar .btn{flex:1 1 170px;white-space:normal;line-height:1.3}
+.success-coach{display:flex;align-items:flex-start;gap:14px;margin:16px 0;padding:18px;border:1px solid #b8e6cf;border-radius:18px;background:var(--mq-okbg)}
+.success-coach>span{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;border-radius:14px;background:#fff;font-size:23px}
+.success-coach b{font-size:17px;color:#096c43}.success-coach p{margin:4px 0 0;color:#3f6652;line-height:1.6;font-size:14px}
+.report-note{margin:16px 0 0;padding:13px 16px;border:1px solid #f5dfac;border-radius:14px;background:#fff8e8;color:#75500c;font-size:13px;line-height:1.7;overflow-wrap:anywhere}
+.report-note b{color:#5c3f08}
+.report-bottom{margin-top:20px}
+@keyframes rfSlideL{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes rfSlideR{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+/* coach dock */
+.mq-dock{position:fixed;right:16px;bottom:16px;z-index:30;width:250px;display:flex;gap:11px;align-items:center;padding:10px 12px;background:#fff;border:1px solid #dfe8f6;border-radius:20px;box-shadow:0 16px 50px #142b4d22}
+.mq-dock .av{width:62px;height:62px;flex:0 0 62px;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#e4f2ff,#f7faff);position:relative;animation:rfBreath 4.2s ease-in-out infinite}
+.mq-dock img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.mq-dock strong{font-size:13px}
+.mq-dock p{margin:2px 0 0;font-size:11.5px;line-height:1.35;color:var(--muted);max-height:48px;overflow:hidden}
+.mq-dock.speaking{box-shadow:0 0 0 3px #5cdded66,0 16px 50px #142b4d22}
+.mq-dock.speaking img{animation:mqTalk .45s ease-in-out infinite alternate}
+.mq-dock.attention{animation:rfNudge 1.2s ease-in-out infinite;box-shadow:0 0 0 3px #f7900955,0 16px 50px #142b4d22}
+.dk-act{display:flex;gap:6px;margin-top:5px}
+.dk-act button{border:1px solid #cfe0ff;background:#eef4ff;color:#12336d;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:800;cursor:pointer}
+@keyframes mqTalk{to{transform:translateY(-2px) scale(1.02)}}
+@keyframes rfBreath{50%{transform:translateY(-2px) scale(1.015)}}
+@keyframes rfNudge{50%{transform:translateY(-5px)}}
+/* mic gate */
+.mic-gate{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;background:#0e1b33b8;backdrop-filter:blur(4px)}
+.mic-card{width:min(440px,100%);max-height:92vh;overflow:auto;padding:28px 24px;border-radius:22px;background:#fff;text-align:center;box-shadow:0 24px 80px #0008}
+.mic-card h2{margin:6px 0;font-size:24px;letter-spacing:-.02em}
+.mic-orb{width:72px;height:72px;margin:0 auto 12px;display:grid;place-items:center;border-radius:24px;background:linear-gradient(145deg,#54e5ed,#1765f5);font-size:32px}
+.mic-msg{min-height:20px;margin:12px 0 0;font-size:13px;color:var(--muted)}
+.mic-msg.good{color:var(--mq-ok)}.mic-msg.bad{color:#b42318}.mic-msg.wait{color:var(--blue)}
+.mic-help{text-align:left;font-size:13px;color:#3b4d68;padding-left:20px;line-height:1.6}
+.linklike{border:0;background:none;color:var(--blue);font-weight:700;cursor:pointer;margin-top:12px;text-decoration:underline}
+@media(max-width:860px){.mq-login{grid-template-columns:1fr}.mq-metrics,.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.mq-dock{width:auto;max-width:200px;padding:8px 10px}.mq-dock .av{width:46px;height:46px;flex-basis:46px;border-radius:14px}.mq-dock p{display:none}.mq-wrap{padding-bottom:90px}.result-head{grid-template-columns:1fr;justify-items:start}.result-score{width:110px;height:110px;font-size:28px}.live-strip{gap:8px}.live-strip b{font-size:20px}.guide-steps{grid-template-columns:1fr}.word-nav{grid-template-columns:1fr 1fr}.word-nav .nav-count{grid-column:1/-1;order:-1;justify-self:center}.passage-text{max-height:46vh;padding:14px 16px}.session-controls .btn{flex:1 1 140px}.nav{padding:10px 5vw}}
+@media(max-width:520px){.mq-intro{grid-template-columns:1fr;justify-items:center;text-align:center}.mq-intro img{max-height:200px}.mq-feat{grid-template-columns:1fr;text-align:left}.coach-stage{grid-template-columns:56px minmax(0,1fr);gap:10px}.avatar-box{width:54px;height:54px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.passage-text{scroll-behavior:auto}}
+</style></head>
+<body class="mq">
+<header class="nav"><a class="brand" href="#"><span class="mc-logo" aria-hidden="true"><i></i><i></i><i></i><img src="logo.png" alt="" onerror="this.style.display='none'"></span><span>MathCloud <small>READING FLUENCY</small></span></a><nav class="navlinks"><span class="eyebrow">Free demo</span></nav></header>
+<main class="mq-wrap">
+
+<section id="dashboardView">
+ <div class="mq-login">
+  <div class="mq-card mq-intro"><img src="mathcloud-human-guide.png" alt="Coach Reed" onerror="this.style.display='none'"><div><span class="eyebrow">Meet your guide</span><h2>Hi, I’m Coach Reed 👋</h2>
+   <p>Choose a passage, press Start reading and read it aloud at your natural pace. I will follow every word you say, count your pace, and show you a clear report afterwards. Then we practise any tricky words together, one at a time.</p>
+   <ul class="mq-feat"><li>🎤 Read aloud with your voice</li><li>✨ Words light up as you read</li><li>📈 Pace and accuracy report</li><li>🔊 Practise tricky words</li></ul></div></div>
+  <div class="mq-card"><span class="eyebrow">Reading Fluency</span><h1 style="font-size:clamp(28px,5vw,38px);letter-spacing:-.04em;line-height:1.1;margin:10px 0">Read it. Hear it. Own it.</h1>
+   <p class="mq-muted">Five sample passages, from Beginner to Challenge. Use Chrome or Edge and allow the microphone when asked.</p>
+   <div class="noticebox"><strong>Demo mode</strong><br>No sign-in needed. Your results show during this visit only and are not saved.</div></div>
+ </div>
+ <div class="mq-head"><div><span class="eyebrow">Your reading space</span><h1>Hello, Demo Student</h1><p class="mq-muted">Every session is a chance to grow.</p></div></div>
+ <div class="mq-metrics"><div class="mq-metric"><span>Sessions completed</span><strong id="sessionsCount">0</strong></div><div class="mq-metric"><span>Average WPM</span><strong id="avgWpm">—</strong></div><div class="mq-metric"><span>Average accuracy</span><strong id="avgAccuracy">—</strong></div><div class="mq-metric"><span>Average score</span><strong id="avgScore">—</strong></div></div>
+ <div class="mq-card" style="margin-bottom:18px"><div class="mq-card-head"><div><h2>Choose a passage</h2><p class="mq-muted">Start with Beginner, then work your way up.</p></div><span class="mq-chip" id="passageCount">5 passages</span></div><div id="passageGrid" class="passage-grid"></div></div>
+ <div class="mq-card"><h2>Recent sessions</h2><div id="historyList" class="mq-list"><p class="mq-muted">Your completed sessions will appear here.</p></div></div>
+</section>
+
+<section id="readingView" class="hidden" aria-live="polite">
+ <div class="mq-top"><button id="backBtn" class="btn" type="button" style="padding:9px 16px">← Leave reading</button><div class="grow"><span class="eyebrow">Reading session</span><h2 id="readingTitle">Passage title</h2></div><span class="mq-chip" id="readingLevel">Level</span></div>
+ <div class="mq-bar"><i id="readProgress"></i></div>
+ <div class="mq-sheet"><div class="mq-count"><span>READ ALOUD</span><span id="targetWordCount">0 words</span></div>
+  <div id="passageText" class="passage-text"></div>
+  <div class="session-controls"><button id="listenBtn" class="btn" type="button">🎧 Listen first</button><button id="startBtn" class="btn primary" type="button">● Start reading</button><button id="finishBtn" class="btn danger" type="button" disabled>Finish session</button><button id="retryBtn" class="btn" type="button" disabled>Try again</button></div>
+  <p id="speechStatus" class="mq-muted status" aria-live="polite">When you are ready, press Start reading and read clearly at your natural pace.</p>
+  <div class="live-strip"><div><small>Elapsed</small><b id="elapsed">00:00</b></div><div><small>Words recognised</small><b id="heardCount">0</b></div><div><small>Live WPM</small><b id="liveWpm">0</b></div></div>
+  <div class="mq-rule mq-tips"><b>Microphone tips</b><ul><li>Use Chrome or Edge and allow microphone access.</li><li>Find a quiet spot and read at a natural, steady pace.</li><li>Keep going if you make a mistake. The report will show words to practise.</li></ul><span style="font-size:12px;color:#4a5f82">Speech recognition is an estimate, not a perfect measure of pronunciation.</span></div>
+ </div>
+ <div id="resultPanel" class="hidden"></div>
+</section>
+
+<section id="guide" class="mq-card" style="margin-top:18px"><div class="guide-head"><div><h2>How it works</h2><p class="mq-muted">Three steps from passage to progress. Press the button and Coach Reed will read the guide to you.</p></div>
+ <div class="guide-tools"><label class="rate">Voice speed<select id="voiceRate"><option value="0.75">Slow</option><option value="0.9">Normal</option><option value="1.05">Fast</option></select></label><button id="hearGuide" class="btn primary" type="button">🎧 Listen to how it works</button></div></div>
+ <ol class="guide-steps"><li class="guide-step"><b>Pick a passage and listen first</b><span>Hear it read aloud while each word lights up.</span></li><li class="guide-step"><b>Start reading aloud</b><span>Allow the microphone and read at your natural pace, then finish.</span></li><li class="guide-step"><b>Review and practise</b><span>See your WPM and accuracy, then say each word to your coach until it is right.</span></li></ol>
+ <p class="guide-rule"><b>Good to know:</b> the page stays fully active while the voice is reading. Press <b>Stop voice</b> or tap any button whenever you like.</p></section>
+</main>
+
+<aside class="mq-dock" id="coachDock" aria-label="Reading coach"><div class="av" id="dockAvatar"><img src="mathcloud-human-guide.png" alt="Coach Reed" onerror="this.style.display='none'"></div><div><strong>Coach Reed</strong><p id="dockCoachSays">I’m here beside your reading. Press the button when you need help.</p><div class="dk-act"><button id="dockCoachTalk" type="button">🔊 Talk to me</button></div></div></aside>
+<footer class="footer"><span>© MathCloud Tutorial · Free demo</span></footer>
+
+<div id="micGate" class="mic-gate hidden" role="dialog" aria-modal="true" aria-labelledby="micTitle"><div class="mic-card"><div class="mic-orb" aria-hidden="true">🎤</div><span class="eyebrow">One quick step</span><h2 id="micTitle">Turn on your microphone</h2><p class="mq-muted">Your reading coach needs to hear you. Turn it on once and it will stay ready for every passage and every word.</p><button class="btn primary full" id="micEnable" type="button" style="margin-top:14px">🎤 Turn on microphone</button><p id="micMsg" class="mic-msg" role="status" aria-live="polite"></p><ol id="micHelp" class="mic-help hidden"><li>Click the lock or settings icon next to the web address.</li><li>Set <b>Microphone</b> to <b>Allow</b>.</li><li>Come back here and press <b>Try again</b>.</li></ol><button class="linklike" id="micSkip" type="button">Maybe later</button></div></div>
+
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const state={passages:[],sessions:[],active:null,recognition:null,startedAt:null,endedAt:null,timer:null,transcript:'',finalTranscript:'',isListening:false,wordSpans:[],vocab:null};
+const normalise=s=>String(s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘]/g,"'").replace(/[^a-z0-9']/g,'');
+const tokens=s=>String(s||'').match(/[A-Za-z0-9]+(?:['’][A-Za-z0-9]+)*/g)||[];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dateLabel=ms=>new Date(ms).toLocaleString([],{dateStyle:'medium',timeStyle:'short'});
+const sayStatus=s=>{$('speechStatus').textContent=s;};
+const show=v=>{['dashboardView','readingView'].forEach(id=>$(id).classList.toggle('hidden',id!==v));$('guide').classList.toggle('hidden',v==='readingView');scrollTo(0,0);};
+
+/* ---------- demo passages ---------- */
+const PASSAGES=[
+{id:'p1',title:'Ada’s Garden',level:'Beginner',targetWpm:70,text:'Every afternoon, Ada waters the small garden behind her house. She plants beans, tomatoes and bright yellow flowers. When the sun is hot, she wears a wide hat and sings a quiet song. One day, a tiny green shoot pushed through the soil. Ada clapped her hands and smiled. Her patient work had finally grown into something wonderful.'},
+{id:'p2',title:'The Lagoon Ferry',level:'Intermediate',targetWpm:95,text:'Each morning, a wooden ferry carries workers and students across the lagoon. The engine coughs, the water ripples, and seagulls follow the boat, hoping for scraps of bread. Mr. Bello, the captain, greets every passenger by name. He has crossed the lagoon thousands of times, yet he says no two journeys are ever the same. Today, a thick mist hides the far shore, so he steers carefully by the sound of the bell on the distant jetty.'},
+{id:'p3',title:'Why Bats Matter',level:'Intermediate',targetWpm:100,text:'Many people are afraid of bats, but these remarkable animals are surprisingly helpful. A single bat can eat hundreds of mosquitoes in one night, which protects communities from disease. Some bats pollinate flowers, while others spread seeds across forests, helping new trees grow. Scientists believe that bats use sound to find their way in the dark. They send out high squeaks and listen for the echoes that bounce back. Because bats are so important, many countries now protect their roosting caves.'},
+{id:'p4',title:'The Lighthouse Keeper',level:'Advanced',targetWpm:120,text:'For thirty years, Mrs. Adeyemi had climbed the narrow spiral staircase of the lighthouse every evening. Her task was simple but essential: to light the great lamp before darkness fell. One stormy night, the wind howled so fiercely that the windows trembled in their frames. Far out at sea, a fishing boat struggled against enormous waves. Mrs. Adeyemi polished the glass, steadied the lamp, and kept its beam sweeping across the water. At dawn, the exhausted fishermen reached the shore safely. They thanked her, but she only smiled and said that the light had done all the work.'},
+{id:'p5',title:'A Scientist’s Notebook',level:'Challenge',targetWpm:130,text:'Dr. Chinwe kept a notebook in which she recorded every experiment thoroughly. Her colleagues often laughed at her handwriting, which was neat but extraordinarily tiny. Nevertheless, the notebook proved necessary when a mysterious result appeared in the laboratory. Instead of guessing, she examined her earlier notes and discovered a pattern that nobody else had noticed. The discovery led to a vegetable fertiliser that helps farmers grow healthier crops with less water. Dr. Chinwe often reminds her students that careful observation, patience and honesty are more valuable than brilliant ideas alone.'}
+];
+state.passages=PASSAGES;
+
+/* ---------- dashboard ---------- */
+function renderDashboard(){
+ const ss=state.sessions,avg=k=>ss.length?Math.round(ss.reduce((a,s)=>a+(Number(s[k])||0),0)/ss.length):null;
+ $('sessionsCount').textContent=ss.length;$('avgWpm').textContent=avg('wpm')??'—';$('avgAccuracy').textContent=avg('accuracy')===null?'—':avg('accuracy')+'%';$('avgScore').textContent=avg('overallScore')===null?'—':avg('overallScore')+'%';
+ $('passageGrid').innerHTML=state.passages.map(p=>`<article class="passage-card"><span class="tag">${esc(p.level)}</span><h3>${esc(p.title)}</h3><p>${esc(p.text.slice(0,120))}…</p><div class="card-meta"><span class="tag">${tokens(p.text).length} words</span><span class="tag">Target ${p.targetWpm} WPM</span></div><button class="btn primary" data-read="${p.id}">Start passage →</button></article>`).join('');
+ $('historyList').innerHTML=ss.length?ss.map(x=>`<div class="history-row"><div><b>${esc(x.passageTitle)}</b><small>${dateLabel(x.completedAt)} · ${x.wpm} WPM · ${x.accuracy}% accuracy</small></div><span class="score-chip">${Math.round(x.overallScore)}%</span></div>`).join(''):'<p class="mq-muted">Your completed sessions will appear here.</p>';
+ document.querySelectorAll('[data-read]').forEach(b=>b.addEventListener('click',()=>startPassage(b.dataset.read)));
+}
+let autoCoachTimer=null;
+function startPassage(id){
+ const p=state.passages.find(x=>x.id===id);if(!p)return;
+ stopRecognition();stopVoice();stopTry();clearInterval(state.timer);clearTimeout(autoCoachTimer);
+ state.active=p;state.vocab=new Set(tokens(p.text).map(wkey));state.transcript='';state.finalTranscript='';state.startedAt=null;state.endedAt=null;state.isListening=false;state.wordSpans=[];
+ $('readingTitle').textContent=p.title;$('readingLevel').textContent=p.level;let idx=0;
+ $('passageText').innerHTML=p.text.split(/(\s+)/).map(part=>{if(/^\s+$/.test(part))return esc(part);if(!part)return '';return `<span class="word" data-word-index="${idx++}">${esc(part)}</span>`;}).join('');
+ state.wordSpans=[...$('passageText').querySelectorAll('.word')];$('targetWordCount').textContent=state.wordSpans.length+' words';
+ $('elapsed').textContent='00:00';$('heardCount').textContent='0';$('liveWpm').textContent='0';$('startBtn').disabled=false;$('listenBtn').disabled=false;$('finishBtn').disabled=true;$('retryBtn').disabled=true;$('resultPanel').classList.add('hidden');$('readProgress').style.width='0';$('passageText').classList.remove('live');$('passageText').scrollTop=0;
+ sayStatus('Press Start reading, allow microphone access, and read the passage aloud.');show('readingView');Avatar.caption('Press Listen first to hear the passage, then Start reading when you are ready.');
+}
+
+/* ---------- matching helpers ---------- */
+const NUMW={zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19,twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90,hundred:100};
+const HOMO=(()=>{const m={};[['to','too','2'],['there','their',"they're"],['here','hear'],['no','know'],['write','right'],['by','buy','bye'],['for','4','fore'],['won','1'],['see','sea'],['son','sun'],['be','bee'],['new','knew'],['our','hour'],['would','wood'],['whole','hole'],['week','weak'],['read','red'],['its',"it's"],['your',"you're"],['where','wear'],['meet','meat'],['made','maid'],['tail','tale'],['plain','plane'],['road','rode'],['sail','sale'],['flower','flour'],['mail','male'],['break','brake'],['piece','peace'],['wait','weight'],['bare','bear'],['dear','deer'],['8','ate'],['hi','high'],['i','eye'],['in','inn'],['rain','reign'],['some','sum'],['through','threw'],['which','witch']].forEach((g,k)=>g.forEach(w=>m[w]='~'+k));return m;})();
+const ALIAS={mrs:'missus',mr:'mister',ms:'miss',dr:'doctor',okay:'ok',cannot:"can't"};
+function wkey(w){let n=normalise(w);if(ALIAS[n])n=ALIAS[n];if(NUMW[n]!==undefined)n=String(NUMW[n]);return HOMO[n]||n;}
+function phon(w){let s=normalise(w).replace(/'/g,'');if(s.length<3)return s;s=s.replace(/^kn/,'n').replace(/^wr/,'r').replace(/^wh/,'w').replace(/^ps/,'s').replace(/^ph/,'f').replace(/ph/g,'f').replace(/ck/g,'k').replace(/c(?=[eiy])/g,'s').replace(/c/g,'k').replace(/qu/g,'kw').replace(/q/g,'k').replace(/x/g,'ks').replace(/z/g,'s').replace(/gh/g,'').replace(/sh|ch|tch/g,'x').replace(/tion|sion/g,'xn');return s[0]+s.slice(1).replace(/[aeiouy]/g,'').replace(/(.)\1+/g,'$1');}
+function lev(a,b){const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length];}
+function same(a,b,strict){const x=wkey(a),y=wkey(b);if(!x||!y)return false;if(x===y)return true;if(x[0]==='~'||y[0]==='~')return false;const m=Math.min(x.length,y.length),d=lev(x,y);if(m>=(strict?6:4)&&d<=1)return true;if(m>=(strict?10:8)&&d<=2)return true;if(m>=5&&Math.abs(x.length-y.length)<=2&&d<=(strict?2:3)&&phon(x)===phon(y))return true;return false;}
+const close=(a,b)=>same(a,b,false);
+const CON={'do not':"don't",'did not':"didn't",'does not':"doesn't",'is not':"isn't",'are not':"aren't",'was not':"wasn't",'were not':"weren't",'will not':"won't",'would not':"wouldn't",'could not':"couldn't",'should not':"shouldn't",'can not':"can't",'it is':"it's",'that is':"that's",'he is':"he's",'she is':"she's",'what is':"what's",'there is':"there's",'i am':"i'm",'they are':"they're",'we are':"we're",'you are':"you're",'i will':"i'll",'let us':"let's"};
+const CONREV=(()=>{const m={};Object.entries(CON).forEach(([k,v])=>{if(!m[v])m[v]=k.split(' ');});return m;})();
+function adaptRaw(exp,got){const E=new Set(exp.map(wkey)),out=[];
+ for(let i=0;i<got.length;i++){const a=got[i],b=got[i+1],na=normalise(a),ka=wkey(a);
+  if(b!==undefined){const nb=normalise(b),kb=wkey(b),both=E.has(ka)&&E.has(kb),c=CON[na+' '+nb];
+   if(c&&E.has(wkey(c))&&!both){out.push(c);i++;continue;}
+   if(na&&nb&&E.has(wkey(na+nb))&&!both){out.push(a+b);i++;continue;}}
+  const r=CONREV[na];if(r&&!E.has(ka)&&E.has(wkey(r[0]))&&E.has(wkey(r[1]))){out.push(r[0],r[1]);continue;}
+  if(!E.has(ka)&&na.length>=5){let did=false;for(let p=2;p<=na.length-2&&!did;p++){const l=na.slice(0,p),r2=na.slice(p);if(E.has(wkey(l))&&E.has(wkey(r2))){out.push(l,r2);did=true;}}if(did)continue;}
+  out.push(a);}
+ return out;}
+function bestAlt(res){let best=(res[0]&&res[0].transcript)||'',bs=-1;const V=state.vocab;for(let k=0;k<res.length;k++){const t=(res[k]&&res[k].transcript)||'';let sc=k===0?.5:0;if(V)tokens(t).forEach(w=>{if(V.has(wkey(w)))sc++;});if(sc>bs){bs=sc;best=t;}}return best;}
+function dedupeSegs(list){const t=s=>tokens(s).map(normalise).join(' ');const out=[];list.forEach((s,i)=>{const cur=t(s),nxt=i+1<list.length?t(list[i+1]):'';if(cur&&nxt&&(nxt===cur||nxt.startsWith(cur+' ')))return;out.push(s);});return out;}
+
+/* ---------- speech recognition: read-aloud session ---------- */
+const LANGS=['en-NG','en-GB','en-US'];
+function createRecognition(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return null;const r=new SR();r.lang=sessionStorage.getItem('rfLang')||LANGS[0];r.continuous=true;r.interimResults=true;r.maxAlternatives=5;return r;}
+function rebuildTranscript(){state.finalTranscript=((state.committed||'')+' '+(state.segFinal||'')).trim();state.transcript=(state.finalTranscript+' '+(state.segInterim||'')).trim();$('heardCount').textContent=tokens(state.transcript).length;updateLive();}
+function commitSeg(){state.committed=((state.committed||'')+' '+(state.segFinal||'')+' '+(state.segInterim||'')).trim();state.segFinal='';state.segInterim='';}
+const Meter={ctx:null,raf:0,stream:null,
+ bar(){let b=document.getElementById('micLevelBar');if(b)return b;const strip=document.querySelector('.live-strip');if(!strip)return null;const d=document.createElement('div');d.className='mic-meter';d.innerHTML='<span>Mic level</span><i><b id="micLevelBar"></b></i>';strip.insertAdjacentElement('afterend',d);return d.querySelector('b');},
+ async start(){this.stop();if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||!navigator.mediaDevices)return;const bar=this.bar();if(!bar)return;
+  try{const s=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});if(!state.isListening){s.getTracks().forEach(t=>t.stop());return;}this.stream=s;const AC=window.AudioContext||window.webkitAudioContext;this.ctx=new AC();const an=this.ctx.createAnalyser();an.fftSize=512;this.ctx.createMediaStreamSource(s).connect(an);const d=new Uint8Array(an.fftSize);
+   const tick=()=>{an.getByteTimeDomainData(d);let m=0;for(let k=0;k<d.length;k++)m=Math.max(m,Math.abs(d[k]-128));bar.style.width=Math.min(100,Math.round(m/128*220))+'%';this.raf=requestAnimationFrame(tick);};tick();}catch(e){}},
+ stop(){cancelAnimationFrame(this.raf);if(this.stream){this.stream.getTracks().forEach(t=>t.stop());this.stream=null;}if(this.ctx){try{this.ctx.close();}catch(e){}this.ctx=null;}const b=document.getElementById('micLevelBar');if(b)b.style.width='0';}};
+async function startReading(){
+ if(!state.active)return;
+ if(!mic.ok){await ensureMic();if(!mic.ok){sayStatus('The microphone is needed to read aloud. Press Start reading again and choose Allow.');return;}}
+ const rec=createRecognition();if(!rec){sayStatus('Speech recognition is not supported in this browser. Please use an up-to-date Chrome or Edge browser.');return;}
+ stopVoice();Ear.stop();state.recognition=rec;$('listenBtn').disabled=true;state.startedAt=Date.now();state.endedAt=null;state.transcript='';state.finalTranscript='';state.committed='';state.segFinal='';state.segInterim='';state.fails=0;state.lastHeard=Date.now();state.quietShown=false;state.isListening=true;$('passageText').classList.add('live');trackProgress();
+ $('startBtn').disabled=true;$('finishBtn').disabled=false;$('retryBtn').disabled=true;sayStatus('Listening… Read aloud at a natural pace. Keep reading if you make a mistake.');
+ rec.onresult=e=>{const fin=[],interim=[];for(let k=0;k<e.results.length;k++){const r=e.results[k];(r.isFinal?fin:interim).push(bestAlt(r));}state.segFinal=dedupeSegs(fin).join(' ');state.segInterim=interim.join(' ');state.lastHeard=Date.now();state.fails=0;rebuildTranscript();};
+ rec.onerror=e=>{if(micLost(e))return;const er=e.error;if(er==='no-speech'||er==='aborted')return;state.fails++;
+  if(er==='language-not-supported'){const k=Math.max(0,LANGS.indexOf(rec.lang))+1;rec.lang=LANGS[k]||'en-US';sessionStorage.setItem('rfLang',rec.lang);sayStatus('Switching speech recognition to '+rec.lang+'…');return;}
+  if(er==='audio-capture'){sayStatus('No working microphone was found. Check that a microphone is connected and selected, then try again.');return;}
+  if(er==='network'){sayStatus('Speech recognition needs an internet connection. Check your connection; I will keep trying.');return;}
+  sayStatus('Speech recognition issue: '+er+'. I will keep trying. If it continues, finish the session and try again.');};
+ rec.onend=()=>{if(state.recognition!==rec)return;commitSeg();if(!state.isListening)return;setTimeout(()=>{if(state.isListening&&state.recognition===rec){try{rec.start();}catch(err){}}},Math.min(150+state.fails*500,4000));};
+ try{rec.start();}catch(e){sayStatus('Could not start microphone. Check permissions and try again.');state.isListening=false;$('startBtn').disabled=false;$('listenBtn').disabled=false;$('finishBtn').disabled=true;return;}
+ state.timer=setInterval(updateLive,500);Meter.start();
+}
+function updateLive(){if(!state.startedAt)return;trackProgress();if(state.isListening){const quiet=Date.now()-(state.lastHeard||state.startedAt);if(quiet>10000&&!state.quietShown){state.quietShown=true;sayStatus('I cannot hear you yet. Move closer to the microphone, speak a little louder and check that the right microphone is selected.');}else if(quiet<=10000&&state.quietShown){state.quietShown=false;sayStatus('Listening… Read aloud at a natural pace. Keep reading if you make a mistake.');}}
+ const secs=Math.max(1,Math.floor(((state.endedAt||Date.now())-state.startedAt)/1000));$('elapsed').textContent=String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');$('liveWpm').textContent=Math.round(tokens(state.transcript).length/(secs/60));}
+function stopRecognition(){stopTry();Ear.stop();Meter.stop();state.isListening=false;if(state.recognition){try{state.recognition.onend=null;state.recognition.stop();}catch(e){}state.recognition=null;}if(state.timer){clearInterval(state.timer);state.timer=null;}}
+function trackProgress(){
+ const sp=state.wordSpans;if(!sp.length)return;
+ const flat=[];sp.forEach((s,i)=>tokens(s.textContent).forEach(t=>flat.push({t:normalise(t),raw:t,i})));if(!flat.length)return;
+ const got=adaptRaw(flat.map(f=>f.raw),tokens(state.transcript)),st=new Array(flat.length).fill('');let pos=0;
+ got.forEach((gr,gi)=>{const g=normalise(gr);if(!g)return;
+  for(let k=pos;k<Math.min(flat.length,pos+8);k++){if(!close(flat[k].t,g))continue;
+   if(k>pos+1&&flat[k].t.length<=3){const nx=got[gi+1];if(!(nx&&flat[k+1]&&close(flat[k+1].t,normalise(nx))))continue;}
+   for(let m=pos;m<k;m++)st[m]='skipped';st[k]='correct';pos=k+1;return;}});
+ const at={};flat.forEach((f,k)=>(at[f.i]=at[f.i]||[]).push(k));let prev='correct';
+ sp.forEach((x,i)=>{const ks=at[i];let s;if(!ks)s=prev;else if(ks[ks.length-1]<pos)s=ks.every(k=>st[k]==='correct')?'correct':'skipped';else s='';prev=s;
+  x.classList.toggle('correct',s==='correct');x.classList.toggle('skipped',s==='skipped');x.classList.toggle('current',pos<flat.length&&flat[pos].i===i&&state.isListening);});
+ $('readProgress').style.width=Math.round(pos/flat.length*100)+'%';
+ if(state.isListening){if(pos<flat.length)follow(sp[flat[pos].i]);else sayStatus('You reached the end of the passage. Press Finish session.');}}
+function compareWords(expectedText,spokenText){
+ const exp=tokens(expectedText),got=adaptRaw(exp,tokens(spokenText)),a=exp.map(normalise),b=got.map(normalise),n=a.length,m=b.length;
+ const dp=Array.from({length:n+1},()=>Array(m+1).fill(0)),bt=Array.from({length:n+1},()=>Array(m+1).fill(''));
+ for(let i=0;i<=n;i++){dp[i][0]=i;if(i)bt[i][0]='delete';}for(let j=0;j<=m;j++){dp[0][j]=j;if(j)bt[0][j]='insert';}
+ for(let i=1;i<=n;i++)for(let j=1;j<=m;j++){const cost=same(exp[i-1],got[j-1],true)?0:1;const choices=[[dp[i-1][j-1]+cost,'match'],[dp[i-1][j]+1,'delete'],[dp[i][j-1]+1,'insert']].sort((x,y)=>x[0]-y[0]);dp[i][j]=choices[0][0];bt[i][j]=choices[0][1];}
+ const issues=[];let i=n,j=m,matched=0,sub=0,omitted=0,extra=0;
+ while(i>0||j>0){const op=bt[i][j];if(i>0&&j>0&&op==='match'){if(same(exp[i-1],got[j-1],true))matched++;else{sub++;issues.push({expected:exp[i-1],spoken:got[j-1],type:'substitution'});}i--;j--;}else if(i>0&&(j===0||op==='delete')){omitted++;issues.push({expected:exp[i-1],spoken:'',type:'omission'});i--;}else if(j>0){extra++;issues.push({expected:'',spoken:got[j-1],type:'extra'});j--;}}
+ issues.reverse();
+ return {expectedCount:n,spokenCount:m,matched,substitutions:sub,omissions:omitted,extras:extra,issues,wordAccuracy:n?Math.max(0,matched/n*100):0,editDistance:dp[n][m]};
+}
+function finishReading(){
+ if(!state.startedAt||!state.active)return;state.endedAt=Date.now();stopRecognition();updateLive();$('passageText').classList.remove('live');$('finishBtn').disabled=true;$('listenBtn').disabled=false;$('retryBtn').disabled=false;sayStatus('Calculating your reading report…');
+ if(!tokens(state.transcript||state.finalTranscript).length){sayStatus('No reading was recognised, so nothing was counted. Check the microphone level, then press Start reading and try again.');$('startBtn').disabled=false;$('retryBtn').disabled=false;state.startedAt=null;return;}
+ const elapsedSec=Math.max(1,(state.endedAt-state.startedAt)/1000),expected=state.active.text,spoken=state.transcript||state.finalTranscript,c=compareWords(expected,spoken);
+ const wpm=Math.round(((c.matched+c.substitutions)||c.spokenCount)/(elapsedSec/60)),accuracy=Math.round(c.wordAccuracy*10)/10,pronunciation=accuracy,target=Number(state.active.targetWpm)||100;
+ const speed=Math.max(0,Math.min(100,(wpm/target)*100)),durationFactor=Math.min(1,elapsedSec/Math.max(20,c.expectedCount*0.2));
+ const overall=Math.round((pronunciation*.35+speed*.20+accuracy*.35+Math.min(100,Math.max(0,100-c.editDistance/Math.max(1,c.expectedCount)*100))*.10)*durationFactor*10)/10;
+ const result={passageId:state.active.id,passageTitle:state.active.title,completedAt:state.endedAt,durationSeconds:Math.round(elapsedSec),wpm,accuracy,pronunciationScore:pronunciation,speedScore:Math.round(speed*10)/10,overallScore:overall,expectedCount:c.expectedCount,spokenCount:c.spokenCount,matched:c.matched,substitutions:c.substitutions,omissions:c.omissions,extras:c.extras,transcript:spoken,issues:c.issues};
+ state.sessions.unshift(result);renderResult(result);sayStatus('Session complete. Review the report and practise the words marked for attention.');
+}
+
+/* ---------- Coach Reed voice ---------- */
+const vs={token:0,voice:null,active:false,src:'',rate:0.9};
+if('speechSynthesis' in window)speechSynthesis.onvoiceschanged=()=>{vs.voice=null;};
+function pickVoice(){if(vs.voice)return vs.voice;if(!('speechSynthesis' in window))return null;const score=v=>{const n=(v.name||'').toLowerCase(),l=(v.lang||'').toLowerCase();let s=0;if(/natural|neural|online/i.test(n))s+=100;if(/aria|jenny|sonia|zira|samantha|victoria|serena|hazel|libby|natasha|ava|allison|karen|moira|tessa|female|woman/i.test(n))s+=120;if(/google uk english female|google us english/i.test(n))s+=140;if(/\b(male|david|mark|guy|ryan|daniel|george|alex|fred|james)\b/i.test(n)&&!/female/i.test(n))s-=200;if(/en-ng/.test(l))s+=25;else if(/en-gb/.test(l))s+=20;else if(/en-us/.test(l))s+=15;else if(/^en/.test(l))s+=5;return s;};const ranked=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang)).map(v=>({v,s:score(v)})).sort((a,b)=>b.s-a.s);return vs.voice=ranked.length?ranked[0].v:null;}
+function syncBtns(){const l=$('listenBtn'),g=$('hearGuide');if(l)l.textContent=vs.active&&vs.src==='listen'?'■ Stop listening':'🎧 Listen first';if(g)g.textContent=vs.active&&vs.src==='guide'?'■ Stop guide':'🎧 Listen to how it works';}
+const Avatar={begin(){$('coachDock').classList.add('speaking');const b=$('avatarBox');if(b)b.classList.add('speaking');},word(){this.begin();},rest(){},stop(){$('coachDock').classList.remove('speaking');const b=$('avatarBox');if(b)b.classList.remove('speaking');},caption(t){$('dockCoachSays').textContent=t;const c=$('coachSays');if(c)c.textContent=t;}};
+function clearHL(){document.querySelectorAll('.word.current,.guide-step.active').forEach(e=>e.classList.remove('current','active'));}
+function chunks(text){const w=String(text||'').trim().split(/\s+/).filter(Boolean),out=[];let cur=[],len=0,start=0;w.forEach((x,i)=>{cur.push(x);len+=x.length+1;if(/[.!?]["”’)]?$/.test(x)||len>150){out.push({text:cur.join(' '),first:start,words:cur});cur=[];len=0;start=i+1;}});if(cur.length)out.push({text:cur.join(' '),first:start,words:cur});return out;}
+function speak(input,o={}){
+ if(!('speechSynthesis' in window)){sayStatus('Read-aloud voice is not supported here. Use an updated Chrome, Edge or Safari.');if(o.onend)o.onend(false);return;}
+ const synth=speechSynthesis;synth.cancel();const my=++vs.token,list=Array.isArray(input)?input:[{text:input}],queue=[];
+ list.forEach(it=>chunks(it.text).forEach((c,i)=>queue.push({...c,rate:it.rate,onstart:i?null:it.onstart})));
+ if(!queue.length){if(o.onend)o.onend(false);return;}
+ const voice=pickVoice();vs.active=true;vs.src=o.src||'';syncBtns();
+ const done=ok=>{if(my!==vs.token)return;vs.active=false;vs.src='';syncBtns();Avatar.stop();clearHL();if(o.onend)o.onend(ok);};let i=0;
+ const next=()=>{if(my!==vs.token)return;if(i>=queue.length)return done(true);const c=queue[i++],u=new SpeechSynthesisUtterance(c.text);
+  if(voice){u.voice=voice;u.lang=voice.lang;}else u.lang='en-GB';u.rate=c.rate||vs.rate;u.pitch=1.02;
+  u.onstart=()=>{if(my!==vs.token)return;Avatar.begin();Avatar.caption(c.text);if(c.onstart)c.onstart();};
+  u.onboundary=e=>{if(my!==vs.token||e.name==='sentence')return;let p=0,k=0;for(;k<c.words.length-1;k++){if(e.charIndex<p+c.words[k].length+1)break;p+=c.words[k].length+1;}
+   const sp=o.spans&&o.spans[c.first+k];if(sp){document.querySelectorAll('.word.current').forEach(x=>x.classList.remove('current'));sp.classList.add('current');follow(sp);}};
+  u.onend=()=>{if(my!==vs.token)return;setTimeout(next,/[.!?]["”’)]?$/.test(c.text)?240:90);};
+  u.onerror=ev=>{if(my===vs.token&&ev.error!=='interrupted'&&ev.error!=='canceled')done(false);};
+  synth.speak(u);};
+ setTimeout(next,80);}
+function stopVoice(){vs.token++;if('speechSynthesis' in window)speechSynthesis.cancel();vs.active=false;vs.src='';syncBtns();Avatar.stop();clearHL();}
+window.addEventListener('pagehide',stopVoice);
+function follow(el){const w=$('passageText');if(!el||!w)return;w.scrollTo({top:Math.max(0,el.offsetTop-w.clientHeight/2+el.offsetHeight/2),behavior:'smooth'});}
+
+/* ---------- word practice listener ---------- */
+let trySession=0;
+function stopTry(){trySession++;Ear.finish({alts:[]});}
+function gradeWord(target,alts){
+ const t=normalise(target);let best=0,heard='',pass=false;
+ const consider=(raw,n)=>{if(!n)return;const sim=(same(n,t,true)||(t.length>=6&&same(n,t,false))||(t.length>=6&&phon(n)===phon(t)&&lev(n,t)<=2))?1:Math.max(0,1-lev(n,t)/Math.max(n.length,t.length));if(sim>best){best=sim;heard=raw;}if(sim>=1||(t.length>=6&&sim>=.8))pass=true;};
+ (alts||[]).forEach(a=>{const w=tokens(a);w.forEach(x=>consider(x,normalise(x)));for(let k=0;k<w.length-1;k++)consider(w[k]+' '+w[k+1],normalise(w[k]+w[k+1]));if(w.length>2)consider(w.join(' '),normalise(w.join('')));});
+ return {score:Math.round(best*100),heard,pass};}
+const Ear={rec:null,pending:null,timer:null,li:0,
+ kill(){const r=this.rec;this.rec=null;if(r){r.onresult=r.onerror=r.onend=r.onstart=null;try{r.abort();}catch(e){}}},
+ listen(target,ms=9000){return new Promise(resolve=>{
+  this.finish({alts:[]});this.kill();
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return resolve({error:'unsupported'});
+  const saved=sessionStorage.getItem('rfLang');if(saved&&LANGS.includes(saved))this.li=LANGS.indexOf(saved);
+  const heard=[];let done=false,finalTimer=null;
+  const end=v=>{if(done)return;done=true;clearTimeout(finalTimer);this.finish(v);this.kill();};
+  this.pending=resolve;clearTimeout(this.timer);this.timer=setTimeout(()=>end({alts:heard.slice()}),ms);
+  const begin=()=>{const r=new SR();this.rec=r;r.lang=LANGS[this.li]||'en-US';r.continuous=true;r.interimResults=true;r.maxAlternatives=5;
+   r.onresult=e=>{let finalSeen=false;for(let a=e.resultIndex;a<e.results.length;a++){const res=e.results[a];if(res.isFinal)finalSeen=true;for(let b=0;b<res.length;b++){const tx=res[b]&&res[b].transcript;if(tx)heard.push(tx);}}
+    if(heard.length&&gradeWord(target,heard).pass){end({alts:heard.slice()});return;}
+    if(finalSeen){clearTimeout(finalTimer);finalTimer=setTimeout(()=>end({alts:heard.slice()}),900);}};
+   r.onerror=e=>{const er=e&&e.error;if(er==='no-speech'||er==='aborted')return;
+    if(er==='language-not-supported'){this.li=this.li+1;if(this.li<LANGS.length){sessionStorage.setItem('rfLang',LANGS[this.li]);this.kill();begin();return;}}
+    end({alts:heard.slice(),error:er==='language-not-supported'?undefined:er});};
+   r.onend=()=>{if(done||this.rec!==r)return;if(heard.length){end({alts:heard.slice()});return;}try{r.start();}catch(err){end({alts:heard.slice()});}};
+   try{r.start();}catch(err){end({alts:[],error:'unsupported'});}};
+  begin();});},
+ finish(v){clearTimeout(this.timer);const p=this.pending;this.pending=null;if(p)p(v);},
+ stop(){this.finish({alts:[]});this.kill();}};
+const listenOnce=t=>Ear.listen(t);
+function correctionSpeech(issue,index,total){
+ if(issue.type==='omission')return `Correction ${index+1} of ${total}. The word to practise is ${issue.expected}. Listen carefully: ${issue.expected}. Now say the word aloud yourself. Then read it again in the passage. You can replay this correction as many times as you need.`;
+ return `Correction ${index+1} of ${total}. The word in the passage is ${issue.expected}. The speech checker heard ${issue.spoken}. Listen to the correct word: ${issue.expected}. Now say ${issue.expected} aloud slowly, then say it once more at your normal reading speed.`;
+}
+
+/* ---------- results + word practice ---------- */
+function renderResult(r){
+ $('resultPanel').classList.remove('hidden');
+ const all=(r.issues||[]).slice(0,100),items=all.filter(x=>x.type!=='extra'),extras=all.filter(x=>x.type==='extra'),total=items.length;
+ const greeting=total?'Hi! I am Coach Reed. Press “Hear word” and I will say each word for you.':'Well done! I did not find any words for you to practise.';
+ const stageHtml=`<div class="coach-stage"><div class="avatar-box" id="avatarBox"><img src="mathcloud-human-guide.png" alt="Coach Reed" onerror="this.style.display='none'"></div><div class="coach-bubble"><b>Coach Reed</b><p id="coachSays">${esc(greeting)}</p></div></div>`;
+ const toolbar=`<div class="voice-toolbar"><button class="btn ghost" id="sessionSummaryVoice">🎧 Explain my session</button><button class="btn ghost" id="readPassageVoice">🔊 Read the passage</button>${total?'<button class="btn ghost" id="listenAllCorrections">▶ Hear all words</button><button class="btn primary" id="practiseAll">🎤 Practise all words</button>':''}<button class="btn danger" id="stopCoachVoice">■ Stop voice</button></div>`;
+ const hub=total?`<section class="practice-hub" id="practiceHub"><div class="practice-progress"><div class="pp-line"><b id="ppText">0 of ${total} words practised</b><span id="ppPos">Word 1 of ${total}</span></div><div class="progress-track"><span id="ppBar" style="width:0%"></span></div></div>${stageHtml}<div id="wordStage"></div><div class="word-nav"><button class="btn ghost" id="prevWord">← Previous</button><span id="navCount" class="nav-count">1 / ${total}</span><button class="btn primary" id="nextWord">Next →</button></div>${toolbar}</section>`
+ :`<section class="practice-hub" id="practiceHub"><div class="practice-progress"><div class="pp-line"><b>No words to practise</b><span>All clear</span></div><div class="progress-track"><span style="width:100%"></span></div></div>${stageHtml}<div class="success-coach"><span>🎉</span><div><b>Excellent work!</b><p>No word differences were detected by the speech checker. Listen to the passage and read it once more to build confidence.</p></div></div>${toolbar}</section>`;
+ $('resultPanel').innerHTML=`<div class="results-shell"><div class="result-head"><div><span class="eyebrow">YOUR READING REVIEW</span><h2>Great effort!</h2><p class="muted">Let’s learn from this reading and grow stronger together.</p></div><div class="result-score">${r.overallScore}%<small>Overall score</small></div></div>
+ <div class="result-grid"><div class="result-metric"><small>Reading pace</small><strong>${r.wpm} <small>WPM</small></strong></div><div class="result-metric"><small>Word accuracy</small><strong>${r.accuracy}%</strong></div><div class="result-metric"><small>Word-match estimate</small><strong>${r.pronunciationScore}%</strong></div><div class="result-metric"><small>Speed score</small><strong>${r.speedScore}%</strong></div></div>
+ <div class="result-grid"><div class="result-metric"><small>Words matched</small><strong>${r.matched}/${r.expectedCount}</strong></div><div class="result-metric"><small>Possible substitutions</small><strong>${r.substitutions}</strong></div><div class="result-metric"><small>Words missed</small><strong>${r.omissions}</strong></div><div class="result-metric"><small>Extra words</small><strong>${r.extras}</strong></div></div>
+ <span class="eyebrow">LISTEN • LEARN • TRY AGAIN</span><h3 class="correction-section-title" style="margin-top:0">${total?'Your personal word practice':'You read this passage well!'}</h3>
+ ${hub}
+ ${extras.length?`<p class="report-note"><b>Extra words heard:</b> ${extras.map(x=>esc(x.spoken)).join(', ')}. These may simply be background sounds or recognition noise, so there is nothing to practise here.</p>`:''}
+ <p class="report-note"><b>A note about accuracy:</b> the browser listens for words and compares them with the passage; it cannot reliably judge individual speech sounds or prove that a word was mispronounced. Accents, names, microphone quality and background noise can affect recognition. Treat each flagged item as a practice suggestion, not a confirmed error.</p>
+ <div class="session-controls report-bottom"><button class="btn primary" id="reportDashboard">Return to passages</button><button class="btn ghost" id="reportRetry">Read again</button></div></div>`;
+ const practised=new Set(),skipped=new Set();let cur=0;
+ const stage=$('wordStage'),fb=(html,cls='')=>{const e=$('tfx');if(e){e.className='try-feedback '+cls;e.innerHTML=html;}};
+ const wait=ms=>new Promise(r=>setTimeout(r,ms)),say=(t,o)=>new Promise(r=>speak(t,{...o,onend:r}));
+ function updateUI(){if(!total)return;$('ppText').textContent=`${practised.size} of ${total} words practised`;$('ppBar').style.width=(practised.size/total*100)+'%';$('ppPos').textContent=`Word ${cur+1} of ${total}`;$('navCount').textContent=`${cur+1} / ${total}`;$('prevWord').disabled=cur===0;$('nextWord').disabled=cur===total-1;}
+ function paintDone(){const b=$('doneBtn'),cd=$('wordCard');if(!b||!cd)return;const on=practised.has(cur);b.classList.toggle('marked-done',on);b.setAttribute('aria-pressed',on?'true':'false');b.textContent=on?'✓ Practised!':'✓ I practised this';cd.classList.toggle('is-done',on);}
+ function mark(i,on){if(on)practised.add(i);else practised.delete(i);if(i===cur)paintDone();updateUI();}
+ function renderWord(dir){
+  const x=items[cur],om=x.type==='omission';
+  const expl=om?`The word “${x.expected}” appears in the passage but was not recognised in your reading.`:`The passage says “${x.expected}”, while the speech checker heard “${x.spoken}”. This may be a reading difference or a recognition mistake.`;
+  stage.innerHTML=`<article class="word-card ${dir?'slide-'+dir:''}" id="wordCard"><span class="correction-type">${om?'Word missed':'Try this word again'}</span><div class="big-word">${esc(x.expected)}</div>${om?'':`<p class="heard-line">Speech checker heard: <b>${esc(x.spoken)}</b></p>`}<p class="word-expl">${esc(expl)}</p><div class="correction-actions"><button class="btn ghost" id="hearBtn">🔊 Hear word</button><button class="btn primary" id="tryBtn">🎤 Practise saying it</button><button class="btn ghost hidden" id="skipBtn">Skip for now</button><button class="btn ghost correction-practised" id="doneBtn" aria-pressed="false">✓ I practised this</button></div><div class="try-feedback" id="tfx" aria-live="polite"></div></article>`;
+  $('hearBtn').onclick=()=>{stopTry();speak(correctionSpeech(x,cur,total));};
+  $('tryBtn').onclick=()=>{stopVoice();stopTry();practiseWord(cur);};
+  $('skipBtn').onclick=()=>{skipped.add(cur);Ear.stop();fb('Skipped for now. You can practise this word again any time.');$('skipBtn').classList.add('hidden');};
+  $('doneBtn').onclick=()=>mark(cur,!practised.has(cur));
+  paintDone();updateUI();if(!vs.active)Avatar.caption(`Ready? Press “Hear word” and I will say “${x.expected}” for you.`);}
+ const go=(i,dir)=>{cur=i;renderWord(dir);};
+ const goUser=i=>{if(i<0||i>=total||i===cur)return;stopVoice();stopTry();go(i,i>cur?'next':'prev');};
+ async function practiseWord(i){
+  const issue=items[i];if(!issue)return true;const my=trySession,word=issue.expected;let n=0;skipped.delete(i);const card=()=>$('wordCard');
+  while(my===trySession&&!skipped.has(i)&&i===cur){
+   n++;card()?.classList.add('trying');fb(n===1?'Listen to the coach, then say the word.':`Attempt ${n}. Listen again, then say the word.`,'listening');
+   await say([{text:n===1?`Let us practise. Say the word: ${word}.`:`Not quite. Listen again: ${word}.`},{text:word,rate:.6},{text:'Now you say it.'}]);
+   if(my!==trySession||skipped.has(i))break;await wait(300);
+   fb('🎤 Listening… say the word now.','listening');const out=await listenOnce(word);if(my!==trySession||skipped.has(i))break;
+   if(['not-allowed','service-not-allowed','unsupported'].includes(out.error)&&!(out.alts&&out.alts.length)){fb('The microphone is not available. Turn it on, then try again.','bad');stopTry();if(out.error!=='unsupported'){mic.ok=false;ensureMic();}return false;}
+   const g=out.alts&&out.alts.length?gradeWord(word,out.alts):{score:0,heard:'',pass:false};
+   if(g.pass){fb(`✅ Correct! You said “${esc(g.heard)}” (${g.score}% match). Practice scores are not saved.`,'good');card()?.classList.remove('trying');$('skipBtn')?.classList.add('hidden');mark(i,true);await say('Excellent! That is correct.');return true;}
+   fb(g.heard?`I heard “${esc(g.heard)}” (${g.score}% match). Let us try again.`:'I did not hear you clearly. Let us try again.','bad');
+   if(n>=3)$('skipBtn')?.classList.remove('hidden');
+  }
+  card()?.classList.remove('trying');return false;}
+ if(total){
+  renderWord();
+  $('prevWord').onclick=()=>goUser(cur-1);$('nextWord').onclick=()=>goUser(cur+1);
+  $('listenAllCorrections').onclick=()=>{stopTry();speak(items.map((x,i)=>({text:correctionSpeech(x,i,total),onstart:()=>go(i)})),{onend:ok=>{if(ok)Avatar.caption('Great listening! Practise any word whenever you are ready.');}});};
+  $('practiseAll').onclick=async()=>{stopVoice();stopTry();const my=trySession,order=[...items.keys()].map(k=>(k+cur)%total).filter(i=>!practised.has(i));
+   if(!order.length){speak('You have practised every word. Well done! Now read the passage again to see how much you have improved.');return;}
+   for(const i of order){if(my!==trySession)return;go(i);await practiseWord(i);}
+   if(my===trySession)speak(practised.size===total?'Well done! You have worked through all the words. Now read the passage again to see your progress.':'Good work. You can come back to the skipped words any time.');};
+ }
+ $('sessionSummaryVoice').onclick=()=>speak(`Here is your reading session report. You read ${r.expectedCount} words in the passage. Your reading speed was ${r.wpm} words per minute. Your word accuracy was ${r.accuracy} percent. Your overall fluency score was ${r.overallScore} percent. The speech checker matched ${r.matched} words. It flagged ${r.substitutions} possible substitutions, ${r.omissions} words it may not have heard, and ${r.extras} possible extra words. Please remember that speech recognition can make mistakes because of accents, background noise, or microphone quality. These are practice clues, not proof that you pronounced a word incorrectly. ${total?`You have ${total} words to practise. Listen to the coach, practise slowly, and then read the passage again.`:'No word differences were detected. Keep practising to build smooth, confident reading.'} Well done for completing your session.`);
+ $('readPassageVoice').onclick=()=>speak(`Let's read the passage together. Listen first. ${state.active.text} That was the passage. Now try reading it yourself at a steady pace.`);
+ $('stopCoachVoice').onclick=()=>{stopVoice();stopTry();Avatar.caption('Okay, I am quiet now. Press any button when you want me to talk again.');};
+ $('reportDashboard').onclick=()=>{clearTimeout(autoCoachTimer);stopVoice();stopTry();Ear.stop();renderDashboard();show('dashboardView');};
+ $('reportRetry').onclick=()=>{clearTimeout(autoCoachTimer);stopVoice();stopTry();startPassage(state.active.id);};
+ renderDashboard();
+ clearTimeout(autoCoachTimer);
+ autoCoachTimer=setTimeout(()=>{
+  if($('readingView').classList.contains('hidden')||$('resultPanel').classList.contains('hidden'))return;
+  $('resultPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  const summary=`Well done! Your reading session is complete. You read at ${r.wpm} words per minute, with a word-match estimate of ${r.accuracy} percent. Remember, speech recognition can miss words, so these suggestions are for practice, not proof of a mistake. ${total?`I found ${total} word${total===1?'':'s'} we can practise together. Let us listen carefully to the first one.`:'I did not find any words needing attention. Listen to the passage and keep building your confidence.'}`;
+  const queue=[{text:summary}];
+  if(total)queue.push({text:correctionSpeech(items[0],0,total),onstart:()=>{const hub=$('practiceHub');if(hub)hub.scrollIntoView({behavior:'smooth',block:'start'});}});
+  speak(queue,{src:'auto-review',onend:ok=>{if(ok&&total)Avatar.caption(`Let's practise “${items[0].expected}” together. Press Practise saying it when you are ready.`);}});
+ },5000);
+}
+
+/* ---------- controls ---------- */
+$('startBtn').onclick=startReading;$('finishBtn').onclick=finishReading;$('retryBtn').onclick=()=>state.active&&startPassage(state.active.id);
+$('backBtn').onclick=()=>{stopRecognition();stopVoice();clearTimeout(autoCoachTimer);renderDashboard();show('dashboardView');Avatar.caption('Choose a passage to begin.');};
+$('listenBtn').onclick=()=>{if(vs.active&&vs.src==='listen'){stopVoice();return;}if(state.wordSpans.length)speak(state.wordSpans.map(x=>x.textContent).join(' '),{spans:state.wordSpans,src:'listen'});};
+$('dockCoachTalk').onclick=()=>speak('Hello, reader! I am your MathCloud reading coach. Read at your natural pace, look carefully at each word, and keep going if you make a mistake. I am here to help you practise.',{src:'dock'});
+const guideText=['Welcome to MathCloud Reading Fluency. Here is how it works.','Step one. Choose a passage. Press Listen first to hear it read aloud, with each word lighting up as you listen.','Step two. Press Start reading, and read aloud at a natural pace. Press Finish session when you are done.','Step three. Read your report. Your coach shows one word at a time. Press Practise saying it and say the word. The coach tells you if it is right, and asks you to try again until you get it. Use Next and Previous to move between words.','One helpful tip. The page stays active while I talk, so you can press any button at any time. Press Stop voice whenever you want me to be quiet.'];
+$('hearGuide').onclick=()=>{if(vs.active&&vs.src==='guide'){stopVoice();return;}speak(guideText.map((t,i)=>({text:t,onstart:()=>{document.querySelectorAll('.guide-step').forEach((e,k)=>e.classList.toggle('active',k===i-1));}})),{src:'guide'});};
+$('voiceRate').onchange=e=>{vs.rate=parseFloat(e.target.value);speak('This is how fast I will read.');};
+
+/* ---------- microphone: asked once ---------- */
+const mic={ok:false};let micResolve=null;
+const micMsg=(t,cls)=>{const m=$('micMsg');m.textContent=t;m.className='mic-msg '+(cls||'');};
+function micGranted(){try{if(navigator.permissions&&navigator.permissions.query)return navigator.permissions.query({name:'microphone'}).then(p=>p.state==='granted',()=>sessionStorage.getItem('rfMic')==='1');}catch(e){}return Promise.resolve(sessionStorage.getItem('rfMic')==='1');}
+function closeGate(){$('micGate').classList.add('hidden');document.body.classList.remove('gate-open');}
+function ensureMic(){
+ if(mic.ok)return Promise.resolve();
+ return micGranted().then(ok=>{if(ok){mic.ok=true;return;}
+  return new Promise(res=>{micResolve=res;micMsg(window.isSecureContext?'':'This page is not on a secure (https) address, so the browser may keep asking for the microphone.','bad');$('micHelp').classList.add('hidden');$('micEnable').textContent='🎤 Turn on microphone';$('micEnable').disabled=false;$('micGate').classList.remove('hidden');document.body.classList.add('gate-open');setTimeout(()=>$('micEnable').focus(),60);});});}
+$('micEnable').onclick=async()=>{
+ const b=$('micEnable');
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){micMsg('This browser cannot reach a microphone. Please use an up-to-date Chrome or Edge on a secure (https) address.','bad');return;}
+ b.disabled=true;micMsg('Waiting for you to choose “Allow” in your browser…','wait');
+ try{const s=await navigator.mediaDevices.getUserMedia({audio:true});s.getTracks().forEach(t=>t.stop());mic.ok=true;sessionStorage.setItem('rfMic','1');micMsg('✅ Microphone permission granted.','good');setTimeout(()=>{closeGate();const r=micResolve;micResolve=null;if(r)r();},600);}
+ catch(e){b.disabled=false;b.textContent='🎤 Try again';$('micHelp').classList.remove('hidden');micMsg(e&&e.name==='NotFoundError'?'No microphone was found. Connect one and press Try again.':'Microphone access is blocked. Allow it using the steps below, then press Try again.','bad');}};
+$('micSkip').onclick=()=>{closeGate();const r=micResolve;micResolve=null;if(r)r();};
+function micLost(e){
+ if(e.error!=='not-allowed'&&e.error!=='service-not-allowed')return false;
+ stopRecognition();state.startedAt=null;$('startBtn').disabled=false;$('finishBtn').disabled=true;$('listenBtn').disabled=false;$('passageText').classList.remove('live');
+ mic.ok=false;sessionStorage.removeItem('rfMic');sayStatus('The microphone permission is unavailable. Re-enable it and check that the correct input device is selected.');
+ ensureMic().then(()=>{if(mic.ok)sayStatus('Microphone is ready. Press Start reading.');});return true;}
+
+/* ---------- greeting ---------- */
+let armed=null;
+function greet(){
+ const h=new Date().getHours(),part=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+ const t=`${part}! I am Coach Reed, your reading coach. This is the free demo, so your progress will not be saved. Choose a passage, press Listen first to hear it, then press Start reading when you are ready.`;
+ let started=false;speak([{text:t,onstart:()=>{started=true;}}],{src:'greet'});
+ setTimeout(()=>{if(started)return;stopVoice();const dock=$('coachDock');dock.classList.add('attention');Avatar.caption(t);
+  const go=()=>{document.removeEventListener('pointerdown',go,true);document.removeEventListener('keydown',go,true);armed=null;dock.classList.remove('attention');speak(t,{src:'greet'});};
+  armed=go;document.addEventListener('pointerdown',go,true);document.addEventListener('keydown',go,true);},2500);
+}
+if(!(window.SpeechRecognition||window.webkitSpeechRecognition)){const n=document.createElement('div');n.className='noticebox';n.style.marginBottom='14px';n.textContent='Voice reading needs Google Chrome or Microsoft Edge. Please open this page in one of them.';$('dashboardView').insertBefore(n,$('dashboardView').firstChild);}
+renderDashboard();
+ensureMic().then(greet);
+})();
+</script></body></html>
