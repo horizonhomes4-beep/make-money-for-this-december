@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free JAMB CBT Demo | MathCloud Tutorial</title>
+<meta name="description" content="Try the MathCloud JAMB practice platform free. JAMB-style questions in English, Mathematics, Physics, Chemistry and Biology with instant explanations.">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" type="image/png" href="logo.png"><link rel="apple-touch-icon" href="logo.png">
+<style>
+:root{--ink:#14243a;--muted:#64748b;--blue:#2563eb;--blue2:#0ea5e9;--soft:#eaf3ff;--line:#e2e8f0;--gold:#d9a441;--green:#16a34a;--red:#dc3545}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;min-height:100vh;background:radial-gradient(700px 350px at 10% -5%,rgba(37,99,235,.10),transparent 65%),radial-gradient(650px 340px at 95% 0,rgba(124,58,237,.08),transparent 65%),#f7f9fc}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;background-image:linear-gradient(rgba(39,91,132,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(39,91,132,.035) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to bottom,#000,transparent 75%)}
+a{color:var(--blue);text-decoration:none}button,select{font:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid #62b6ff;outline-offset:2px}.hidden{display:none!important}.muted{color:var(--muted)}
+.topbar{position:sticky;top:0;z-index:20;min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px clamp(16px,3vw,42px);background:rgba(255,255,255,.94);border-bottom:1px solid #e5eaf1;box-shadow:0 8px 28px rgba(15,36,62,.07);backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:14px;letter-spacing:-.02em;color:var(--ink)}
+.brand img{width:40px;height:40px;object-fit:contain;border-radius:11px;background:#fff;padding:3px;box-shadow:0 0 0 1px #e5eaf1}
+.topnav a{padding:9px 12px;border-radius:10px;color:#52657b;font-weight:700;font-size:14px}.topnav a:hover{background:#eef5ff;color:var(--blue)}
+.container{width:min(1100px,calc(100% - 32px));margin:0 auto;padding:24px 0 60px;position:relative}
+.hero,.card{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.96);box-shadow:0 10px 30px rgba(24,47,78,.065);padding:20px}
+.hero{border-radius:24px;border-left:5px solid var(--blue);background:linear-gradient(135deg,#fff,#f4f9ff 62%,#faf6ff);box-shadow:0 18px 48px rgba(35,75,125,.09);padding:clamp(18px,3vw,28px)}
+.hero h1{margin:4px 0 8px;font-size:clamp(28px,4vw,44px);letter-spacing:-.04em;line-height:1.1}.hero h2{margin:4px 0}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:800;background:var(--soft);color:#1459bb;border:1px solid #bdd7ff;font-variant-numeric:tabular-nums}
+.pill.warn{background:#fff6df;color:#8a6414;border-color:#efd38c}.pill.bad{background:#fff0f0;color:#a52626;border-color:#f0baba}
+.btn{min-height:40px;border-radius:12px;padding:9px 16px;font-weight:800;font-size:14px;border:1px solid #cfdae6;background:#fff;color:#40566d;transition:.15s}
+.btn:hover:not(:disabled){transform:translateY(-1px);background:#f3f7fb;color:#1e4f9b}.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:linear-gradient(135deg,#2563eb,#0ea5e9);border-color:#2563eb;color:#fff}.btn.primary:hover:not(:disabled){background:linear-gradient(135deg,#2563eb,#0ea5e9);color:#fff}
+.btn.warn{background:var(--gold);border-color:var(--gold);color:#171717}.btn.submit{background:#168b57;border-color:#168b57;color:#fff}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.field{display:flex;flex-direction:column;gap:6px;margin-top:14px}.field label{font-size:12px;font-weight:800;color:#3b4d68}
+select{width:100%;min-height:44px;border:1px solid #cfd8e6;border-radius:10px;background:#fff;color:var(--ink);padding:9px 11px}
+select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12);outline:none}
+.notice{margin-top:14px;padding:12px 15px;border-radius:14px;border:1px solid #f0d99e;border-left:4px solid var(--gold);background:linear-gradient(90deg,#fff8e6,#fff);color:#5f4a1b;font-size:14px;box-shadow:0 7px 22px rgba(25,51,80,.05)}
+.notice.success{background:#ecfdf5;border-color:#b7e7d0;border-left-color:var(--green);color:#176342}.notice.error{background:#fff1f2;border-color:#f2c1c7;border-left-color:var(--red);color:#8e2633}.notice.info{background:#eef7ff;border-color:#c9e1f6;border-left-color:var(--blue);color:#315a7c}
+.feat{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;font-weight:700}.feat li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.qtext{margin:8px 0 20px;color:#171717;font-size:18px;line-height:1.65;font-weight:600;overflow-wrap:anywhere}
+.qtext sup,.opt sup{font-size:.7em}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{position:relative;display:flex;align-items:center;gap:12px;min-height:52px;padding:12px 16px;border:1px solid #d7dde6;border-radius:8px;background:#fff;color:#252525;font-size:15px;font-weight:500;cursor:pointer;transition:.14s}
+.opt:hover{background:#f5f8ff;border-color:#1769e0;box-shadow:0 6px 18px rgba(35,74,120,.07);transform:translateY(-1px)}
+.opt input{width:18px;height:18px;margin:0;accent-color:#1769e0;flex:0 0 auto}
+.opt.sel{background:#eaf3ff;border-color:#1769e0;box-shadow:0 0 0 2px rgba(23,105,224,.08)}
+.opt.ok{background:#ecfdf5;border-color:var(--green)}.opt.no{background:#fff1f2;border-color:var(--red)}.opt.locked{cursor:default;transform:none;box-shadow:none}
+.keys{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.key{width:34px;height:34px;padding:0;border:1px solid #d4dae3;border-radius:7px;background:#fff;color:#344054;font-size:12px;font-weight:800}
+.key.answered{background:#eaf8ef;border-color:#a9dfbd;color:#17743b}.key.flagged{box-shadow:inset 0 -3px 0 #e3ad24}.key.active{background:#1769e0;border-color:#1769e0;color:#fff}
+.ring{--p:0;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--blue) calc(var(--p)*1%),#e3ebf8 0)}
+.ring div{width:114px;height:114px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:34px;font-weight:900;letter-spacing:-.04em}
+.res{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.trow{display:grid;grid-template-columns:minmax(110px,1fr) 2fr auto;gap:12px;align-items:center;margin-top:12px}.trow small{color:var(--muted)}
+.tbar{height:10px;background:#e3ebf8;border-radius:99px;overflow:hidden}.tbar i{display:block;height:100%;border-radius:99px;background:var(--c)}
+.good{--c:var(--green)}.mid{--c:#e0a100}.low{--c:var(--red)}
+.chip{padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}.chip.good{background:#ecfdf5;color:#176342}.chip.mid{background:#fff6dd;color:#8a5d00}.chip.low{background:#fff1f2;color:#a52626}
+details{border:1px solid var(--line);border-radius:14px;background:#fff;margin-top:10px;overflow:hidden}
+summary{display:flex;gap:10px;align-items:center;padding:13px 15px;cursor:pointer;font-weight:700}
+summary span:first-child{flex:0 0 26px;height:26px;border-radius:8px;display:grid;place-items:center;color:#fff;font-size:13px}
+details.ok span:first-child{background:var(--green)}details.no span:first-child{background:var(--red)}
+.body{padding:0 16px 15px;font-size:14px;color:#3b4d68;line-height:1.65}
+.footer{padding:24px 5vw;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid #e5eaf1}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+@media(max-width:600px){.feat{grid-template-columns:1fr}.res{grid-template-columns:1fr;justify-items:center;text-align:center}.trow{grid-template-columns:1fr;gap:6px}.qtext{font-size:16px}.opt{font-size:14px;padding:10px 12px}.actions .btn{flex:1 1 calc(50% - 10px)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="brand"><img src="logo.png" alt="MathCloud Tutorial logo"><span>MathCloud JAMB · Free Demo</span></div>
+ <nav class="topnav"><a href="student/index.html">Student login</a></nav>
+</header>
+
+<main class="container">
+ <section id="startView">
+  <div class="hero">
+   <p class="muted" style="margin:0;font-weight:700">JAMB CBT practice</p>
+   <h1>Try a JAMB-style test, free.</h1>
+   <p class="muted" style="max-width:680px;margin:0">Real exam-style questions in English, Mathematics, Physics, Chemistry and Biology. Answer, see the worked explanation, and check your score by subject. No sign-in needed.</p>
+   <ul class="feat"><li>🎯 JAMB-style objective questions</li><li>✅ Worked explanations</li><li>🚩 Flag and review, like the real CBT</li><li>📈 Score by subject</li></ul>
+  </div>
+  <div class="grid2">
+   <div class="card">
+    <h2 style="margin:0;font-size:20px;letter-spacing:-.02em">Set up your test</h2>
+    <form id="startForm">
+     <div class="field"><label for="subject">Subject</label><select id="subject"></select></div>
+     <div class="field"><label for="mode">Mode</label><select id="mode"><option value="practice">Practice: see the answer after each question</option><option value="exam">Exam: timed, answers shown at the end</option></select></div>
+     <div id="rule" class="notice info"></div>
+     <div class="actions"><button class="btn primary" type="submit" style="width:100%">Start test</button></div>
+    </form>
+   </div>
+   <div class="card">
+    <h2 style="margin:0;font-size:20px;letter-spacing:-.02em">How the demo works</h2>
+    <ol class="muted" style="padding-left:20px;line-height:1.8;margin:10px 0 0"><li>Choose a subject, or all five for a mini mock.</li><li>Answer each question. Use the number buttons to jump between questions.</li><li>Flag any question you want to come back to.</li><li>Finish to see your score, your weak subjects and every explanation.</li></ol>
+    <div class="notice"><strong>Demo mode.</strong> Questions appear in a different order each time. Results are shown at the end and are not saved.</div>
+   </div>
+  </div>
+ </section>
+
+ <section id="quizView" class="hidden" aria-live="polite">
+  <div class="hero" style="padding:16px 20px"><div class="row"><div><p class="muted" id="modeLbl" style="margin:0;font-size:13px;font-weight:700"></p><h2 id="quizTitle" style="font-size:22px;letter-spacing:-.03em"></h2></div><div class="row" style="justify-content:flex-end"><span id="timer" class="pill">00:00</span><span id="progress" class="pill">1/1</span></div></div></div>
+  <div class="card" style="margin-top:16px">
+   <div class="row"><div class="muted" id="counter" style="font-weight:700;font-size:14px"></div><button id="readBtn" class="btn" type="button" style="min-height:34px;padding:5px 12px;font-size:13px">🔊 Read aloud</button></div>
+   <div id="qText" class="qtext"></div>
+   <div id="opts" class="opts" role="radiogroup" aria-label="Answer choices"></div>
+   <div id="fb" class="notice hidden" role="status"></div>
+   <div class="actions"><button id="prev" class="btn" type="button">← Previous</button><button id="next" class="btn primary" type="button">Next →</button><button id="flag" class="btn" type="button">Flag question</button><button id="finish" class="btn submit" type="button">Finish test</button></div>
+  </div>
+  <div class="card" style="margin-top:16px"><div id="pSum" class="muted" style="font-size:14px"></div><div id="keys" class="keys"></div></div>
+  <p class="muted" style="font-size:13px">Tip: press 1–4 or A–D to answer, and the left and right arrow keys to move between questions.</p>
+ </section>
+
+ <section id="resultView" class="hidden">
+  <div class="hero"><div class="res"><div class="ring" id="ring"><div id="ringTxt">0%</div></div>
+   <div><p class="muted" style="margin:0;font-weight:700">Your results</p><h2 id="resTitle" style="font-size:28px;letter-spacing:-.03em"></h2><p id="resSub" class="muted" style="margin:0"></p>
+   <div class="actions"><button id="again" class="btn primary" type="button">Try again</button><button id="home" class="btn" type="button">Choose another subject</button></div></div></div></div>
+  <div class="card" style="margin-top:16px"><h3 style="margin:0">Score by subject</h3><div id="subjRep"></div></div>
+  <div class="card" style="margin-top:16px"><h3 style="margin:0">Review your answers</h3><div id="review"></div></div>
+ </section>
+</main>
+<footer class="footer"><span>© MathCloud Tutorial</span><span>Demo questions are for practice only.</span></footer>
+
+<script>
+(()=>{'use strict';
+/* [subject, question, [correct answer first, 3 wrong answers], explanation]. Options are shuffled when shown. */
+const BANK=[
+['English','Choose the option that best completes the sentence: Neither the principal nor the teachers ___ present at the meeting.',['were','was','is','has been'],'With “neither … nor”, the verb agrees with the nearer subject. The nearer subject is “teachers”, which is plural, so the verb is “were”.'],
+['English','Choose the option nearest in meaning to the underlined word: The manager’s decision was ARBITRARY.',['capricious','fair','unanimous','careful'],'“Arbitrary” means based on personal whim rather than reason or a fixed rule. “Capricious” is the closest meaning.'],
+['English','Choose the option opposite in meaning to the word: FRUGAL',['extravagant','thrifty','careful','poor'],'“Frugal” means careful with money. The opposite is “extravagant”, which means spending too freely.'],
+['English','Choose the correct preposition: She is married ___ a lawyer.',['to','with','by','for'],'The fixed phrase is “married to” someone.'],
+['English','What does the idiom “to let the cat out of the bag” mean?',['to reveal a secret by mistake','to set an animal free','to lose a valuable item','to start a quarrel'],'The idiom means to disclose a secret, usually by accident.'],
+['English','Choose the correctly spelt word.',['accommodation','accomodation','acommodation','accommodasion'],'“Accommodation” has a double c and a double m.'],
+['English','Choose the correct option: The police ___ investigating the robbery.',['are','is','was','has been'],'“Police” is a plural noun that takes a plural verb, so “are” is correct.'],
+['English','Complete with the correct question tag: You have not finished, ___?',['have you','haven’t you','did you','do you'],'A negative statement takes a positive tag, and the tag repeats the auxiliary verb “have”. So: “have you?”.'],
+['Mathematics','Evaluate 2^−3 × 16.',['2','1/2','8','−2'],'2^−3 = 1/8. Then 1/8 × 16 = 2.'],
+['Mathematics','Solve 2x^2 − 5x − 3 = 0.',['x = 3 or x = −1/2','x = −3 or x = 1/2','x = 3 or x = 1/2','x = 5 or x = −3'],'Factorise: (2x + 1)(x − 3) = 0. So 2x + 1 = 0 gives x = −1/2, and x − 3 = 0 gives x = 3.'],
+['Mathematics','Find the gradient of the line 3y = 6x + 9.',['2','6','3','9'],'Divide by 3 to write y = 2x + 3. The gradient is the coefficient of x, which is 2.'],
+['Mathematics','If sin θ = 3/5 and θ is acute, find cos θ.',['4/5','3/4','5/4','2/5'],'Use the 3-4-5 right-angled triangle. Opposite = 3 and hypotenuse = 5, so adjacent = 4. cos θ = 4/5.'],
+['Mathematics','Differentiate y = 3x^2 + 5x − 7 with respect to x.',['6x + 5','3x + 5','6x − 7','6x^2 + 5'],'Differentiate each term: 3x^2 gives 6x, 5x gives 5, and the constant −7 gives 0. So dy/dx = 6x + 5.'],
+['Mathematics','Find the sum of the first 10 terms of the AP 2, 5, 8, …',['155','145','160','150'],'a = 2 and d = 3. S = n/2 × [2a + (n − 1)d] = 5 × [4 + 27] = 5 × 31 = 155.'],
+['Mathematics','Two fair dice are thrown. What is the probability that the sum is 7?',['1/6','1/12','7/36','1/9'],'There are 36 equally likely outcomes. Six of them add up to 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). So P = 6/36 = 1/6.'],
+['Mathematics','Evaluate the integral of 4x^3 with respect to x.',['x^4 + c','4x^4 + c','12x^2 + c','x^3 + c'],'Add 1 to the power and divide by the new power: 4x^4 ÷ 4 = x^4. Do not forget the constant c.'],
+['Physics','Which of the following is a vector quantity?',['velocity','speed','mass','energy'],'A vector has both magnitude and direction. Velocity does. Speed, mass and energy have magnitude only.'],
+['Physics','A car starts from rest and accelerates uniformly at 2 m/s^2 for 8 s. How far does it travel?',['64 m','16 m','32 m','128 m'],'s = ut + ½at^2 with u = 0: s = ½ × 2 × 8^2 = 64 m.'],
+['Physics','Two resistors of 4 Ω and 6 Ω are connected in parallel. Find the total resistance.',['2.4 Ω','10 Ω','5 Ω','1.5 Ω'],'For parallel resistors, R = (4 × 6) ÷ (4 + 6) = 24 ÷ 10 = 2.4 Ω.'],
+['Physics','A force of 20 N acts on a body of mass 5 kg. Find its acceleration.',['4 m/s^2','100 m/s^2','0.25 m/s^2','15 m/s^2'],'F = ma, so a = F ÷ m = 20 ÷ 5 = 4 m/s^2.'],
+['Physics','A wave travels at 340 m/s and has a wavelength of 0.5 m. Find its frequency.',['680 Hz','170 Hz','340 Hz','0.0015 Hz'],'v = fλ, so f = v ÷ λ = 340 ÷ 0.5 = 680 Hz.'],
+['Physics','Find the work done in lifting a 10 kg load through 3 m. (g = 10 m/s^2)',['300 J','30 J','13 J','100 J'],'Work = force × distance = mg × h = 10 × 10 × 3 = 300 J.'],
+['Physics','Which of these is an electromagnetic wave?',['X-rays','sound waves','ultrasound','water waves'],'X-rays travel as electromagnetic waves and can pass through a vacuum. The others need a material medium.'],
+['Physics','How much heat is needed to raise the temperature of 2 kg of water by 10 °C? (c = 4200 J/kg/°C)',['84,000 J','8,400 J','42,000 J','420,000 J'],'Q = mcΔT = 2 × 4200 × 10 = 84,000 J.'],
+['Chemistry','An element has the electron arrangement 2, 8, 3. What is its atomic number?',['13','11','3','8'],'The atomic number equals the number of electrons in a neutral atom: 2 + 8 + 3 = 13. The element is aluminium.'],
+['Chemistry','What is the pH of 0.01 mol/dm^3 hydrochloric acid?',['2','1','0.01','12'],'HCl is a strong acid, so [H⁺] = 0.01 = 10^−2. pH = −log(10^−2) = 2.'],
+['Chemistry','How many moles are there in 11 g of carbon dioxide? (C = 12, O = 16)',['0.25 mol','0.5 mol','4 mol','2.5 mol'],'Molar mass of CO₂ = 12 + 32 = 44 g/mol. Moles = 11 ÷ 44 = 0.25 mol.'],
+['Chemistry','Which gas is given off when zinc reacts with dilute hydrochloric acid?',['hydrogen','oxygen','chlorine','carbon dioxide'],'Zn + 2HCl gives ZnCl₂ + H₂. Hydrogen is released and burns with a “pop”.'],
+['Chemistry','What type of bond is present in sodium chloride?',['ionic','covalent','metallic','hydrogen'],'Sodium gives an electron to chlorine, forming Na⁺ and Cl⁻ ions held by electrostatic attraction. This is an ionic (electrovalent) bond.'],
+['Chemistry','What is the oxidation number of manganese in KMnO₄?',['+7','+2','+4','+6'],'K is +1 and each O is −2, so 4 × (−2) = −8. For a neutral compound: +1 + Mn − 8 = 0, so Mn = +7.'],
+['Chemistry','Which is the molecular formula of the alkane with six carbon atoms?',['C₆H₁₄','C₆H₁₂','C₆H₁₀','C₆H₆'],'Alkanes follow CₙH₂ₙ₊₂. For n = 6: C₆H₁₄.'],
+['Chemistry','For N₂ + 3H₂ ⇌ 2NH₃, what happens to the equilibrium when the pressure is increased?',['it shifts to the right','it shifts to the left','it does not change','the reaction stops'],'The left side has 4 moles of gas and the right side has 2. Higher pressure favours the side with fewer moles, so the equilibrium shifts right.'],
+['Biology','Which cell organelle is the main site of aerobic respiration?',['mitochondrion','ribosome','nucleus','chloroplast'],'Mitochondria release energy from food during aerobic respiration, which is why they are called the “powerhouse” of the cell.'],
+['Biology','A heterozygous tall plant (Tt) is crossed with a short plant (tt). What is the ratio of tall to short offspring?',['1 : 1','3 : 1','1 : 3','All tall'],'Tt × tt gives Tt, Tt, tt, tt. Half are tall and half are short, a 1 : 1 ratio.'],
+['Biology','Which enzyme in saliva begins the digestion of starch?',['salivary amylase','pepsin','lipase','trypsin'],'Salivary amylase (ptyalin) breaks starch down into maltose in the mouth.'],
+['Biology','Which of the following is a function of the liver?',['converting excess amino acids to urea','producing insulin','secreting gastric juice','absorbing digested food'],'The liver deaminates excess amino acids and forms urea. Insulin comes from the pancreas, gastric juice from the stomach, and absorption happens in the small intestine.'],
+['Biology','Which organism is the vector of the malaria parasite?',['female Anopheles mosquito','Aedes mosquito','tsetse fly','housefly'],'The female Anopheles mosquito carries Plasmodium and passes it on when it bites.'],
+['Biology','Osmosis is the movement of water molecules from',['a dilute solution to a concentrated solution through a semi-permeable membrane','a concentrated solution to a dilute solution through a semi-permeable membrane','a low to a high temperature through any membrane','one cell to another using energy'],'Osmosis moves water from a region of high water potential (dilute solution) to low water potential (concentrated solution) across a semi-permeable membrane, without using energy.'],
+['Biology','Which part of the brain controls balance and coordination?',['cerebellum','cerebrum','medulla oblongata','hypothalamus'],'The cerebellum coordinates muscle movement, posture and balance.'],
+['Biology','In which part of the plant cell does photosynthesis take place?',['chloroplast','vacuole','cell wall','mitochondrion'],'Chloroplasts contain chlorophyll, which traps light energy for photosynthesis.']
+];
+const SUBJ=[...new Set(BANK.map(b=>b[0]))],PER=3,LET='ABCD',$=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const fmt=s=>esc(s).replace(/\^(−?\d+)/g,'<sup>$1</sup>');
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const clock=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.max(0,s)%60).padStart(2,'0');
+const pct=(a,b)=>b?Math.round(a/b*100):0,verdict=p=>p>=70?['good','Strong']:p>=50?['mid','Improving']:['low','Needs work'];
+let Q=null,timer=null,cfg={subject:'all',mode:'practice'};
+
+const show=v=>{['startView','quizView','resultView'].forEach(id=>$(id).classList.toggle('hidden',id!==v));window.scrollTo({top:0,behavior:'smooth'});};
+$('subject').innerHTML='<option value="all">All five subjects (mini mock)</option>'+SUBJ.map(s=>`<option>${s}</option>`).join('');
+function rule(){const all=$('subject').value==='all',n=all?PER*SUBJ.length:BANK.filter(b=>b[0]===$('subject').value).length,ex=$('mode').value==='exam';
+ $('rule').innerHTML=`<b>${n} questions</b>${all?` (${PER} from each subject)`:''}. ${ex?`You have <b>${n} minutes</b>. Answers are shown only after you finish.`:'Each answer is locked and explained straight away.'}`;}
+$('subject').onchange=$('mode').onchange=rule;rule();
+$('startForm').onsubmit=e=>{e.preventDefault();start($('subject').value,$('mode').value);};
+
+function start(subject,mode){
+ cfg={subject,mode};let pool;
+ if(subject==='all')pool=SUBJ.flatMap(s=>shuffle(BANK.filter(b=>b[0]===s)).slice(0,PER));else pool=BANK.filter(b=>b[0]===subject);
+ const items=shuffle(pool).map(b=>({s:b[0],text:b[1],exp:b[3],opts:shuffle(b[2].map((t,i)=>({t,ok:i===0})))}));
+ Q={items,i:0,ans:[],flags:new Set(),mode,t0:Date.now(),limit:mode==='exam'?items.length*60:0,done:false};
+ $('quizTitle').textContent=subject==='all'?'Mini mock: all subjects':subject;
+ $('modeLbl').textContent=mode==='exam'?'Exam mode · timed':'Practice mode · instant feedback';
+ clearInterval(timer);tick();timer=setInterval(tick,500);show('quizView');render();
+}
+function tick(){if(!Q||Q.done)return;const el=Math.floor((Date.now()-Q.t0)/1000);
+ if(Q.limit){const left=Q.limit-el,t=$('timer');t.textContent='⏱ '+clock(left);t.className='pill'+(left<=60?' bad':left<=180?' warn':'');if(left<=0)finish(true);}
+ else $('timer').textContent='⏱ '+clock(el);}
+function render(){
+ const it=Q.items[Q.i],n=Q.items.length,a=Q.ans[Q.i],locked=Q.mode==='practice'&&a!==undefined;
+ $('counter').textContent=`Question ${Q.i+1} of ${n} · ${it.s}`;$('progress').textContent=`${Q.i+1}/${n}`;$('qText').innerHTML=fmt(it.text);
+ $('opts').innerHTML=it.opts.map((o,k)=>{let c='opt';if(a===k)c+=' sel';if(locked){c+=' locked';if(o.ok)c+=' ok';else if(a===k)c+=' no';}
+  return `<label class="${c}"><input type="radio" name="ans" value="${k}" ${a===k?'checked':''} ${locked?'disabled':''}><span><b>${LET[k]}.</b> ${fmt(o.t)}</span></label>`;}).join('');
+ $('opts').querySelectorAll('input').forEach(x=>x.onchange=()=>choose(+x.value));
+ const fb=$('fb');
+ if(locked){const right=it.opts.findIndex(o=>o.ok),ok=it.opts[a].ok;fb.className='notice '+(ok?'success':'error');
+  fb.innerHTML=`<b>Answer locked. ${ok?'Correct.':'Not correct.'}</b> Correct option: <b>${LET[right]}. ${fmt(it.opts[right].t)}</b><br>${fmt(it.exp)}`;}
+ else fb.className='notice hidden';
+ $('prev').disabled=Q.i===0;$('next').disabled=Q.i===n-1;$('flag').textContent=Q.flags.has(Q.i)?'Unflag question':'Flag question';$('flag').className='btn'+(Q.flags.has(Q.i)?' warn':'');
+ palette();
+}
+function palette(){const n=Q.items.length,an=Q.ans.filter(x=>x!==undefined).length;
+ $('pSum').textContent=`Answered ${an}/${n} · Unanswered ${n-an} · Flagged ${Q.flags.size}`;
+ $('keys').innerHTML=Q.items.map((_,i)=>`<button type="button" class="key ${Q.ans[i]!==undefined?'answered':''} ${Q.flags.has(i)?'flagged':''} ${i===Q.i?'active':''}" data-i="${i}" aria-label="Go to question ${i+1}">${i+1}</button>`).join('');
+ $('keys').querySelectorAll('.key').forEach(b=>b.onclick=()=>{Q.i=+b.dataset.i;render();});}
+function choose(k){if(!Q||Q.done)return;if(Q.mode==='practice'&&Q.ans[Q.i]!==undefined)return;Q.ans[Q.i]=k;render();}
+$('prev').onclick=()=>{if(Q.i>0){Q.i--;render();}};
+$('next').onclick=()=>{if(Q.i<Q.items.length-1){Q.i++;render();}};
+$('flag').onclick=()=>{Q.flags.has(Q.i)?Q.flags.delete(Q.i):Q.flags.add(Q.i);render();};
+$('finish').onclick=()=>{const un=Q.items.length-Q.ans.filter(x=>x!==undefined).length;if(un&&!confirm(`You have ${un} unanswered question${un>1?'s':''}. Finish the test now?`))return;finish();};
+document.addEventListener('keydown',e=>{if($('quizView').classList.contains('hidden')||!Q||e.ctrlKey||e.metaKey||e.altKey)return;
+ const k=e.key.toLowerCase(),idx='1234'.indexOf(k)>=0?'1234'.indexOf(k):'abcd'.indexOf(k);
+ if(k.length===1&&idx>=0&&idx<Q.items[Q.i].opts.length){e.preventDefault();choose(idx);}
+ else if(k==='arrowright'&&Q.i<Q.items.length-1){Q.i++;render();}else if(k==='arrowleft'&&Q.i>0){Q.i--;render();}});
+
+/* Read aloud (browser voice) */
+const spoken=t=>String(t).replace(/(\d+)\/(\d+)/g,'$1 over $2').replace(/\^2/g,' squared ').replace(/\^3/g,' cubed ').replace(/\^(−?\d+)/g,' to the power $1 ').replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/\+/g,' plus ').replace(/=/g,' equals ').replace(/%/g,' percent').replace(/°/g,' degrees ').replace(/Ω/g,' ohms ').replace(/θ/g,' theta ');
+function say(t){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(spoken(t));u.rate=.95;speechSynthesis.speak(u);}
+$('readBtn').onclick=()=>{const it=Q&&Q.items[Q.i];if(it)say(it.text+'. '+it.opts.map((o,k)=>`${LET[k]}. ${o.t}`).join('. '));};
+
+/* Results */
+function finish(auto){
+ if(!Q||Q.done)return;Q.done=true;clearInterval(timer);if('speechSynthesis' in window)speechSynthesis.cancel();
+ const n=Q.items.length,rows=Q.items.map((it,i)=>({it,a:Q.ans[i],ok:Q.ans[i]!==undefined&&it.opts[Q.ans[i]].ok}));
+ const c=rows.filter(r=>r.ok).length,sc=pct(c,n),secs=Math.max(1,Math.round((Date.now()-Q.t0)/1000));
+ show('resultView');$('ring').style.setProperty('--p',sc);$('ringTxt').textContent=sc+'%';
+ $('resTitle').textContent=sc>=80?'Outstanding work!':sc>=60?'Great job!':sc>=40?'Good effort. Keep practising!':'Every expert starts here. Try again!';
+ $('resSub').textContent=`${c} of ${n} correct in ${clock(Math.min(secs,Q.limit||secs))}${auto?' (time up)':''}. Demo result: not saved.`;
+ const sm={};rows.forEach(r=>{const o=sm[r.it.s]||(sm[r.it.s]={s:r.it.s,c:0,n:0});o.n++;if(r.ok)o.c++;});
+ $('subjRep').innerHTML=Object.values(sm).map(x=>{const p=pct(x.c,x.n),v=verdict(p);return `<div class="trow"><div><b>${x.s}</b><br><small>${x.c}/${x.n} correct</small></div><div class="tbar ${v[0]}" role="img" aria-label="${p} percent"><i style="width:${p}%"></i></div><span class="chip ${v[0]}">${p}% · ${v[1]}</span></div>`;}).join('');
+ $('review').innerHTML=rows.map((r,i)=>`<details class="${r.ok?'ok':'no'}" ${r.ok?'':'open'}><summary><span>${r.ok?'✓':'✗'}</span>${i+1}. ${fmt(r.it.text)}</summary><div class="body"><div>Your answer: <b>${r.a===undefined?'Not answered':fmt(r.it.opts[r.a].t)}</b></div>${r.ok?'':`<div>Correct answer: <b>${fmt(r.it.opts.find(o=>o.ok).t)}</b></div>`}<div style="margin-top:6px">${fmt(r.it.exp)}</div></div></details>`).join('');
+}
+$('again').onclick=()=>start(cfg.subject,cfg.mode);
+$('home').onclick=()=>{Q=null;show('startView');};
+addEventListener('pagehide',()=>{if('speechSynthesis' in window)speechSynthesis.cancel();});
+})();
+</script>
+</body>
+</html>

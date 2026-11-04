@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Math Quiz Demo | MathCloud Tutorial</title>
+<meta name="description" content="Try the MathCloud Math Quiz free. Real exam-style questions, instant feedback and worked explanations with Coach Reed.">
+<meta name="theme-color" content="#155eef">
+<link rel="icon" type="image/png" href="logo.png"><link rel="shortcut icon" href="favicon.ico"><link rel="apple-touch-icon" href="logo.png">
+<style>
+:root{--ink:#142744;--muted:#62718a;--blue:#175cd3;--line:#dfe7f2;--paper:#f4f7fc;--shadow:0 18px 48px rgba(22,48,88,.09);--ok:#0c8a5b;--okbg:#e6f8ef;--no:#c23a3a;--nobg:#fdeeee;--grid:#e4ecf8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+a{color:inherit;text-decoration:none}button,select{font:inherit}
+:focus-visible{outline:3px solid #62b6ff;outline-offset:3px}
+.hidden{display:none!important}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 max(5vw,20px);background:#ffffffeb;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;backdrop-filter:blur(16px);box-shadow:0 3px 18px rgba(23,47,83,.035)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:-.03em}
+.brand small{display:block;font-size:10px;letter-spacing:.14em;color:var(--muted)}
+.navlinks{display:flex;gap:24px;font-size:14px;font-weight:650}.navlinks a:hover{color:var(--blue)}
+.mc-logo{position:relative;display:inline-grid;place-items:center;width:56px;height:56px;flex:0 0 56px}
+.mc-logo i{position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:#2872ff;border-right-color:#45d6e8;border-bottom-color:#ffb703;box-shadow:0 0 10px #2872ff30;animation:spin 3s linear infinite}
+.mc-logo i:nth-of-type(2){inset:4px;border-width:2px;border-top-color:#10a77b;border-right-color:transparent;border-bottom-color:#2872ff;border-left-color:#45d6e8;animation-duration:4.4s;animation-direction:reverse}
+.mc-logo i:nth-of-type(3){inset:-4px;border:1px dashed #2872ff88;box-shadow:none;animation-duration:9s}
+.mc-logo img{width:38px;height:38px;border-radius:50%;object-fit:contain;background:#fff;position:relative}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:12px;min-height:46px;padding:12px 18px;font-weight:800;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 2px 0 rgba(10,40,90,.09),0 10px 25px #19345b12;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(25,62,120,.13)}
+.btn.primary{color:#fff;background:linear-gradient(135deg,#1765e8,#1247b8);box-shadow:0 4px 12px rgba(21,94,239,.22)}
+.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);font-weight:900}
+.noticebox{background:#fff8e8;border:1px solid #f5dfac;color:#75500c;border-radius:14px;padding:13px 15px;font-size:13px;line-height:1.55}
+.footer{padding:30px 5vw;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid #dce5f2;margin-top:24px}
+.mq-wrap{width:min(1080px,92vw);margin:0 auto;padding:34px 0 120px}
+.mq-muted{color:var(--muted);font-size:14px}
+.mq-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,28px);box-shadow:var(--shadow)}
+.mq-card h2{margin:0 0 4px;font-size:21px;letter-spacing:-.02em}
+.mq-login{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start;margin-top:14px}
+.mq-intro{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:end;background:linear-gradient(160deg,#f2f8ff,#fff)}
+.mq-intro img{width:100%;max-height:300px;object-fit:contain;object-position:center bottom}
+.mq-intro h2{font-size:24px;margin:6px 0 8px}.mq-intro p{font-size:14px;line-height:1.65;color:#3b4d68;margin:0 0 14px}
+.mq-feat{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;font-weight:700}
+.mq-feat li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.mq-form{display:grid;gap:12px;margin-top:14px}
+.mq-form label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
+.mq-form select{width:100%;padding:12px 13px;border:1px solid #d7e1f0;border-radius:13px;background:#fbfdff;color:var(--ink)}
+.mq-rule{padding:11px 14px;border-radius:13px;background:#eef4ff;border:1px solid #cfe0ff;color:#12336d;font-size:14px;line-height:1.5}
+.mq-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}.mq-top .grow{flex:1;min-width:180px}.mq-top h2{margin:0;font-size:18px}
+.mq-timer{font-variant-numeric:tabular-nums;font-weight:900;padding:7px 13px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.mq-bar{height:9px;border-radius:99px;background:#e3ebf8;overflow:hidden;margin-bottom:16px}
+.mq-bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#45d6e8,#155eef);transition:width .3s}
+.mq-sheet{border:1px solid var(--line);border-radius:24px;padding:clamp(18px,3.4vw,34px);box-shadow:var(--shadow);background-color:#fff;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:26px 26px;background-position:-1px -1px}
+.mq-count{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--muted)}
+.mq-q{margin:14px 0 22px;padding:16px 18px;background:#ffffffe6;border-radius:16px;font-size:clamp(21px,3vw,30px);line-height:1.35;font-weight:750;letter-spacing:-.02em;overflow-wrap:anywhere}
+.mq-q sup,.mq-opt sup{font-size:.65em}
+.mq-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mq-opt{display:flex;align-items:center;gap:13px;text-align:left;width:100%;padding:15px 16px;border:2px solid #d5e0f2;border-radius:16px;background:#fff;color:var(--ink);font-size:clamp(17px,2.2vw,21px);font-weight:700;cursor:pointer;transition:border-color .15s,transform .15s}
+.mq-opt:hover:not(:disabled){border-color:var(--blue);transform:translateY(-2px)}
+.mq-opt b{flex:0 0 34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#eaf1ff;color:var(--blue);font-size:15px}
+.mq-opt.ok{border-color:var(--ok);background:var(--okbg)}.mq-opt.ok b{background:var(--ok);color:#fff}
+.mq-opt.no{border-color:var(--no);background:var(--nobg)}.mq-opt.no b{background:var(--no);color:#fff}
+.mq-opt:disabled{cursor:default}.mq-opt.dim{opacity:.55}
+.mq-fb{margin-top:18px;padding:15px 17px;border-radius:15px;background:#fff;border:1px solid var(--line);font-size:15px;line-height:1.6}
+.mq-fb.good{border-color:#b8e6cf;background:var(--okbg)}.mq-fb.bad{border-color:#f0c9c9;background:var(--nobg)}
+.mq-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.mq-result{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center}
+.mq-ring{--p:0;width:158px;height:158px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--blue) calc(var(--p)*1%),#e3ebf8 0)}
+.mq-ring div{width:122px;height:122px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:36px;font-weight:900;letter-spacing:-.04em}
+.mq-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.mq-topics{display:grid;gap:12px}
+.mq-trow{display:grid;grid-template-columns:minmax(110px,1.1fr) 2fr auto;gap:12px;align-items:center}
+.mq-tname b{display:block;font-size:14px}.mq-tname small{color:var(--muted);font-size:12px}
+.mq-tbar{height:10px;background:#e3ebf8;border-radius:99px;overflow:hidden}.mq-tbar i{display:block;height:100%;border-radius:99px}
+.good{--c:var(--ok)}.mid{--c:#e0a100}.low{--c:var(--no)}.mq-tbar i{background:var(--c)}
+.mq-tchip{white-space:nowrap;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800;background:#fff6dd;color:#8a5d00}
+.mq-tchip.good{background:var(--okbg);color:var(--ok)}.mq-tchip.low{background:var(--nobg);color:var(--no)}
+.mq-review{margin-top:12px;display:grid;gap:10px}
+.mq-review details{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.mq-review summary{display:flex;gap:10px;align-items:center;padding:13px 15px;cursor:pointer;font-weight:700}
+.mq-review summary span:first-child{flex:0 0 26px;height:26px;border-radius:8px;display:grid;place-items:center;color:#fff;font-size:13px}
+.mq-review .ok span:first-child{background:var(--ok)}.mq-review .no span:first-child{background:var(--no)}
+.mq-review .body{padding:0 16px 15px;font-size:14px;color:#3b4d68;line-height:1.65}
+.mq-dock{position:fixed;right:16px;bottom:16px;z-index:30;width:250px;display:flex;gap:11px;align-items:center;padding:10px 12px;background:#fff;border:1px solid #dfe8f6;border-radius:20px;box-shadow:0 16px 50px #142b4d22}
+.mq-dock .av{width:62px;height:62px;flex:0 0 62px;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#e4f2ff,#f7faff)}
+.mq-dock img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.mq-dock strong{font-size:13px}.mq-dock p{margin:2px 0 0;font-size:11.5px;line-height:1.35;color:var(--muted);max-height:48px;overflow:hidden}
+.mq-dock.speaking{box-shadow:0 0 0 3px #5cdded66,0 16px 50px #142b4d22}.mq-dock.speaking img{animation:talk .45s ease-in-out infinite alternate}
+@keyframes talk{to{transform:translateY(-2px) scale(1.02)}}
+.dk-act button{margin-top:5px;border:1px solid #cfe0ff;background:#eef4ff;color:#12336d;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:800;cursor:pointer}
+@media(max-width:860px){.mq-login{grid-template-columns:1fr}}
+@media(max-width:600px){.mq-opts{grid-template-columns:1fr}.mq-result{grid-template-columns:1fr;justify-items:center;text-align:center}.mq-trow{grid-template-columns:1fr;gap:6px}.mq-dock{width:min(230px,calc(100vw - 16px));right:8px;bottom:8px}.mq-wrap{padding-bottom:110px}.mq-feat{grid-template-columns:1fr}.mq-intro{grid-template-columns:1fr;justify-items:center;text-align:center}.mq-intro img{max-height:200px}.nav{flex-wrap:wrap;padding:10px 5vw}}
+@media(prefers-reduced-motion:reduce){.mq-opt,.mq-bar i{transition:none}.mq-dock.speaking img,.mc-logo i{animation:none}}
+</style>
+</head>
+<body>
+<header class="nav">
+ <a class="brand" href="index.html"><span class="mc-logo" aria-hidden="true"><i></i><i></i><i></i><img src="logo.png" alt=""></span><span>MathCloud <small>MATH QUIZ DEMO</small></span></a>
+ <nav class="navlinks"><a href="index.html">Home</a></nav>
+</header>
+
+<main class="mq-wrap">
+ <section id="startView" class="mq-login">
+  <div class="mq-card mq-intro"><img src="mathcloud-human-guide.png" alt="Coach Reed, your MathCloud guide"><div><span class="eyebrow">Meet your guide</span><h2>Hi, I’m Coach Reed 👋</h2>
+   <p id="introText">Welcome to the MathCloud Math Quiz demo. I am Coach Reed, and I will guide you. Pick one topic or all topics, answer each question, and I will tell you straight away if you are right, with a clear worked explanation. You can listen to any question with the read aloud button. This demo scores are not saved.</p>
+   <button id="introBtn" class="btn primary" type="button">🔊 Hear my introduction</button>
+   <ul class="mq-feat"><li>🎯 Exam-style questions</li><li>✅ Instant worked explanations</li><li>🔊 Read aloud with Coach Reed</li><li>📈 Score by topic</li></ul></div></div>
+  <div class="mq-card">
+   <span class="eyebrow">Free demo</span>
+   <h1 style="font-size:clamp(30px,5vw,40px);letter-spacing:-.04em;line-height:1.1;margin:10px 0">Sharpen your maths, one question at a time.</h1>
+   <p class="mq-muted">No sign-in needed. Choose what to practise and press start.</p>
+   <form id="startForm" class="mq-form">
+    <div><label for="topic">What do you want to practise?</label><select id="topic"></select></div>
+    <div id="rule" class="mq-rule"></div>
+    <button class="btn primary" type="submit" style="width:100%">Start quiz</button>
+   </form>
+   <div class="noticebox" style="margin-top:14px"><strong>Demo mode.</strong> Questions come in a different order each time. Your results are shown at the end and are not saved.</div>
+  </div>
+ </section>
+
+ <section id="quizView" class="hidden" aria-live="polite">
+  <p class="eyebrow" style="margin:0 0 8px">Answer each question</p>
+  <div class="mq-top"><button id="quitBtn" class="btn" type="button" style="padding:9px 16px">← Leave quiz</button><div class="grow"><h2 id="quizTitle">Quiz</h2></div><span class="mq-timer" id="timer">00:00</span></div>
+  <div class="mq-bar"><i id="bar"></i></div>
+  <div class="mq-sheet">
+   <div class="mq-count"><span id="counter"></span><button id="readBtn" class="btn" type="button" style="padding:8px 14px;font-size:13px;min-height:0">🔊 Read aloud</button></div>
+   <div id="qText" class="mq-q"></div>
+   <div id="opts" class="mq-opts" role="group" aria-label="Answer choices"></div>
+   <div id="fb" class="mq-fb hidden" role="status"></div>
+   <div class="mq-actions"><span class="mq-muted">Tip: press 1–4 or A–D to answer, Enter for next.</span><button id="nextBtn" class="btn primary hidden" type="button">Next question</button></div>
+  </div>
+ </section>
+
+ <section id="resultView" class="hidden">
+  <div class="mq-card">
+   <div class="mq-result">
+    <div class="mq-ring" id="ring"><div id="ringTxt">0%</div></div>
+    <div><span class="eyebrow">Your results</span><h2 id="resTitle" style="font-size:28px;margin:6px 0">Well done!</h2><p id="resSub" class="mq-muted" style="margin:0"></p>
+     <div class="mq-btns"><button id="againBtn" class="btn primary" type="button">Try again</button><button id="homeBtn" class="btn" type="button">Choose another topic</button><button id="sayBtn" class="btn" type="button">🔊 Explain my result</button></div></div>
+   </div>
+   <h3 style="margin:26px 0 10px">How you did by topic</h3><div id="topicRep" class="mq-topics"></div>
+   <h3 style="margin:26px 0 0">Review your answers</h3><div id="review" class="mq-review"></div>
+  </div>
+ </section>
+</main>
+
+<aside class="mq-dock" id="dock" aria-label="Maths coach"><div class="av"><img src="mathcloud-human-guide.png" alt="MathCloud learning guide"></div><div><strong>Coach Reed</strong><p id="dockSays">Pick a topic when you are ready. I will cheer you on.</p><div class="dk-act"><button id="dockReplay" type="button">🔊 Replay</button></div></div></aside>
+<footer class="footer"><span>© MathCloud Tutorial</span><a href="index.html">Back to home</a></footer>
+
+<script>
+(()=>{'use strict';
+/* Question bank: [topic, question, [correct answer first, 3 wrong answers], worked explanation]. Options are shuffled when shown. */
+const BANK=[
+['Algebra','Solve: 3(2x − 4) = 2x + 8',['x = 5','x = 3','x = 7','x = 10'],'Expand: 6x − 12 = 2x + 8. Collect x terms: 4x = 20, so x = 5.'],
+['Algebra','Factorise 2x^2 + 7x + 3.',['(2x + 1)(x + 3)','(2x + 3)(x + 1)','(2x − 1)(x − 3)','(x + 7)(2x + 3)'],'Find two numbers that multiply to 2 × 3 = 6 and add to 7: 6 and 1. Split the middle term: 2x^2 + 6x + x + 3 = 2x(x + 3) + 1(x + 3) = (2x + 1)(x + 3).'],
+['Algebra','Make h the subject of V = πr^2h.',['h = V ÷ (πr^2)','h = Vπr^2','h = V − πr^2','h = πr^2 ÷ V'],'h is multiplied by πr^2, so divide both sides by πr^2.'],
+['Algebra','If x + y = 12 and x − y = 4, find the value of xy.',['32','48','24','16'],'Add the equations: 2x = 16, so x = 8. Then y = 12 − 8 = 4. So xy = 8 × 4 = 32.'],
+['Algebra','Solve: x^2 − 4x − 12 = 0',['x = 6 or x = −2','x = −6 or x = 2','x = 4 or x = −3','x = 12 or x = −1'],'Find two numbers that multiply to −12 and add to −4: −6 and 2. So (x − 6)(x + 2) = 0, giving x = 6 or x = −2.'],
+['Money and Percentages','A trader buys a bag of rice for ₦45,000 and sells it at a 20% profit. What is the selling price?',['₦54,000','₦49,000','₦50,000','₦36,000'],'Profit = 20% of ₦45,000 = ₦9,000. Selling price = ₦45,000 + ₦9,000 = ₦54,000.'],
+['Money and Percentages','The price of a phone rose from ₦80,000 to ₦92,000. What is the percentage increase?',['15%','12%','13%','20%'],'Increase = ₦12,000. Percentage increase = 12,000 ÷ 80,000 × 100 = 15%. Always divide by the original price.'],
+['Money and Percentages','After a 15% discount, a dress costs ₦17,000. What was the original price?',['₦20,000','₦19,550','₦14,450','₦21,000'],'After a 15% discount the price is 85% of the original. So original = 17,000 ÷ 0.85 = ₦20,000.'],
+['Money and Percentages','Find the simple interest on ₦50,000 at 8% per annum for 3 years.',['₦12,000','₦4,000','₦15,000','₦62,000'],'I = PRT ÷ 100 = 50,000 × 8 × 3 ÷ 100 = ₦12,000.'],
+['Money and Percentages','A number decreased by 40% becomes 54. What is the number?',['90','75','94','21.6'],'After a 40% decrease the number is 60% of the original. So original = 54 ÷ 0.6 = 90.'],
+['Geometry','What is the sum of the interior angles of a pentagon?',['540°','360°','720°','450°'],'Sum = (n − 2) × 180° = (5 − 2) × 180° = 540°.'],
+['Geometry','A right-angled triangle has hypotenuse 13 cm and one side 5 cm. Find the third side.',['12 cm','8 cm','11 cm','18 cm'],'Pythagoras: 13^2 − 5^2 = 169 − 25 = 144, and √144 = 12. (5, 12, 13 is a Pythagorean triple.)'],
+['Geometry','Find the volume of a cylinder of radius 7 cm and height 10 cm. (Take π = 22/7)',['1,540 cm^3','440 cm^3','154 cm^3','3,080 cm^3'],'V = πr^2h = 22/7 × 7 × 7 × 10 = 22 × 7 × 10 = 1,540 cm^3.'],
+['Geometry','An arc subtends an angle of 80° at the centre of a circle. What angle does it subtend at the circumference?',['40°','80°','160°','100°'],'The angle at the centre is twice the angle at the circumference, so the angle at the circumference is 80° ÷ 2 = 40°.'],
+['Geometry','Each exterior angle of a regular polygon is 30°. How many sides has the polygon?',['12','6','8','10'],'Exterior angles add up to 360°. Number of sides = 360° ÷ 30° = 12.'],
+['Indices and Logarithms','Simplify (2^5 × 2^3) ÷ 2^6.',['4','2^2 × 2','2^14','1'],'Add the indices on top: 2^8. Subtract: 8 − 6 = 2. So 2^2 = 4.'],
+['Indices and Logarithms','Evaluate 8^(2/3).',['4','16','2','8/3'],'The denominator 3 is the cube root: ∛8 = 2. The numerator 2 is the power: 2^2 = 4.'],
+['Indices and Logarithms','Solve for x: 3^(x+1) = 81',['x = 3','x = 4','x = 27','x = 2'],'81 = 3^4. So x + 1 = 4, giving x = 3.'],
+['Indices and Logarithms','Evaluate log10(4) + log10(25).',['2','29','100','1'],'Adding logs multiplies the numbers: log10(4 × 25) = log10(100) = 2.'],
+['Indices and Logarithms','Write 0.00035 in standard form.',['3.5 × 10^−4','3.5 × 10^−3','35 × 10^−5','3.5 × 10^4'],'Move the decimal point 4 places to the right to get 3.5, so the power is −4: 3.5 × 10^−4.'],
+['Statistics and Probability','The mean of five numbers is 12. Four of them are 10, 14, 9 and 15. What is the fifth number?',['12','10','14','11'],'Total = 5 × 12 = 60. The four known numbers add up to 48. The fifth number = 60 − 48 = 12.'],
+['Statistics and Probability','Find the median of 7, 2, 9, 4, 6 and 10.',['6.5','6','7','6.17'],'Order the data: 2, 4, 6, 7, 9, 10. With six values the median is the mean of the middle two: (6 + 7) ÷ 2 = 6.5.'],
+['Statistics and Probability','A bag has 4 red and 6 blue balls. Two balls are drawn without replacement. Find P(both red).',['2/15','4/25','16/90','1/5'],'P(first red) = 4/10. With one red gone, P(second red) = 3/9. Multiply: 4/10 × 3/9 = 12/90 = 2/15.'],
+['Statistics and Probability','A fair die is thrown once. What is the probability of getting a prime number?',['1/2','1/3','2/3','5/6'],'The primes on a die are 2, 3 and 5. That is 3 outcomes out of 6, so P = 3/6 = 1/2. (1 is not prime.)'],
+['Statistics and Probability','Scores 1, 2, 3 and 4 have frequencies 2, 5, 8 and 5. Find the mean score.',['2.8','2.5','3.0','14'],'Total frequency = 20. Sum of (score × frequency) = 2 + 10 + 24 + 20 = 56. Mean = 56 ÷ 20 = 2.8.'],
+['Sequences and Rates','Find the nth term of the sequence 5, 8, 11, 14, …',['3n + 2','3n + 5','n + 3','5n − 2'],'The common difference is 3, so start with 3n. For n = 1, 3n = 3 but the term is 5, so add 2: 3n + 2.'],
+['Sequences and Rates','Find the sum of the first 8 terms of an AP with first term 3 and common difference 4.',['136','112','128','35'],'S = n/2 × [2a + (n − 1)d] = 4 × [6 + 28] = 4 × 34 = 136.'],
+['Sequences and Rates','Find the 5th term of the GP 2, 6, 18, …',['162','54','486','90'],'The common ratio is 3. The nth term is ar^(n−1), so the 5th term = 2 × 3^4 = 2 × 81 = 162.'],
+['Sequences and Rates','Ade and Bola share ₦72,000 in the ratio 5 : 3. How much more does Ade get?',['₦18,000','₦9,000','₦45,000','₦27,000'],'Total parts = 8, so one part = ₦9,000. Ade gets 5 parts and Bola gets 3 parts, so the difference is 2 parts = ₦18,000.'],
+['Sequences and Rates','A car travels 150 km in 2.5 hours. At the same speed, how long will it take to travel 240 km?',['4 hours','3.5 hours','4.5 hours','3.75 hours'],'Speed = 150 ÷ 2.5 = 60 km/h. Time = 240 ÷ 60 = 4 hours.']
+];
+const TOPICS=[...new Set(BANK.map(b=>b[0]))],N=10,LET='ABCD',$=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const fmt=s=>esc(s).replace(/\^\(([^)]+)\)/g,'<sup>$1</sup>').replace(/\^(−?-?\d+)/g,'<sup>$1</sup>');
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const clock=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+const pct=(a,b)=>b?Math.round(a/b*100):0,verdict=p=>p>=75?['good','Strong']:p>=50?['mid','Improving']:['low','Needs work'];
+const PRAISE=['Excellent!','Spot on!','Great thinking!','Correct, well done!','Yes! Keep going!'];
+let Q=null,timer=null,topic='all',voice=null;
+function show(v){['startView','quizView','resultView'].forEach(id=>$(id).classList.toggle('hidden',id!==v));window.scrollTo({top:0,behavior:'smooth'});}
+const coach=t=>$('dockSays').textContent=t;
+
+/* Coach Reed's voice (browser read-aloud) */
+const spoken=t=>String(t).replace(/(\d+)\/(\d+)/g,'$1 over $2').replace(/\^2/g,' squared ').replace(/\^3/g,' cubed ').replace(/\^\(([^)]+)\)/g,' to the power $1 ').replace(/\^(−?\d+)/g,' to the power $1 ').replace(/√/g,' square root of ').replace(/∛/g,' cube root of ').replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/\+/g,' plus ').replace(/=/g,' equals ').replace(/%/g,' percent').replace(/₦/g,' naira ').replace(/°/g,' degrees ');
+function pickVoice(){if(voice||!('speechSynthesis' in window))return voice;const sc=v=>{const n=(v.name||'').toLowerCase(),l=(v.lang||'').toLowerCase();return(/natural|neural|online/.test(n)?100:0)+(/aria|jenny|sonia|zira|samantha|victoria|serena|hazel|libby|natasha|ava|allison|karen|moira|tessa|female/.test(n)?120:0)+(/en-ng/.test(l)?25:/en-gb/.test(l)?20:/en-us/.test(l)?15:0);};return voice=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang)).sort((a,b)=>sc(b)-sc(a))[0]||null;}
+if('speechSynthesis' in window)speechSynthesis.onvoiceschanged=()=>{voice=null;};
+let last='';
+function say(t){if(!('speechSynthesis' in window)){coach('Read-aloud is not supported in this browser.');return;}last=t;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(spoken(t)),v=pickVoice();if(v){u.voice=v;u.lang=v.lang;}u.rate=.95;u.onstart=()=>$('dock').classList.add('speaking');u.onend=u.onerror=()=>$('dock').classList.remove('speaking');speechSynthesis.speak(u);}
+function stopSay(){if('speechSynthesis' in window)speechSynthesis.cancel();$('dock').classList.remove('speaking');}
+
+/* Start screen */
+$('topic').innerHTML='<option value="all">All topics (mixed)</option>'+TOPICS.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
+function rule(){const all=$('topic').value==='all',n=all?N:BANK.filter(b=>b[0]===$('topic').value).length;$('rule').innerHTML=all?`<b>All topics</b> gives you <b>${N} questions</b> picked at random across ${TOPICS.length} topics.`:`<b>One topic</b> gives you all <b>${n} questions</b> for that topic, in a random order.`;}
+$('topic').onchange=rule;rule();
+$('startForm').onsubmit=e=>{e.preventDefault();start($('topic').value);};
+$('introBtn').onclick=()=>{say($('introText').textContent);coach('Nice to meet you! Choose a topic when you are ready.');};
+$('dockReplay').onclick=()=>say(last||$('dockSays').textContent);
+
+/* Quiz */
+function start(t){
+ topic=t;let pool=BANK.filter(b=>t==='all'||b[0]===t);
+ if(t==='all'){const by={};shuffle(pool).forEach(b=>(by[b[0]]=by[b[0]]||[]).push(b));const pick=[];let k=0;while(pick.length<N){const ts=TOPICS.filter(x=>by[x]&&by[x][k]);if(!ts.length)break;shuffle(ts).forEach(x=>{if(pick.length<N)pick.push(by[x][k]);});k++;}pool=pick;}
+ const items=shuffle(pool).map(b=>({topic:b[0],text:b[1],exp:b[3],opts:shuffle(b[2].map((x,i)=>({t:x,ok:i===0})))}));
+ Q={items,i:0,answers:[],startedAt:Date.now(),done:false};
+ $('quizTitle').textContent=t==='all'?'Mixed topics quiz':t+' quiz';
+ clearInterval(timer);$('timer').textContent='00:00';timer=setInterval(()=>$('timer').textContent=clock(Math.floor((Date.now()-Q.startedAt)/1000)),500);
+ show('quizView');coach('Take your time. Read the question carefully, then choose.');renderQ();
+}
+function renderQ(){
+ const it=Q.items[Q.i],n=Q.items.length;
+ $('counter').textContent=`Question ${Q.i+1} of ${n} · ${it.topic}`;$('bar').style.width=(Q.i/n*100)+'%';$('qText').innerHTML=fmt(it.text);
+ $('opts').innerHTML=it.opts.map((o,k)=>`<button type="button" class="mq-opt" data-k="${k}"><b>${LET[k]}</b><span>${fmt(o.t)}</span></button>`).join('');
+ $('opts').querySelectorAll('.mq-opt').forEach(b=>b.onclick=()=>choose(+b.dataset.k));
+ $('fb').classList.add('hidden');$('nextBtn').classList.add('hidden');stopSay();
+}
+function choose(k){
+ if(!Q||Q.answers[Q.i]!==undefined)return;
+ const it=Q.items[Q.i],ok=it.opts[k].ok,right=it.opts.findIndex(o=>o.ok);Q.answers[Q.i]=k;
+ $('opts').querySelectorAll('.mq-opt').forEach((b,i)=>{b.disabled=true;b.classList.add(i===right?'ok':i===k?'no':'dim');});
+ const fb=$('fb');fb.className='mq-fb '+(ok?'good':'bad');
+ fb.innerHTML=(ok?`<b>${PRAISE[Math.floor(Math.random()*PRAISE.length)]}</b> `:`<b>Not quite.</b> The correct answer is <b>${LET[right]}. ${fmt(it.opts[right].t)}</b>. `)+fmt(it.exp)+'<div style="margin-top:10px"><button class="btn" type="button" id="exBtn" style="padding:7px 13px;font-size:13px;min-height:0">🔊 Explain this to me</button></div>';
+ $('exBtn').onclick=()=>say((ok?'Correct. ':'The correct answer is '+it.opts[right].t+'. ')+it.exp);
+ coach(ok?'That is right! Keep it up.':'Good try. Read the explanation, then move on.');
+ $('nextBtn').textContent=Q.i===Q.items.length-1?'See my results':'Next question';$('nextBtn').classList.remove('hidden');$('nextBtn').focus({preventScroll:true});
+}
+function next(){if(!Q||Q.answers[Q.i]===undefined)return;if(Q.i>=Q.items.length-1)return finish();Q.i++;renderQ();}
+$('nextBtn').onclick=next;
+$('readBtn').onclick=()=>{const it=Q&&Q.items[Q.i];if(it)say(it.text+'. '+it.opts.map((o,k)=>`${LET[k]}. ${o.t}`).join('. '));};
+$('quitBtn').onclick=()=>{if(Q&&Q.answers.length&&!confirm('Leave this quiz? Your answers will not be saved.'))return;clearInterval(timer);stopSay();Q=null;show('startView');};
+document.addEventListener('keydown',e=>{
+ if($('quizView').classList.contains('hidden')||e.ctrlKey||e.metaKey||e.altKey)return;
+ const k=e.key.toLowerCase(),idx='1234'.indexOf(k)>=0?'1234'.indexOf(k):'abcd'.indexOf(k);
+ if(k.length===1&&idx>=0&&Q&&idx<Q.items[Q.i].opts.length){e.preventDefault();choose(idx);}
+ else if(k==='enter'&&!$('nextBtn').classList.contains('hidden')&&e.target.id!=='nextBtn'){e.preventDefault();next();}
+});
+
+/* Results */
+let res=null;
+function finish(){
+ if(!Q||Q.done)return;Q.done=true;clearInterval(timer);stopSay();
+ const total=Q.items.length,ans=Q.items.map((it,i)=>({it,ok:!!(it.opts[Q.answers[i]]&&it.opts[Q.answers[i]].ok),chosen:it.opts[Q.answers[i]].t}));
+ const correct=ans.filter(a=>a.ok).length,score=pct(correct,total),secs=Math.max(1,Math.round((Date.now()-Q.startedAt)/1000));res={correct,total,score};
+ show('resultView');$('ring').style.setProperty('--p',score);$('ringTxt').textContent=score+'%';
+ $('resTitle').textContent=score>=90?'Outstanding work!':score>=70?'Great job!':score>=50?'Good effort. Keep practising!':'Every expert starts here. Try again!';
+ $('resSub').textContent=`${correct} of ${total} correct in ${clock(secs)} · ${$('quizTitle').textContent}. Demo result: not saved.`;
+ coach(score>=70?'Brilliant result! Ready for another one?':'Review the answers below, then try again. You can do it.');
+ const tm={};ans.forEach(a=>{const o=tm[a.it.topic]||(tm[a.it.topic]={t:a.it.topic,c:0,n:0});o.n++;if(a.ok)o.c++;});
+ $('topicRep').innerHTML=Object.values(tm).map(x=>{const p=pct(x.c,x.n),v=verdict(p);return `<div class="mq-trow"><div class="mq-tname"><b>${esc(x.t)}</b><small>${x.c}/${x.n} correct</small></div><div class="mq-tbar ${v[0]}" role="img" aria-label="${p} percent"><i style="width:${p}%"></i></div><span class="mq-tchip ${v[0]}">${p}% · ${v[1]}</span></div>`;}).join('');
+ $('review').innerHTML=ans.map((a,i)=>`<details class="${a.ok?'ok':'no'}" ${a.ok?'':'open'}><summary><span>${a.ok?'✓':'✗'}</span>${i+1}. ${fmt(a.it.text)}</summary><div class="body"><div>Your answer: <b>${fmt(a.chosen)}</b></div>${a.ok?'':`<div>Correct answer: <b>${fmt(a.it.opts.find(o=>o.ok).t)}</b></div>`}<div style="margin-top:6px">${fmt(a.it.exp)}</div></div></details>`).join('');
+}
+$('againBtn').onclick=()=>start(topic);
+$('homeBtn').onclick=()=>{stopSay();Q=null;show('startView');coach('Pick a topic when you are ready. I will cheer you on.');};
+$('sayBtn').onclick=()=>{if(!res)return;const w=res.total-res.correct;say(`You answered ${res.correct} out of ${res.total} questions correctly, which is ${res.score} percent. ${w?`There ${w===1?'is one question':'are '+w+' questions'} to review. Read each explanation, then try again.`:'You got every question right. Fantastic!'}`);};
+addEventListener('pagehide',stopSay);
+})();
+</script>
+</body>
+</html>

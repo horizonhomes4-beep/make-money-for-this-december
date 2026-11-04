@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Spelling Demo | MathCloud Tutorial</title>
+<meta name="description" content="Try the MathCloud Spelling Enhancer free. Hear each word, type it on the on-screen keypad, and learn with definitions, sentences and word origins."><meta name="theme-color" content="#155eef"><meta name="robots" content="noindex,follow">
+<link rel="icon" type="image/png" sizes="any" href="logo.png"><link rel="shortcut icon" href="favicon.ico"><link rel="apple-touch-icon" href="logo.png">
+<link rel="stylesheet" href="site.css"><link rel="stylesheet" href="spelling.css"></head>
+<body class="mq">
+<header class="nav"><a class="brand" href="demo.html"><span class="mc-logo" aria-hidden="true"><i></i><i></i><i></i><img src="logo.png" alt=""></span><span>MathCloud <small>SPELLING DEMO</small></span></a><nav class="navlinks"><button id="restartBtn" class="btn hidden" type="button" style="padding:9px 16px">Start over</button></nav></header>
+<main class="mq-wrap">
+
+<section id="welcomeView" class="mq-login">
+ <div class="mq-card mq-intro"><img src="mathcloud-human-guide.png" alt="Coach Reed"><div><span class="eyebrow">Meet your guide</span><h2>Hi, I’m Coach Reed 👋</h2>
+  <p id="introText">Welcome to the free MathCloud Spelling demo. I am Coach Reed. I will say a word, and you type it on the on-screen keypad, so no spell checker can help you. You will never see the word while you work. If you need help, press Definition, Use in a sentence, or Origin, and I will read you the clue. Origin tells you which language the word comes from. This demo has three word registers with ten carefully chosen words each. Afterwards I will show you the correct spelling and walk you through every word you missed.</p>
+  <button id="introBtn" class="btn primary" type="button">🔊 Hear my introduction</button>
+  <ul class="mq-feat"><li>⌨️ Type on a safe keypad</li><li>💡 Definition, sentence, origin</li><li>🗂️ Word registers by topic</li><li>📈 Weak-register analysis</li></ul></div></div>
+ <div class="mq-card"><span class="eyebrow">Free demo</span><h1 style="font-size:clamp(30px,5vw,40px);letter-spacing:-.04em;line-height:1.1;margin:10px 0">Hear it. Think it. Spell it.</h1>
+  <p class="mq-muted">No sign-in needed. Try a quick 10-word test and see how the Spelling Enhancer works.</p>
+  <button id="startDemo" class="btn primary" type="button" style="width:100%">Start the free demo</button>
+  <div class="noticebox"><strong>About this demo</strong><br>30 sample words in 3 registers. Results are shown during your visit only and are not saved. Turn your sound on so you can hear the words.</div></div>
+</section>
+
+<section id="dashView" class="hidden">
+ <div class="mq-head"><div><span class="eyebrow">Free demo</span><h1>Choose your challenge</h1><p class="mq-muted" id="bankInfo"></p></div></div>
+ <div class="mq-metrics"><div class="mq-metric"><span>Tests taken</span><strong id="mTaken">0</strong></div><div class="mq-metric"><span>Average score</span><strong id="mAvg">—</strong></div><div class="mq-metric"><span>Best score</span><strong id="mBest">—</strong></div><div class="mq-metric"><span>Words attempted</span><strong id="mAnswered">0</strong></div></div>
+ <div class="mq-card" style="margin-bottom:18px"><h2>Choose a word register</h2><p class="mq-muted">Words are grouped by register. Pick one to start a 10-word test. You hear each word and type it yourself.</p>
+  <div id="regCards" class="sp-regs"></div><div class="mq-rule">Each demo test has <b>10 words</b>. Words you practised recently wait their turn, so every test feels fresh.</div></div>
+ <div class="mq-card" style="margin-bottom:18px"><h2>How it works</h2><ol class="mq-ins" style="margin:8px 0 0"><li>Press 🔊 to hear the word again.</li><li>Press Definition, Sentence or Origin and Coach Reed reads you the clue. Nothing is shown on screen.</li><li>Type with the keypad, then press Check.</li><li>See the correct spelling and learn from it.</li></ol></div>
+ <div class="mq-card"><h2>Your performance</h2><p class="mq-muted" id="anaLead">Finish a test and your strong and weak registers appear here.</p><div id="anaWeak" class="hidden"></div><div id="anaReg" class="mq-topics" style="margin-top:12px"></div></div>
+</section>
+
+<section id="testView" class="hidden" aria-live="polite">
+ <div class="mq-top"><button id="quitBtn" class="btn" type="button" style="padding:9px 16px">← Leave test</button><div class="grow"><h2 id="testTitle">Spelling test</h2></div><span class="mq-timer" id="timer">00:00</span></div>
+ <div class="mq-bar"><i id="bar"></i></div>
+ <div class="mq-sheet"><div class="mq-count"><span id="counter">Word 1</span><span id="regTag"></span></div>
+  <div class="sp-sub" style="margin:12px 0 0"><button id="hearBtn" class="btn primary" type="button">🔊 Hear the word</button></div>
+  <div class="sp-clues" style="margin-top:12px"><button id="defBtn" class="btn" type="button">📖 Definition</button><button id="senBtn" class="btn" type="button">💬 Use in a sentence</button><button id="oriBtn" class="btn" type="button">🌍 Origin</button></div>
+  <div id="typed" class="sp-box ph" aria-live="polite">Type the word you hear</div>
+  <div id="pad" class="sp-pad" role="group" aria-label="Letter keypad"></div>
+  <div class="sp-sub"><button id="checkBtn" class="btn primary" type="button">Check spelling</button></div>
+  <div id="fb" class="mq-fb hidden" role="status"></div>
+  <div class="sp-sub"><button id="nextBtn" class="btn primary hidden" type="button">Next word</button></div></div>
+</section>
+
+<section id="resultView" class="hidden"><div class="mq-card"><div class="mq-result"><div class="mq-ring" id="ring"><div id="ringTxt">0%</div></div>
+ <div><span class="eyebrow">Your results</span><h2 id="resTitle" style="font-size:28px;margin:6px 0">Well done!</h2><p id="resSub" class="mq-muted"></p>
+ <div class="actions" style="margin:16px 0 0"><button id="againBtn" class="btn primary" type="button">Try again</button><button id="homeBtn" class="btn" type="button">Back to challenges</button><button id="sayBtn" class="btn" type="button">🔊 Explain my result</button></div><p class="mq-msg">Demo result: not saved.</p></div></div>
+ <h3 style="margin:26px 0 10px">How you did by register</h3><div id="regRep" class="mq-topics"></div><div id="weakNote" class="hidden"></div>
+ <h3 style="margin:26px 0 0">Review every word</h3><p class="mq-muted">Missed words are open. Press Spell it and Coach Reed spells it out letter by letter.</p><div id="review" class="mq-review"></div></div></section>
+</main>
+<aside class="mq-dock" id="dock" aria-label="Spelling coach"><div class="av"><img src="mathcloud-human-guide.png" alt="Coach Reed"></div><div><strong>Coach Reed</strong><p id="dockSays">Press Start when you are ready.</p><div class="dk-act"><button id="dockReplay" type="button">🔊 Replay</button></div></div></aside>
+<footer class="footer"><span>© MathCloud Tutorial</span></footer>
+
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const clock=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+const pct=(c,t)=>t?Math.round(c/t*100):0,WEAK=60,TEST_N=10;
+const verdict=p=>p>=80?{t:'Strong',c:'good'}:p>=WEAK?{t:'Getting there',c:'mid'}:{t:'Needs work',c:'low'};
+
+/* ---------- Demo word bank: [word, register, definition, sentence, origin] ---------- */
+const BANK=[
+/* Tricky Words: commonly misspelled */
+["necessary","Tricky Words","Needed; something that must be done or had.","It is necessary to bring a pencil to the examination.","From Latin necessarius, meaning unavoidable."],
+["separate","Tricky Words","To divide or keep things apart from each other.","Please separate the red shirts from the white ones.","From Latin separare, meaning to pull apart."],
+["definitely","Tricky Words","Without any doubt at all.","I will definitely attend the meeting on Monday.","From Latin definitus, meaning limited or exact."],
+["accommodate","Tricky Words","To provide enough room or space for someone.","The hall can accommodate five hundred guests.","From Latin accommodare, meaning to make fit."],
+["rhythm","Tricky Words","A regular, repeated pattern of sound or movement.","The drummer kept a steady rhythm all night.","From Greek rhythmos, meaning flow or measured movement."],
+["conscience","Tricky Words","The inner sense of what is right and wrong.","His conscience told him to return the lost money.","From Latin conscientia, meaning shared knowledge."],
+["occasionally","Tricky Words","Now and then, but not very often.","We occasionally visit the museum on Saturdays.","From Latin occasio, meaning an opportunity."],
+["embarrass","Tricky Words","To make someone feel awkward or ashamed.","Please do not embarrass me in front of my friends.","From French embarrasser, meaning to block or hinder."],
+["environment","Tricky Words","The natural world and the surroundings we live in.","We must all work together to protect the environment.","From French environner, meaning to surround."],
+["privilege","Tricky Words","A special right or advantage that not everyone has.","Going to school is a privilege that many children dream of.","From Latin privilegium, meaning a law that concerns one person."],
+/* Science & Nature */
+["photosynthesis","Science & Nature","The way green plants make their food using sunlight.","Photosynthesis happens mainly in the leaves of a plant.","From Greek phos, meaning light, and synthesis, meaning putting together."],
+["ecosystem","Science & Nature","A community of living things together with their surroundings.","A pond is a small ecosystem full of plants and animals.","From Greek oikos, meaning a home, joined with the word system."],
+["temperature","Science & Nature","A measure of how hot or cold something is.","The temperature fell below freezing overnight.","From Latin temperatura, meaning a proper mixture."],
+["atmosphere","Science & Nature","The layer of gases that surrounds a planet.","The atmosphere protects us from the harmful rays of the sun.","From Greek atmos, meaning vapour, and sphaira, meaning a ball."],
+["evaporation","Science & Nature","Turning from a liquid into a vapour.","Evaporation dries wet clothes on a sunny line.","From Latin evaporare, meaning to give off steam."],
+["vertebrate","Science & Nature","An animal that has a backbone.","A frog is a vertebrate, but a snail is not.","From Latin vertebratus, meaning jointed."],
+["hemisphere","Science & Nature","One half of the Earth or of a ball.","Nigeria lies in the northern hemisphere.","From Greek hemi, meaning half, and sphaira, meaning a ball."],
+["metamorphosis","Science & Nature","A complete change of form, such as a caterpillar becoming a butterfly.","A tadpole’s metamorphosis ends with a frog.","From Greek meta, meaning change, and morphe, meaning form."],
+["condensation","Science & Nature","Turning from a vapour into a liquid.","Condensation formed on the outside of the cold glass.","From Latin condensare, meaning to make thick."],
+["biodiversity","Science & Nature","The wide variety of living things in one place.","Rainforests have a rich biodiversity.","From Greek bios, meaning life, and Latin diversitas, meaning difference."],
+/* Words at Work */
+["entrepreneur","Words at Work","A person who starts and runs a business.","The young entrepreneur opened her own bakery.","From French entreprendre, meaning to undertake."],
+["receipt","Words at Work","A paper that proves a payment was made.","Keep the receipt in case you need to return the item.","From Old French receite, which came from Latin."],
+["professional","Words at Work","Showing the skill and care expected in a job.","She gave a very professional presentation.","From Latin professio, meaning a public declaration."],
+["negotiate","Words at Work","To talk things over to reach an agreement.","They will negotiate a fair price for the land.","From Latin negotiari, meaning to carry on business."],
+["committee","Words at Work","A small group chosen to make decisions for a larger group.","The committee will meet on Friday afternoon.","From Old French commettre, meaning to entrust."],
+["questionnaire","Words at Work","A set of written questions used to collect information.","Please complete the questionnaire before you leave.","From French questionnaire, meaning a list of questions."],
+["responsibility","Words at Work","A duty to look after something or someone.","Feeding the class pet is your responsibility this week.","From Latin respondere, meaning to answer."],
+["maintenance","Words at Work","The work of keeping something in good condition.","The generator needs regular maintenance.","From Old French maintenir, meaning to hold up."],
+["acquaintance","Words at Work","A person you know slightly, but who is not a close friend.","She is a friendly acquaintance from my old school.","From Old French acointance, meaning getting to know."],
+["guarantee","Words at Work","A promise that something will be of good quality or will be done.","The phone comes with a one-year guarantee.","From Old French garantie, meaning a warrant or promise."]
+];
+const WORDS=BANK.map(r=>({word:r[0],register:r[1],def:r[2],sen:r[3],origin:r[4]}));
+const REGS=[...new Set(WORDS.map(w=>w.register))];
+const S={quiz:null,timer:null,sessions:[],used:{},ok:{},seq:0,lastReg:null,last:null};
+const show=v=>{['welcomeView','dashView','testView','resultView'].forEach(id=>$(id).classList.toggle('hidden',id!==v));$('restartBtn').classList.toggle('hidden',v==='welcomeView');window.scrollTo({top:0,behavior:'smooth'});};
+const coach=t=>{$('dockSays').textContent=t;};
+
+/* The word is never shown on screen during a test: clues replace it (and its stem) with blanks. */
+const mask=(t,w)=>{const stem=String(w).slice(0,Math.max(3,w.length-2)).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return String(t||'').replace(new RegExp('\\b'+stem+'\\w*','gi'),'_____');};
+
+/* ---------- Voice ---------- */
+let voice=null,lastSaid='';
+if('speechSynthesis' in window)speechSynthesis.onvoiceschanged=()=>{voice=null;};
+function pickVoice(){if(voice||!('speechSynthesis' in window))return voice;const sc=v=>{const n=(v.name||'').toLowerCase(),l=(v.lang||'').toLowerCase();let s=0;if(/natural|neural|online/.test(n))s+=100;if(/aria|jenny|sonia|zira|samantha|victoria|serena|hazel|libby|natasha|ava|allison|karen|moira|tessa|female|woman/.test(n))s+=120;if(/en-ng/.test(l))s+=25;else if(/en-gb/.test(l))s+=20;else if(/en-us/.test(l))s+=15;return s;};return voice=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang)).sort((a,b)=>sc(b)-sc(a))[0]||null;}
+function say(t,blocked,rate){if(!('speechSynthesis' in window)){coach('Read-aloud is not supported in this browser.');return;}lastSaid=t;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t),v=pickVoice();if(v){u.voice=v;u.lang=v.lang;}u.rate=rate||.9;u.onstart=()=>$('dock').classList.add('speaking');u.onend=()=>$('dock').classList.remove('speaking');u.onerror=e=>{$('dock').classList.remove('speaking');if(blocked&&e&&e.error==='not-allowed')blocked();};speechSynthesis.speak(u);if(blocked)setTimeout(()=>{if(!speechSynthesis.speaking)blocked();},1500);}
+function stopSay(){if('speechSynthesis' in window)speechSynthesis.cancel();$('dock').classList.remove('speaking');}
+const letters=w=>w.toUpperCase().split('').join(', ');
+
+/* ---------- Welcome ---------- */
+function enter(){show('dashView');renderDash();coach('Choose a register and press Start test.');say('Welcome to the free demo. Choose a word register, press Start test, and I will say each word. Type it on the keypad. Use the clue buttons if you need help.');}
+$('startDemo').onclick=enter;
+$('restartBtn').onclick=()=>{stopSay();stopTimer();S.quiz=null;S.sessions=[];S.used={};S.ok={};S.seq=0;S.lastReg=null;show('welcomeView');coach('Press Start when you are ready.');};
+
+/* ---------- Dashboard ---------- */
+function regRows(list){return list.length?list.map(x=>{const p=pct(x.correct,x.total),v=verdict(p);return `<div class="mq-trow"><div class="mq-tname"><b>${esc(x.register)}</b><small>${x.correct}/${x.total} correct</small></div><div class="mq-tbar"><i class="${v.c}" style="width:${p}%"></i></div><span class="mq-tchip ${v.c}">${p}% · ${v.t}</span></div>`;}).join(''):'<p class="mq-muted">No data yet.</p>';}
+function analyse(ss){const m={};ss.forEach(s=>s.registers.forEach(x=>{const o=m[x.register]||(m[x.register]={register:x.register,correct:0,total:0});o.correct+=x.correct;o.total+=x.total;}));return Object.values(m).sort((a,b)=>pct(a.correct,a.total)-pct(b.correct,b.total));}
+function renderDash(){
+ const ss=S.sessions;$('bankInfo').textContent=WORDS.length+' words across '+REGS.length+' registers are ready for you.';
+ $('mTaken').textContent=ss.length;$('mAvg').textContent=ss.length?Math.round(ss.reduce((a,s)=>a+s.score,0)/ss.length)+'%':'—';$('mBest').textContent=ss.length?Math.max(...ss.map(s=>s.score))+'%':'—';$('mAnswered').textContent=ss.reduce((a,s)=>a+s.total,0);
+ const card=(label,sub,val,special,bar)=>`<div class="sp-reg${special?' special':''}"><div class="sp-reg-h"><b>${esc(label)}</b></div>${bar===null?'':`<div class="sp-prog"><i style="width:${bar}%"></i></div>`}<small>${sub}</small><button class="btn primary" type="button" data-reg="${esc(val)}">Start test</button></div>`;
+ $('regCards').innerHTML=card('📚 All registers',TEST_N+' mixed words from every register','all',true,null)+card('🎲 Surprise me','A random register picked for you','random',true,null)
+  +REGS.map(r=>{const t=WORDS.filter(w=>w.register===r),m=t.filter(w=>S.ok[w.word]).length;return card(r,`${t.length} words · ${m} mastered · test uses ${Math.min(t.length,TEST_N)}`,r,false,pct(m,t.length));}).join('');
+ const A=analyse(ss),weak=A.filter(x=>pct(x.correct,x.total)<WEAK&&x.total>=3);
+ $('anaLead').textContent=ss.length?`Based on ${ss.length} test${ss.length===1?'':'s'} in this visit. Strong is 80% or more, needs work is below ${WEAK}%.`:'Finish a test and your strong and weak registers appear here.';
+ $('anaReg').innerHTML=regRows(A);const w=$('anaWeak');
+ if(weak.length){w.className='mq-weak';w.innerHTML=`<b>Registers to practise</b><p>${weak.map(x=>esc(x.register)+' ('+pct(x.correct,x.total)+'%)').join('; ')}.</p>${weak.slice(0,3).map(x=>`<button class="btn primary" type="button" data-reg="${esc(x.register)}">Practise ${esc(x.register)}</button>`).join('')}`;}else{w.className='hidden';w.innerHTML='';}}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-reg]');if(b)start(b.dataset.reg);const sp=e.target.closest&&e.target.closest('[data-spell]');if(sp)say(`${sp.dataset.spell}. Spelled: ${letters(sp.dataset.spell)}. ${sp.dataset.spell}.`,null,.7);});
+
+/* ---------- Word selection: least recently used first ---------- */
+function pick(pool,n,balance){const list=shuffle(pool).sort((a,b)=>(S.used[a.word]||0)-(S.used[b.word]||0));
+ if(list.length<=n)return shuffle(list);if(!balance)return shuffle(list.slice(0,n));
+ const g={};list.forEach(w=>{(g[w.register]||(g[w.register]=[])).push(w);});const ls=shuffle(Object.values(g)),out=[];
+ while(out.length<n&&ls.some(l=>l.length))ls.forEach(l=>{if(l.length&&out.length<n)out.push(l.shift());});return shuffle(out);}
+
+/* ---------- Test engine ---------- */
+function start(sel){sel=sel||'all';let reg=sel;
+ if(sel==='random'){const opts=REGS.filter(r=>r!==S.lastReg);reg=opts[Math.floor(Math.random()*opts.length)];}
+ const all=reg==='all',items=pick(WORDS.filter(w=>all||w.register===reg),TEST_N,all);S.lastReg=all?null:reg;
+ items.forEach(w=>{S.used[w.word]=++S.seq;});
+ S.quiz={title:`${sel==='random'?'🎲 ':''}${all?'All registers':reg} · ${items.length} words`,mode:sel,reg:all?'Mixed':reg,items,i:0,typed:'',results:[],locked:false,startedAt:Date.now(),done:false};
+ $('testTitle').textContent=S.quiz.title;show('testView');stopTimer();$('timer').textContent='00:00';S.timer=setInterval(()=>{$('timer').textContent=clock(Math.floor((Date.now()-S.quiz.startedAt)/1000));},500);renderW(true);}
+function stopTimer(){clearInterval(S.timer);S.timer=null;}
+const cur=()=>S.quiz.items[S.quiz.i];
+function drawTyped(){const Q=S.quiz,t=$('typed');t.textContent=Q.typed||'Type the word you hear';t.classList.toggle('ph',!Q.typed);}
+function renderW(speak){const Q=S.quiz,n=Q.items.length,it=cur();
+ $('counter').textContent=`Word ${Q.i+1} of ${n}`;$('regTag').textContent=it.register;$('bar').style.width=(Q.i/n*100)+'%';
+ Q.typed='';Q.locked=false;drawTyped();$('fb').classList.add('hidden');$('nextBtn').classList.add('hidden');$('checkBtn').classList.remove('hidden');
+ $('pad').querySelectorAll('button').forEach(b=>b.disabled=false);coach('Listen carefully, then type the word.');if(speak)say(it.word,null,.8);}
+function buildPad(){const rows=['qwertyuiop','asdfghjkl','zxcvbnm'];$('pad').innerHTML=rows.map((r,i)=>`<div class="sp-row">${r.split('').map(k=>`<button type="button" class="sp-key" data-k="${k}">${k.toUpperCase()}</button>`).join('')}${i===2?'<button type="button" class="sp-key w" data-k="back" aria-label="Backspace">⌫</button>':''}</div>`).join('')+'<div class="sp-row"><button type="button" class="sp-key w" data-k="-">-</button><button type="button" class="sp-key w" data-k="\'">\'</button><button type="button" class="sp-key w" data-k="clear">Clear</button></div>';}
+function press(k){const Q=S.quiz;if(!Q||Q.locked)return;if(k==='back')Q.typed=Q.typed.slice(0,-1);else if(k==='clear')Q.typed='';else if(Q.typed.length<40)Q.typed+=k;drawTyped();}
+$('pad').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b)press(b.dataset.k);});
+/* The physical keyboard is read without any text field, so browser spell-check never sees the word. */
+document.addEventListener('keydown',e=>{if($('testView').classList.contains('hidden')||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key;if(/^[a-zA-Z'-]$/.test(k)){e.preventDefault();press(k.toLowerCase());}else if(k==='Backspace'){e.preventDefault();press('back');}else if(k==='Enter'){e.preventDefault();if(!$('nextBtn').classList.contains('hidden'))next();else check();}});
+$('hearBtn').onclick=()=>say(cur().word,null,.8);
+$('defBtn').onclick=()=>{const it=cur();coach('Listen to the definition.');say(mask(it.def,it.word).replace(/_____/g,'blank'));};
+$('senBtn').onclick=()=>{coach('Listen to the sentence.');say(cur().sen);};
+/* Origin: only the language is spoken, never the root word, so the spelling is not given away. */
+function originSpeech(it){const o=String(it.origin||'');const L=[...new Set((o.match(/\b(Old English|Middle English|Old French|Middle French|Anglo-Norman|Old Norse|Late Latin|Latin|Greek|French|German|Dutch|Italian|Spanish|Arabic|English)\b/g)||[]))];
+ if(!L.length)return 'No origin was added for this word.';return 'This word comes from '+L[0]+(L.length>1?', and before that from '+L.slice(1).join(' and '):'')+'.';}
+$('oriBtn').onclick=()=>{coach('Listen to where the word comes from.');say(originSpeech(cur()));};
+function check(){const Q=S.quiz;if(!Q||Q.locked)return;const it=cur(),typed=Q.typed.trim().toLowerCase();if(!typed){$('fb').className='mq-fb bad';$('fb').textContent='Type a word first.';return;}
+ Q.locked=true;const ok=typed===it.word;Q.results.push({word:it.word,register:it.register,typed,ok,def:it.def,sen:it.sen,origin:it.origin});if(ok)S.ok[it.word]=1;else delete S.ok[it.word];
+ $('pad').querySelectorAll('button').forEach(b=>b.disabled=true);$('checkBtn').classList.add('hidden');
+ const fb=$('fb');fb.className='mq-fb '+(ok?'good':'bad');
+ fb.innerHTML=(ok?'<b>Correct! Well spelled.</b> ':`<b>Not quite.</b> You typed <b>${esc(typed)}</b>. The correct spelling is <span class="sp-letters">${esc(it.word.toUpperCase())}</span>. `)+`<div style="margin-top:8px"><b>Meaning:</b> ${esc(it.def)}<br><b>Sentence:</b> ${esc(it.sen)}<br><b>Origin:</b> ${esc(it.origin)}</div>`;
+ fb.classList.remove('hidden');$('nextBtn').textContent=Q.i===Q.items.length-1?'See my results':'Next word';$('nextBtn').classList.remove('hidden');
+ coach(ok?'Excellent! Keep going.':'Read the correct spelling, then move on.');say(ok?'Correct! '+it.word+'.':`Not quite. ${it.word} is spelled ${letters(it.word)}.`,null,.8);}
+function next(){const Q=S.quiz;if(!Q||!Q.locked)return;if(Q.i>=Q.items.length-1)return finish();Q.i++;renderW(true);}
+$('checkBtn').onclick=check;$('nextBtn').onclick=next;
+$('quitBtn').onclick=()=>{if(S.quiz&&S.quiz.results.length&&!confirm('Leave this test? Your answers will not be kept.'))return;stopTimer();stopSay();S.quiz=null;renderDash();show('dashView');};
+
+/* ---------- Results ---------- */
+function finish(){const Q=S.quiz;if(!Q||Q.done)return;stopTimer();stopSay();Q.done=true;
+ const total=Q.results.length,correct=Q.results.filter(r=>r.ok).length,score=pct(correct,total),secs=Math.max(1,Math.round((Date.now()-Q.startedAt)/1000)),m={};
+ Q.results.forEach(r=>{const o=m[r.register]||(m[r.register]={register:r.register,correct:0,total:0});o.total++;if(r.ok)o.correct++;});
+ const res={title:Q.title,total,correct,score,registers:Object.values(m)};S.sessions.push(res);S.last={...res,answers:Q.results};
+ show('resultView');$('ring').style.setProperty('--p',score);$('ringTxt').textContent=score+'%';
+ $('resTitle').textContent=score>=90?'Outstanding spelling!':score>=70?'Great job!':score>=50?'Good effort. Keep practising!':'Every champion speller starts here. Try again!';
+ $('resSub').textContent=`${correct} of ${total} correct in ${clock(secs)} · ${Q.title}`;coach(score>=70?'Brilliant result!':'Review the words below, then try again.');
+ const rl=res.registers.map(x=>({...x})).sort((a,b)=>pct(a.correct,a.total)-pct(b.correct,b.total));$('regRep').innerHTML=regRows(rl);
+ const weak=rl.filter(x=>pct(x.correct,x.total)<WEAK),wn=$('weakNote');
+ if(weak.length){wn.className='mq-weak';wn.innerHTML=`<b>Registers to practise</b><p>${weak.map(x=>esc(x.register)+' ('+pct(x.correct,x.total)+'%)').join('; ')}.</p>${weak.map(x=>`<button class="btn" type="button" data-reg="${esc(x.register)}">Practise ${esc(x.register)}</button>`).join('')}`;}else{wn.className='mq-weak ok';wn.innerHTML='<b>Well done</b><p>Every register in this test is at 60% or more.</p>';}
+ $('review').innerHTML=Q.results.map((a,i)=>`<details class="${a.ok?'ok':'no'}" ${a.ok?'':'open'}><summary><span>${a.ok?'✓':'✗'}</span>${i+1}. ${esc(a.word)} <small class="mq-muted">· ${esc(a.register)}</small></summary><div class="body"><div>You typed: <b>${esc(a.typed)}</b></div>${a.ok?'':`<div>Correct spelling: <b class="sp-letters">${esc(a.word.toUpperCase())}</b></div>`}<div style="margin-top:6px"><b>Meaning:</b> ${esc(a.def)}</div><div><b>Sentence:</b> ${esc(a.sen)}</div><div><b>Origin:</b> ${esc(a.origin)}</div><div style="margin-top:8px"><button class="btn" type="button" data-spell="${esc(a.word)}" style="padding:6px 12px;font-size:13px">🔊 Spell it</button></div></div></details>`).join('');}
+$('againBtn').onclick=()=>{if(S.quiz)start(S.quiz.mode);};
+$('homeBtn').onclick=()=>{stopSay();S.quiz=null;renderDash();show('dashView');};
+$('sayBtn').onclick=()=>{const r=S.last;if(!r)return;const miss=r.answers.filter(a=>!a.ok).length;say(`You spelled ${r.correct} out of ${r.total} words correctly, which is ${r.score} percent. ${miss?`${miss} word${miss===1?'':'s'} to review. Press Spell it on each one.`:'Every word was right. Fantastic!'}`);};
+$('dockReplay').onclick=()=>{if(lastSaid)say(lastSaid);};
+window.addEventListener('pagehide',stopSay);
+buildPad();
+
+/* Introduction speaks on load; if the browser blocks sound, it plays on the first tap. */
+let armed=false;function arm(){if(armed)return;armed=true;coach('Tap anywhere and I will introduce myself.');const evs=['pointerdown','keydown','touchstart'],once=e=>{evs.forEach(v=>document.removeEventListener(v,once,true));if(e.target.closest&&e.target.closest('#introBtn,#dockReplay,#startDemo'))return;if(!$('welcomeView').classList.contains('hidden'))say($('introText').textContent);};evs.forEach(v=>document.addEventListener(v,once,true));}
+$('introBtn').onclick=()=>{say($('introText').textContent);coach('Nice to meet you! Press Start the free demo when you are ready.');};
+setTimeout(()=>{if(!$('welcomeView').classList.contains('hidden')){coach('Hello! Listen to my introduction, then start the demo.');say($('introText').textContent,arm);}},500);
+})();
+</script>
+<script>
+/* Website protection: blocks common browser shortcuts */
+(function(){"use strict";const stop=e=>{e.preventDefault();return false;};
+['contextmenu','selectstart','dragstart','copy','cut','paste'].forEach(t=>document.addEventListener(t,stop));
+document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(e.key==='F12'||(e.ctrlKey&&(['u','s','p','c','x','a'].includes(k)||(e.shiftKey&&['i','j','c'].includes(k)))))stop(e);},true);})();
+</script>
+</body></html>
