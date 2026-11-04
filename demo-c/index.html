@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Reading Comprehension Demo | MathCloud Tutorial</title><meta name="theme-color" content="#155eef"><meta name="robots" content="noindex,follow">
+<link rel="icon" type="image/png" href="logo.png">
+<style>
+/* ===== MathCloud base (standalone copy of site.css essentials) ===== */
+:root{--ink:#142744;--muted:#62718a;--blue:#175cd3;--cyan:#28b8d2;--line:#dfe7f2;--paper:#f4f7fc;--white:#fff;--shadow:0 18px 48px rgba(22,48,88,.09);--mq-ok:#0c8a5b;--mq-okbg:#e6f8ef;--mq-no:#c23a3a;--mq-nobg:#fdeeee;--mq-grid:#e4ecf8}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;min-width:320px;overflow-x:hidden;background:linear-gradient(180deg,#f8faff 0,#f3f6fb 100%);color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding-bottom:110px}
+a{color:inherit;text-decoration:none}img{max-width:100%}button,input,select,textarea{font:inherit;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid #62b6ff!important;outline-offset:3px}
+button:disabled{opacity:.48;cursor:not-allowed}
+.hidden{display:none!important}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 max(5vw,20px);background:#ffffffeb;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;backdrop-filter:blur(16px);box-shadow:0 3px 18px rgba(23,47,83,.035)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:-.03em}
+.brand small{display:block;font-size:10px;letter-spacing:.14em;color:var(--muted)}
+.navlinks{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:650}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;min-height:46px;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 2px 0 rgba(10,40,90,.09);transition:transform .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(25,62,120,.13)}
+.btn.primary{color:#fff;background:linear-gradient(135deg,#1765e8,#1247b8);box-shadow:0 4px 12px rgba(21,94,239,.22)}
+.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);font-weight:900}
+.noticebox{background:#fff8e8;border:1px solid #f5dfac;color:#75500c;border-radius:14px;padding:13px 15px;font-size:13px;line-height:1.55;margin-top:12px}
+.footer{padding:30px 5vw;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid rgba(220,229,242,.8);margin-top:24px}
+.mc-logo{position:relative;display:inline-grid;place-items:center;width:56px;height:56px;flex:0 0 56px}
+.mc-logo i{position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:#2872ff;border-right-color:#45d6e8;border-bottom-color:#ffb703;box-shadow:0 0 10px #2872ff30;animation:mcSpin 3s linear infinite}
+.mc-logo i:nth-of-type(2){inset:4px;border-width:2px;border-top-color:#10a77b;border-right-color:transparent;border-bottom-color:#2872ff;border-left-color:#45d6e8;animation-duration:4.4s;animation-direction:reverse}
+.mc-logo i:nth-of-type(3){inset:-4px;border:1px dashed #2872ff88;box-shadow:none;animation-duration:9s}
+.brand .mc-logo img{width:38px;height:38px;border-radius:50%;object-fit:contain;background:#fff;position:relative}
+@keyframes mcSpin{to{transform:rotate(360deg)}}
+
+/* ===== Reading Comprehension components ===== */
+.mq-wrap{width:min(1080px,92vw);margin:0 auto;padding:34px 0 60px}
+.mq-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.mq-head h1{margin:6px 0 2px;font-size:clamp(28px,4vw,40px);line-height:1.1;letter-spacing:-.04em}
+.mq-muted{color:var(--muted);font-size:14px}
+.mq-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,28px);box-shadow:var(--shadow)}
+.mq-card h2{margin:0 0 4px;font-size:21px;letter-spacing:-.02em}
+.mq-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.mq-metric{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.mq-metric span{display:block;font-size:12px;font-weight:800;color:var(--muted)}
+.mq-metric strong{display:block;font-size:30px;letter-spacing:-.03em;color:var(--blue);line-height:1.2}
+.mq-msg{min-height:20px;margin:4px 0 0;font-size:13px;color:#b42318}.mq-msg.good{color:var(--mq-ok)}
+.mq-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.mq-top .grow{flex:1;min-width:180px}.mq-top h2{margin:0;font-size:18px}
+.mq-timer{font-variant-numeric:tabular-nums;font-weight:900;padding:7px 13px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.mq-bar{height:9px;border-radius:99px;background:#e3ebf8;overflow:hidden;margin-bottom:16px}
+.mq-bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#45d6e8,#155eef);transition:width .3s}
+.mq-sheet{border:1px solid var(--line);border-radius:24px;padding:clamp(18px,3.4vw,34px);box-shadow:var(--shadow);background-color:#fff;background-image:linear-gradient(var(--mq-grid) 1px,transparent 1px),linear-gradient(90deg,var(--mq-grid) 1px,transparent 1px);background-size:26px 26px;background-position:-1px -1px}
+.mq-count{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--muted)}
+.mq-result{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center}
+.mq-ring{width:158px;height:158px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--blue) 0%,#e3ebf8 0)}
+.mq-ring div{width:122px;height:122px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:36px;font-weight:900;letter-spacing:-.04em}
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+.mq-dock{position:fixed;right:16px;bottom:16px;z-index:30;width:250px;display:flex;gap:11px;align-items:center;padding:10px 12px;background:#fff;border:1px solid #dfe8f6;border-radius:20px;box-shadow:0 16px 50px #142b4d22}
+.mq-dock .av{width:62px;height:62px;flex:0 0 62px;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#e4f2ff,#f7faff)}
+.mq-dock img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.mq-dock strong{font-size:13px}.mq-dock p{margin:2px 0 0;font-size:11.5px;line-height:1.35;color:var(--muted);max-height:48px;overflow:hidden}
+.mq-dock.speaking{box-shadow:0 0 0 3px #5cdded66,0 16px 50px #142b4d22}
+.mq-dock.speaking img{animation:mqTalk .45s ease-in-out infinite alternate}
+@keyframes mqTalk{to{transform:translateY(-2px) scale(1.02)}}
+.dk-act{display:flex;gap:6px;margin-top:5px}.dk-act button{border:1px solid #cfe0ff;background:#eef4ff;color:#12336d;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:800;cursor:pointer}
+.mq-login{max-width:1040px;margin:10px auto 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start}
+.mq-intro{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:end;background:linear-gradient(160deg,#f2f8ff,#fff)}
+.mq-intro img{width:100%;max-height:300px;object-fit:contain;object-position:center bottom}
+.mq-intro h2{font-size:24px;margin:6px 0 8px}
+.mq-intro p{font-size:14px;line-height:1.65;color:#3b4d68;margin:0 0 14px}
+.mq-feat{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;font-weight:700}
+.mq-feat li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.sp-sub{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.cp-text{font-size:19px;line-height:1.9;margin:14px 0;background:#fbfdff;border:1px solid #dfe8f6;border-radius:18px;padding:20px 22px}.cp-text p{margin:0 0 14px}
+.cp-s{border-radius:6px;padding:1px 2px;transition:background .2s}.cp-s.on{background:#fde68a}
+.vw{border-bottom:2px dotted #155eef;color:#155eef;cursor:pointer;font-weight:600}
+.cp-gl{display:grid;gap:8px;margin-top:10px}.cp-gl div{background:#f1f5f9;border-radius:12px;padding:10px 14px;display:flex;gap:10px;align-items:center;overflow:hidden}.cp-gl button{flex:0 0 auto}
+.cp-q{font-size:20px;font-weight:700;margin:10px 0}
+.cp-opts{display:grid;gap:10px;margin:14px 0}
+.cp-opt{text-align:left;border:2px solid #d0d5dd;background:#fff;border-radius:14px;padding:13px 16px;font:inherit;cursor:pointer;transition:.15s;display:flex;gap:10px;align-items:flex-start;width:100%;box-shadow:0 1px 2px #142b4d0d;color:var(--ink)}
+.cp-opt:hover{border-color:#155eef;transform:translateY(-1px)}
+.cp-opt b{flex:0 0 28px;height:28px;border-radius:9px;background:#eff4ff;color:#155eef;display:grid;place-items:center}
+.cp-opt.sel{border-color:#155eef;background:#eff4ff}.cp-opt.sel b{background:#155eef;color:#fff}
+.cp-ok{color:#067647;font-weight:700}.cp-no{color:#b42318;font-weight:700}
+.cp-rv{border:1px solid #e4e7ec;border-radius:14px;padding:14px;margin:10px 0;background:#fff}.cp-rv.bad{border-left:5px solid #b42318}.cp-rv.good{border-left:5px solid #12b76a}
+.cp-sk{display:grid;grid-template-columns:110px 1fr 48px;gap:10px;align-items:center;margin:8px 0;font-size:14px}.cp-sk div{background:#e4e7ec;border-radius:9px;height:10px;overflow:hidden}.cp-sk i{display:block;height:100%;border-radius:9px}
+.cp-pl{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;align-items:center}
+.cp-pl select{width:auto;padding:9px 12px;border:1px solid #d7e1f0;border-radius:13px;background:#fbfdff;color:var(--ink);min-height:46px}
+.cp-pass{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid #e4e7ec;border-radius:14px;padding:12px 16px;margin:8px 0;background:#fff;transition:.15s}
+.cp-pass:hover{box-shadow:0 8px 24px #142b4d14}
+.lvl{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:800;margin-left:6px;vertical-align:middle}
+.lvl.Easy{background:var(--mq-okbg);color:var(--mq-ok)}.lvl.Medium{background:#fff6dd;color:#8a5d00}.lvl.Hard{background:var(--mq-nobg);color:var(--mq-no)}
+@media(max-width:860px){.mq-metrics{grid-template-columns:repeat(2,1fr)}.mq-login{grid-template-columns:1fr}}
+@media(max-width:600px){.mq-result{grid-template-columns:1fr;justify-items:center;text-align:center}.mq-dock{width:auto;max-width:200px;padding:8px 10px}.mq-dock .av{width:46px;height:46px;flex-basis:46px;border-radius:14px}.mq-dock p{display:none}.cp-text{font-size:17px;padding:14px}.cp-pl .btn{flex:1 1 auto}.cp-pass{flex-wrap:wrap}.nav{padding:10px 5vw}}
+@media(max-width:520px){.mq-intro{grid-template-columns:1fr;justify-items:center;text-align:center}.mq-intro img{max-height:200px}.mq-feat{grid-template-columns:1fr;text-align:left}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style></head>
+<body class="mq">
+<header class="nav"><a class="brand" href="#"><span class="mc-logo" aria-hidden="true"><i></i><i></i><i></i><img src="logo.png" alt="" onerror="this.style.display='none'"></span><span>MathCloud <small>READING COMPREHENSION</small></span></a><nav class="navlinks"><span class="eyebrow">Free demo</span></nav></header>
+<main class="mq-wrap">
+
+<section id="dashView">
+ <div class="mq-login">
+  <div class="mq-card mq-intro"><img src="mathcloud-human-guide.png" alt="Coach Reed" onerror="this.style.display='none'"><div><span class="eyebrow">Meet your guide</span><h2>Hi, I’m Coach Reed 👋</h2>
+   <p>I will read a passage aloud. Listen carefully, tap any highlighted word to hear its meaning, then answer the multiple-choice questions. At the end I show every answer with an explanation and tell you which reading skills to practise.</p>
+   <button id="introBtn" class="btn primary" type="button">🔊 Hear my introduction</button>
+   <ul class="mq-feat"><li>🎧 Passage read aloud</li><li>📖 Every hard word explained</li><li>✅ Multiple-choice questions</li><li>📈 Skill analysis</li></ul></div></div>
+  <div class="mq-card"><span class="eyebrow">Free demo</span><h1 style="font-size:clamp(28px,5vw,38px);letter-spacing:-.04em;line-height:1.1;margin:10px 0">Listen. Understand. Answer.</h1>
+   <p class="mq-muted">Five sample passages with thoughtful questions on inference, vocabulary in context, author’s purpose, fact and opinion, and more. No sign-in needed.</p>
+   <div class="noticebox"><strong>Demo mode</strong><br>Your scores only show during this visit. Nothing is saved when you close or refresh the page.</div></div>
+ </div>
+ <div class="mq-metrics"><div class="mq-metric"><span>Tests taken</span><strong id="mTaken">0</strong></div><div class="mq-metric"><span>Average score</span><strong id="mAvg">—</strong></div><div class="mq-metric"><span>Best score</span><strong id="mBest">—</strong></div><div class="mq-metric"><span>Questions answered</span><strong id="mAns">0</strong></div></div>
+ <div class="mq-card" style="margin-bottom:18px"><h2>Choose a passage</h2><p class="mq-muted">Start with an Easy passage, then move up to Medium and Hard.</p><div id="plist"></div></div>
+ <div class="mq-card" style="margin-bottom:18px"><h2>Your reading skills</h2><p class="mq-muted" id="skLead"></p><div id="skills"></div></div>
+ <div class="mq-card"><h2>Recent tests</h2><div id="history"><p class="mq-muted">Finished tests appear here.</p></div></div>
+</section>
+
+<section id="readView" class="hidden">
+ <div class="mq-top"><button id="leaveBtn" class="btn" type="button" style="padding:9px 16px">← Leave</button><div class="grow"><h2 id="pTitle"></h2></div></div>
+ <div class="mq-sheet"><div class="cp-pl"><button id="playBtn" class="btn primary" type="button">🎧 Listen to the passage</button><button id="stopBtn" class="btn" type="button">⏹ Stop</button><button id="wordsBtn" class="btn" type="button">📖 Explain the words</button><select id="speed" aria-label="Reading speed"><option value=".75">Slow</option><option value=".9" selected>Normal</option><option value="1.05">Fast</option></select><button id="txtBtn" class="btn" type="button">👁 Show / hide text</button></div>
+  <div id="ptext" class="cp-text"></div>
+  <h3>Words to know</h3><div id="gloss" class="cp-gl"></div>
+  <div class="sp-sub"><button id="startQ" class="btn primary" type="button">I’m ready for the questions →</button></div></div>
+</section>
+
+<section id="quizView" class="hidden" aria-live="polite">
+ <div class="mq-top"><button id="backRead" class="btn" type="button" style="padding:9px 16px">← Back to passage</button><div class="grow"><h2 id="qTitle"></h2></div><span class="mq-timer" id="timer">00:00</span></div>
+ <div class="mq-bar"><i id="bar"></i></div>
+ <div class="mq-sheet"><div class="mq-count"><span id="counter"></span><span id="skTag"></span></div>
+  <div class="cp-pl"><button id="qHear" class="btn" type="button">🔊 Read question</button><button id="qReplay" class="btn" type="button">🎧 Hear passage again</button></div>
+  <div id="qText" class="cp-q"></div><div id="opts" class="cp-opts" role="radiogroup"></div>
+  <div class="sp-sub"><button id="prevBtn" class="btn" type="button">← Previous</button><button id="nextBtn" class="btn primary" type="button">Next →</button></div><p id="qMsg" class="mq-msg" role="alert"></p></div>
+</section>
+
+<section id="resultView" class="hidden"><div class="mq-card"><div class="mq-result"><div class="mq-ring" id="ring"><div id="ringTxt">0%</div></div>
+ <div><span class="eyebrow">Your results</span><h2 id="resTitle" style="font-size:28px;margin:6px 0"></h2><p id="resSub" class="mq-muted"></p>
+ <div class="actions" style="margin:16px 0 0"><button id="againBtn" class="btn primary" type="button">Try again</button><button id="nextPassBtn" class="btn" type="button">Next passage →</button><button id="homeBtn" class="btn" type="button">Back to passages</button><button id="sayBtn" class="btn" type="button">🔊 Explain my result</button></div><p class="mq-msg good">Demo mode: this score is not saved.</p></div></div>
+ <h3 style="margin:26px 0 10px">Skills in this test</h3><div id="resSk"></div>
+ <h3 style="margin:26px 0 0">Review every question</h3><div id="review"></div></div></section>
+</main>
+
+<aside class="mq-dock" id="dock" aria-label="Reading coach"><div class="av"><img src="mathcloud-human-guide.png" alt="Coach Reed" onerror="this.style.display='none'"></div><div><strong>Coach Reed</strong><p id="dockSays">Welcome! I am Coach Reed. Pick a passage and let us practise reading comprehension together.</p><div class="dk-act"><button id="dockReplay" type="button">🔊 Replay</button></div></div></aside>
+<footer class="footer"><span>© MathCloud Tutorial · Free demo</span></footer>
+
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* ---------- passage data ----------
+   questions: [question,[A,B,C,D],correctIndex,skill,explanation]   vocab: [word,meaning] */
+const DEMO=[
+{id:'kingfisher',title:'The Kingfisher’s Dive',topic:'Science',level:'Easy',
+text:`The kingfisher is a small, brightly coloured bird that lives near rivers and ponds. It perches quietly on a branch above the water, watching for movement below. When it spots a fish, it plunges headfirst into the water, snatches its meal with its long, pointed beak, and returns to the branch within seconds.\n\nDiving at such speed could be dangerous, yet the kingfisher is rarely hurt. Its beak is shaped like a wedge, so it slips into the water with hardly a splash. Special eyelids also protect its eyes, acting like tiny goggles. After catching a fish, the bird beats it against the branch to stop it from struggling before swallowing it.`,
+vocab:[['perches','Rests on a branch or other high place.'],['plunges','Dives or drops suddenly.'],['wedge','A shape that is narrow at one end and wider at the other.'],['struggling','Trying hard to get free.']],
+questions:[
+['Where does the kingfisher wait for fish?',['In the water','On a branch above the water','In a nest on the ground','On a floating log'],1,'Literal','The passage says it perches on a branch above the water.'],
+['What is the first thing the kingfisher does after it spots a fish?',['Beats the fish on a branch','Swallows the fish','Plunges headfirst into the water','Returns to its nest'],2,'Sequence','When it spots a fish, it plunges headfirst. Beating and swallowing come later.'],
+['Which words from the passage best show what “plunges” means?',['perches quietly','headfirst into the water','returns to the branch','long, pointed beak'],1,'Vocabulary','Plunging means diving suddenly, which matches “headfirst into the water”.'],
+['Why is the kingfisher rarely hurt when it dives?',['Its feathers are very thick','Fish never fight back','Its wedge-shaped beak enters the water smoothly and its eyelids protect its eyes','It dives very slowly'],2,'Cause and effect','The beak shape and special eyelids both protect the bird.'],
+['Why does the bird beat the fish against the branch?',['To stop the fish struggling before it swallows it','To clean the fish','To break the branch','To show other birds'],0,'Cause and effect','The passage says it does this to stop the fish from struggling.'],
+['The author says the eyelids act “like tiny goggles”. What does this comparison suggest?',['The eyelids are coloured blue','The eyelids protect the eyes underwater','The bird cannot see well','The eyelids help it fly faster'],1,'Figurative language','Goggles protect eyes in water, so the comparison shows the eyelids do the same.']]},
+
+{id:'blackout',title:'The Night the Lights Went Out',topic:'Story',level:'Easy',
+text:`When the power failed at seven o’clock, the whole street fell silent. Tunde’s younger sister, Bisi, began to whimper in the dark, so he fetched the old kerosene lamp from the kitchen shelf. Its flame trembled, throwing long shadows across the walls.\n\n“Nothing to fear,” Tunde said, though his own heart was racing. He suggested a game: each of them would tell a story using only things they could see in the lamplight. Bisi pointed at a shadow shaped like a rabbit, and soon she was laughing, inventing an adventure about a rabbit who guarded the moon.\n\nBy the time the lights flickered back on three hours later, neither child wanted the game to end. Their mother, returning from work, found them curled up together on the mat, still whispering stories. Tunde decided that the darkness had not been so terrible after all; it had simply asked them to notice things they usually ignored.`,
+vocab:[['whimper','To cry softly.'],['trembled','Shook slightly.'],['inventing','Creating something new.'],['ignored','Paid no attention to.']],
+questions:[
+['What did Tunde fetch from the kitchen shelf?',['A torch','A kerosene lamp','A box of candles','A radio'],1,'Literal','He fetched the old kerosene lamp.'],
+['Why does the author mention that Tunde’s “own heart was racing”?',['He had just run home','He was angry with Bisi','He was excited about the game','He was also frightened, even though he sounded calm'],3,'Inference','He told Bisi there was nothing to fear, yet his racing heart shows he was nervous too.'],
+['In paragraph 1, “trembled” describes the lamp’s flame. It means…',['Burned very brightly','Went out','Shook slightly','Grew larger'],2,'Vocabulary','A trembling flame shakes a little, which is why the shadows moved.'],
+['What happened immediately after Bisi began to whimper?',['Tunde fetched the lamp','Bisi invented a story','Their mother came home','The lights came back on'],0,'Sequence','Tunde fetched the lamp straight after Bisi began to whimper.'],
+['Why were the children still whispering stories when their mother returned?',['They were afraid of her','Bisi was unwell','The power was still off','They did not want the game to end'],3,'Cause and effect','The passage says neither child wanted the game to end.'],
+['Which statement best expresses the main message of the story?',['Children should never be left alone','Lamps are better than electricity','A difficult moment can bring unexpected joy and closer attention','Rabbits make the best stories'],2,'Theme','The last sentence says the darkness made them notice things they usually ignored, turning a scary night into a happy one.']]},
+
+{id:'plastic',title:'Where Does Our Plastic Go?',topic:'Environment',level:'Medium',
+text:`A plastic bottle can be made in seconds and used in minutes, yet it may remain in the environment for hundreds of years. Unlike food scraps or paper, plastic does not rot. Instead, sunlight and waves slowly break it into tiny fragments called microplastics, which are often smaller than a grain of rice.\n\nThese fragments are carried by rivers into the sea, where fish and seabirds mistake them for food. Scientists have found microplastics in the stomachs of animals living thousands of kilometres from the nearest city. Some researchers are now studying whether these particles can pass up the food chain to humans.\n\nThere are, however, reasons for hope. Several countries have banned single-use plastic bags, and many communities now collect used bottles and turn them into new products, such as roofing tiles and school desks. Experts agree that the most effective solution is simple: reduce how much plastic we use in the first place, and recycle what remains.`,
+vocab:[['fragments','Small broken pieces.'],['microplastics','Extremely small pieces of plastic.'],['single-use','Made to be used only once.'],['recycle','To process used materials so they can be made into something new.']],
+questions:[
+['Why does plastic stay in the environment for so long?',['It does not rot like food scraps or paper','It is buried deep underground','Rivers protect it from sunlight','It is too heavy to move'],0,'Literal','The passage says that, unlike food scraps or paper, plastic does not rot.'],
+['In this passage, what are “microplastics”?',['Plastic bags that have been banned','Tiny fragments formed when plastic breaks down','Plastic made inside animals','New products made from bottles'],1,'Vocabulary','The author defines them as tiny fragments made when sunlight and waves break plastic apart.'],
+['Why do fish and seabirds eat plastic fragments?',['They enjoy the taste','Scientists feed it to them','They need it to build nests','They mistake it for food'],3,'Cause and effect','The passage says fish and seabirds mistake the fragments for food.'],
+['Microplastics have been found in animals thousands of kilometres from any city. What can the reader infer?',['Only remote animals eat plastic','Cities do not produce plastic waste','Plastic pollution can travel far from where it was thrown away','Scientists placed the plastic there'],2,'Inference','Because rivers and the sea carry the fragments, pollution spreads far beyond its source.'],
+['Which detail best supports the author’s claim that there are “reasons for hope”?',['Bottles are made in seconds','Plastic can last for hundreds of years','Microplastics are smaller than rice','Communities turn used bottles into roofing tiles and school desks'],3,'Evidence','Turning waste into useful products shows that progress is being made.'],
+['What is the author’s main purpose in writing this passage?',['To inform readers about plastic pollution and some solutions','To advertise a recycling company','To tell a story about a fisherman','To blame farmers for pollution'],0,'Author’s purpose','The passage explains the problem and then gives examples of solutions, so its aim is to inform.']]},
+
+{id:'weaver',title:'The Weaver of Iseyin',topic:'Culture',level:'Medium',
+text:`In the town of Iseyin, Mama Kemi has woven cloth for over forty years. Each morning she sits at her narrow wooden loom, passing the shuttle back and forth while her feet work the pedals. The strips she makes are only a hand’s width, so many must be stitched together before a wedding outfit is complete.\n\nMama Kemi learned the craft from her mother, who learned it from hers. Yet she worries that fewer young people want to follow the trade. Machine-made fabric is cheaper and arrives faster, while weaving a single outfit can take a month.\n\nRecently, however, her granddaughter Folake has begun to join her at the loom after school. “Machines can copy a pattern,” Folake says, “but they cannot copy the patience in every thread.” Mama Kemi smiles. For the first time in years, she feels certain that the tradition will survive.`,
+vocab:[['loom','A frame or machine used for weaving cloth.'],['craft','A skill of making things by hand.'],['tradition','A custom passed from one generation to the next.'],['patience','The ability to wait calmly and keep going.']],
+questions:[
+['For how long has Mama Kemi been weaving?',['Ten years','Twenty years','Over forty years','Since she was a child'],2,'Literal','The first sentence says she has woven cloth for over forty years.'],
+['Why must many strips be stitched together?',['The loom is broken','Each strip is only a hand’s width wide','Customers prefer small cloths','Stitching is faster than weaving'],1,'Cause and effect','The strips are narrow, so many are needed to make an outfit.'],
+['Why does Mama Kemi worry about the future of her trade?',['Her loom is very old','The town is closing down','Folake dislikes school','Fewer young people want to follow the trade'],3,'Cause and effect','Machine-made cloth is cheaper and faster, so fewer young people want to weave.'],
+['What does Folake mean by “the patience in every thread”?',['Handwoven cloth carries the care and time of its maker, which machines cannot copy','Threads are slow to break','Machines cannot make patterns','Thread is expensive'],0,'Inference','She is saying that hand weaving has a human value that machines cannot reproduce.'],
+['Which detail best shows that the craft is passed between generations?',['Machine-made cloth is cheaper','Weaving an outfit takes a month','Mama Kemi learned from her mother and now Folake joins her at the loom','The strips are very narrow'],2,'Evidence','This shows the skill moving from grandmother to mother to granddaughter.'],
+['Which word best describes how Mama Kemi feels at the end?',['Bored','Hopeful','Angry','Confused'],1,'Tone and mood','She smiles and feels certain the tradition will survive.']]},
+
+{id:'school',title:'Should School Start Later?',topic:'Opinion',level:'Hard',
+text:`Every weekday morning, millions of teenagers drag themselves out of bed before dawn. Research from sleep scientists shows that during adolescence the body clock shifts, making it biologically difficult to fall asleep before eleven at night. A teenager who must wake at six is therefore likely to be running on far less rest than the eight to ten hours recommended.\n\nSchools that have delayed their start time by an hour or more report encouraging results: attendance improved, and fewer students fell asleep in class. Critics argue that later starts would disrupt sports practice and bus schedules. These concerns are real, but they are practical problems that can be solved with planning, whereas chronic tiredness harms health and learning in ways that are much harder to repair.\n\nIt is time for schools to put students’ wellbeing ahead of convenience. A later bell is a small change with a large reward.`,
+vocab:[['adolescence','The stage of life between childhood and adulthood.'],['delayed','Made something happen later.'],['disrupt','To interrupt or upset the normal order of something.'],['chronic','Lasting for a long time.']],
+questions:[
+['According to the passage, why do many teenagers find it hard to sleep early?',['They drink too much coffee','They have too much homework','Their body clock shifts during adolescence','They dislike mornings'],2,'Literal','The passage says the body clock shifts during adolescence.'],
+['What did schools with later start times report?',['Better attendance and fewer students falling asleep in class','Lower sports results','Shorter school days','More bus delays'],0,'Literal','Attendance improved and fewer students fell asleep in class.'],
+['Which of these statements is an opinion rather than a fact?',['Some schools have delayed their start time','The body clock shifts during adolescence','A later bell is a small change with a large reward','Eight to ten hours of sleep are recommended for teenagers'],2,'Fact and opinion','“A large reward” is the author’s judgement. The other statements can be checked.'],
+['How does the author respond to critics who worry about sports and buses?',['Ignores their concerns completely','Accepts that the concerns are real but argues planning can solve them','Agrees that later starts are a bad idea','Suggests cancelling sports'],1,'Author’s argument','The author says the concerns are real but practical problems that planning can solve.'],
+['In paragraph 2, the word “chronic” most nearly means…',['Sudden','Mild','Funny','Long-lasting'],3,'Vocabulary','“Chronic tiredness” is tiredness that continues over a long period.'],
+['What is the author’s main purpose?',['To describe a typical teenager’s day','To persuade readers that schools should start later','To explain how school buses are scheduled','To teach doctors about sleep science'],1,'Author’s purpose','The last paragraph calls for change, and the author gives reasons throughout, so the aim is to persuade.']]}
+];
+const norm=d=>({id:d.id,title:d.title,topic:d.topic,level:d.level,text:d.text,vocab:d.vocab.map(v=>({word:v[0],meaning:v[1]})),questions:d.questions.map(q=>({q:q[0],o:q[1],a:q[2],skill:q[3],why:q[4]}))});
+const P={};DEMO.forEach(d=>P[d.id]=norm(d));
+let H=[],cur=null,qi=0,ans=[],t0=0,tm=null,tok=0,sents=[],last='',voice=null;
+const VIEWS=['dashView','readView','quizView','resultView'];
+const show=v=>{VIEWS.forEach(x=>$(x).classList.toggle('hidden',x!==v));scrollTo(0,0);};
+const TTS='speechSynthesis' in window;
+/* ---------- voice ---------- */
+const sc=v=>(/female|samantha|zira|aria|jenny/i.test(v.name)?3:0)+(/natural|online|neural/i.test(v.name)?2:0)+(/en-(GB|NG|US)/i.test(v.lang)?1:0);
+const pick=()=>{if(!voice&&TTS)voice=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang)).sort((a,b)=>sc(b)-sc(a))[0]||null;return voice;};
+if(TTS)speechSynthesis.onvoiceschanged=()=>{voice=null;};
+const coach=t=>{last=t;$('dockSays').textContent=t;};
+function utter(t,end){const u=new SpeechSynthesisUtterance(t),v=pick();if(v){u.voice=v;u.lang=v.lang;}else u.lang='en-GB';u.rate=+$('speed').value||.9;const d=$('dock'),off=()=>{d.classList.remove('speaking');end&&end();};u.onstart=()=>d.classList.add('speaking');u.onend=off;u.onerror=off;speechSynthesis.speak(u);}
+function stop(){tok++;if(TTS)speechSynthesis.cancel();$('dock').classList.remove('speaking');}
+function say(t){coach(t);if(!TTS)return;stop();utter(t);}
+function seq(items,onItem,done){if(!TTS)return coach('Read-aloud is not supported in this browser.');const my=++tok;let i=0;speechSynthesis.cancel();const next=()=>{if(my!==tok)return;if(i>=items.length){done&&done();return;}const k=i++;onItem&&onItem(k);utter(items[k],()=>setTimeout(next,160));};next();}
+const hl=i=>document.querySelectorAll('.cp-s').forEach(e=>e.classList.toggle('on',+e.dataset.i===i));
+const playPassage=()=>{coach('Listen carefully. I am reading the passage.');seq(sents,hl,()=>{hl(-1);coach('That is the end. Press the button when you are ready for the questions.');});};
+const INTRO='Welcome to MathCloud Reading Comprehension. I am Coach Reed. I will read a passage to you. Listen carefully, and tap any highlighted word to hear its meaning. Then answer the multiple choice questions. At the end I will show you every answer with an explanation.';
+$('introBtn').onclick=()=>say(INTRO);$('dockReplay').onclick=()=>say(last);
+/* ---------- dashboard ---------- */
+const mmss=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+function skillAgg(list){const a={};list.forEach(s=>Object.entries(s.skills||{}).forEach(([k,[c,t]])=>{a[k]=a[k]||[0,0];a[k][0]+=c;a[k][1]+=t;}));return Object.entries(a).map(([k,[c,t]])=>[k,Math.round(100*c/t),t]).sort((x,y)=>x[1]-y[1]);}
+const skHtml=r=>r.map(([k,p])=>`<div class="cp-sk"><span>${esc(k)}</span><div><i style="width:${p}%;background:${p<50?'#b42318':p<75?'#f79009':'#12b76a'}"></i></div><b>${p}%</b></div>`).join('');
+function drawDash(){const n=H.length;$('mTaken').textContent=n;$('mAvg').textContent=n?Math.round(H.reduce((a,s)=>a+s.score,0)/n)+'%':'—';$('mBest').textContent=n?Math.round(Math.max(...H.map(s=>s.score)))+'%':'—';$('mAns').textContent=H.reduce((a,s)=>a+s.total,0);
+ $('plist').innerHTML=Object.values(P).map(p=>{const b=H.filter(s=>s.passageId===p.id).map(s=>s.score);return `<div class="cp-pass"><div><b>${esc(p.title)}</b><span class="lvl ${esc(p.level)}">${esc(p.level)}</span><div class="mq-muted">${esc(p.topic)} · ${p.questions.length} questions${b.length?' · best '+Math.round(Math.max(...b))+'%':''}</div></div><button class="btn primary" data-p="${esc(p.id)}">${b.length?'Read again':'Start'}</button></div>`;}).join('');
+ const sk=skillAgg(H);$('skLead').textContent=sk.length?'Weakest skill first. Practise the red bars.':'Take a test to see your skills.';$('skills').innerHTML=skHtml(sk);
+ $('history').innerHTML=n?[...H].sort((a,b)=>b.completedAt-a.completedAt).slice(0,8).map(s=>`<div class="cp-pass"><div><b>${esc(s.title)}</b><div class="mq-muted">${new Date(s.completedAt).toLocaleString([],{dateStyle:'medium',timeStyle:'short'})} · ${s.correct}/${s.total}</div></div><b>${Math.round(s.score)}%</b></div>`).join(''):'<p class="mq-muted">Finished tests appear here.</p>';}
+$('plist').onclick=e=>{const b=e.target.closest('[data-p]');if(b)openPassage(b.dataset.p);};
+/* ---------- reading ---------- */
+function openPassage(id){stop();cur=P[id];if(!cur)return;$('pTitle').textContent=cur.title;
+ sents=[];const vr=cur.vocab.length?new RegExp('\\b('+cur.vocab.map(v=>v.word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')\\b','gi'):null;
+ $('ptext').innerHTML=cur.text.split(/\n+/).filter(p=>p.trim()).map(p=>'<p>'+(p.match(/[^.!?]+[.!?]+["”')]*\s*|[^.!?]+$/g)||[p]).map(s=>{const i=sents.push(s.trim())-1;let h=esc(s.trim());if(vr)h=h.replace(vr,m=>`<span class="vw" data-w="${esc(m.toLowerCase())}">${m}</span>`);return `<span class="cp-s" data-i="${i}">${h}</span>`;}).join(' ')+'</p>').join('');
+ $('gloss').innerHTML=cur.vocab.map(v=>`<div><button class="btn" data-w="${esc(v.word.toLowerCase())}" style="padding:4px 10px;min-height:36px">🔊</button><span><b>${esc(v.word)}</b> — ${esc(v.meaning)}</span></div>`).join('');
+ $('ptext').classList.remove('hidden');show('readView');coach('Press Listen to hear the passage. Tap any blue word to hear what it means.');}
+const word=w=>{const v=cur.vocab.find(x=>x.word.toLowerCase()===w);if(v)say(v.word+'. '+v.meaning);};
+$('readView').addEventListener('click',e=>{const b=e.target.closest('[data-w]');if(b)word(b.dataset.w);});
+$('playBtn').onclick=playPassage;$('stopBtn').onclick=()=>{stop();hl(-1);coach('Stopped.');};
+$('wordsBtn').onclick=()=>seq(cur.vocab.map(v=>v.word+'. '+v.meaning),k=>coach(cur.vocab[k].word+': '+cur.vocab[k].meaning),()=>coach('Those are the words to know.'));
+$('txtBtn').onclick=()=>$('ptext').classList.toggle('hidden');
+$('leaveBtn').onclick=()=>{stop();clearInterval(tm);show('dashView');drawDash();coach('Choose a passage to begin.');};
+/* ---------- quiz ---------- */
+$('startQ').onclick=()=>{stop();qi=0;ans=cur.questions.map(()=>-1);t0=Date.now();clearInterval(tm);$('timer').textContent='00:00';tm=setInterval(()=>$('timer').textContent=mmss(Math.round((Date.now()-t0)/1000)),1000);$('qTitle').textContent=cur.title;show('quizView');drawQ();coach('Take your time. You can go back and change an answer before you finish.');};
+$('backRead').onclick=()=>{stop();show('readView');};
+function drawQ(){const q=cur.questions[qi],n=cur.questions.length;$('counter').textContent='Question '+(qi+1)+' of '+n;$('skTag').textContent=q.skill||'';$('bar').style.width=(100*qi/n)+'%';$('qText').textContent=q.q;$('qMsg').textContent='';
+ $('opts').innerHTML=q.o.map((o,i)=>`<button class="cp-opt${ans[qi]===i?' sel':''}" role="radio" aria-checked="${ans[qi]===i}" data-o="${i}"><b>${'ABCD'[i]}.</b> <span>${esc(o)}</span></button>`).join('');$('prevBtn').style.visibility=qi?'visible':'hidden';$('nextBtn').textContent=qi===n-1?'Finish test ✓':'Next →';}
+$('opts').onclick=e=>{const b=e.target.closest('[data-o]');if(!b)return;ans[qi]=+b.dataset.o;drawQ();};
+$('prevBtn').onclick=()=>{qi--;drawQ();};
+$('nextBtn').onclick=()=>{if(ans[qi]<0){$('qMsg').textContent='Choose an answer first.';return;}if(qi<cur.questions.length-1){qi++;drawQ();return;}const miss=ans.filter(a=>a<0).length;if(miss&&!confirm(miss+' question(s) unanswered. Finish anyway?'))return;finish();};
+$('qHear').onclick=()=>{const q=cur.questions[qi];say(q.q+' '+q.o.map((o,i)=>'ABCD'[i]+'. '+o).join('. '));};
+$('qReplay').onclick=playPassage;
+/* ---------- results ---------- */
+function finish(){stop();clearInterval(tm);const n=cur.questions.length,secs=Math.round((Date.now()-t0)/1000),skills={};let c=0;
+ cur.questions.forEach((q,i)=>{const ok=ans[i]===q.a,k=(q.skill||'General');skills[k]=skills[k]||[0,0];skills[k][1]++;if(ok){c++;skills[k][0]++;}});
+ const score=Math.round(100*c/n),s={passageId:cur.id,title:cur.title,score,total:n,correct:c,seconds:secs,skills,completedAt:Date.now()};H.push(s);
+ $('ring').style.background=`conic-gradient(#155eef ${score}%,#e4e7ec 0)`;$('ringTxt').textContent=score+'%';
+ $('resTitle').textContent=score>=80?'Excellent reading!':score>=50?'Good effort!':'Keep practising!';$('resSub').textContent=`${c} of ${n} correct in ${mmss(secs)}.`;
+ const sk=skillAgg([s]);$('resSk').innerHTML=skHtml(sk);const weak=sk.filter(x=>x[1]<70).map(x=>x[0]);
+ $('review').innerHTML=cur.questions.map((q,i)=>{const ok=ans[i]===q.a;return `<div class="cp-rv ${ok?'good':'bad'}"><b>${i+1}. ${esc(q.q)}</b><p>Your answer: <span class="${ok?'cp-ok':'cp-no'}">${ans[i]<0?'No answer':'ABCD'[ans[i]]+'. '+esc(q.o[ans[i]])}</span></p>${ok?'':`<p>Correct answer: <span class="cp-ok">${'ABCD'[q.a]}. ${esc(q.o[q.a])}</span></p>`}${q.why?`<p class="mq-muted">💡 ${esc(q.why)}</p>`:''}<button class="btn" data-say="${i}" style="padding:5px 12px;min-height:38px">🔊 Explain</button></div>`;}).join('');
+ const msg=`You scored ${c} out of ${n}. `+(weak.length?'Practise these skills: '+weak.join(', ')+'.':'Your skills look strong. Well done.');
+ $('sayBtn').onclick=()=>say(msg);show('resultView');coach(msg);}
+$('review').onclick=e=>{const b=e.target.closest('[data-say]');if(!b)return;const q=cur.questions[+b.dataset.say];say('The correct answer is '+q.o[q.a]+'. '+(q.why||''));};
+$('againBtn').onclick=()=>openPassage(cur.id);
+$('nextPassBtn').onclick=()=>{const ids=Object.keys(P),i=ids.indexOf(cur.id);openPassage(ids[(i+1)%ids.length]);};
+$('homeBtn').onclick=()=>{stop();show('dashView');drawDash();coach('Choose a passage to begin.');};
+drawDash();
+/* Coach Reed tries to speak on load; browsers may block it until the page is tapped. */
+window.addEventListener('load',()=>{setTimeout(()=>{try{if(TTS)say(INTRO);}catch(e){}},700);});
+})();
+</script></body></html>
